@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-serif-heading: 'Cormorant Garamond', Georgia, Cambria, 'Times New Roman', Times, serif;
+    --font-sans-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono-tech: 'Space Mono', monospace;
+  }
+
+  html {
+    font-family: var(--font-sans-body);
+    scroll-behavior: smooth;
+    color: #1a1a1a;
+    background-color: #f4f1ea;
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-serif {
+    font-family: var(--font-serif-heading);
+  }
+
+  .font-mono {
+    font-family: var(--font-mono-tech);
+  }
+}
+
+/* Custom subtle architectural scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f4f1ea;
+}
+::-webkit-scrollbar-thumb {
+  background: #d9d4c7;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #1a1a1a;
+}
+
+/* Artistic flair utility classes */
+.artistic-border {
+  border: 1px solid #1a1a1a;
+}
+
+.artistic-border-subtle {
+  border: 1px solid #dcd8cc;
+}
+
+.artistic-box-shadow {
+  box-shadow: 6px 6px 0px 0px rgba(26, 26, 26, 0.08);
+}
+
+/* Print and utility styles */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
