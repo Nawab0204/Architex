@@ -86,7 +86,7 @@ export function ProcessPage() {
         {/* CTA */}
         <CTASection
           id="process-page-cta"
-          title="Ready to begin Stage 01 with RA Architects?"
+          title="Ready to begin Stage 01 with Real Life Architecture?"
           subtitle="Book your initial consultation to review your property brief and discuss feasibility."
         />
       </main>

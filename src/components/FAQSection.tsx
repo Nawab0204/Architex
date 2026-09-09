@@ -19,7 +19,7 @@ export function FAQSection({ limit }: { limit?: number }) {
         <SectionHeading
           label="FREQUENTLY ASKED QUESTIONS"
           title="Clear answers to common architectural questions."
-          description="Everything you need to know about working with RA Architects, from initial site consultations through to planning approvals and technical drawings."
+          description="Everything you need to know about working with Real Life Architecture, from initial site consultations through to planning approvals and technical drawings."
           align="center"
         />
 

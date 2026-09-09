@@ -12,7 +12,7 @@ export function PhilosophySection() {
             <div className="relative overflow-hidden bg-[#E8E5DF] aspect-[4/3] sm:aspect-[16/10] border border-[#E5E2DC]">
               <img
                 src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1000&q=80"
-                alt="RA Architects architectural philosophy and studio ethos"
+                alt="Real Life Architecture architectural philosophy and studio ethos"
                 className="w-full h-full object-cover object-center"
                 loading="lazy"
                 decoding="async"
@@ -44,7 +44,7 @@ export function PhilosophySection() {
             </h2>
 
             <p className="text-base sm:text-lg text-[#555555] leading-relaxed font-light">
-              At RA Architects, we believe great architecture is born from deep listening, rigorous technical inquiry, and respect for natural light. We design homes and developments that reflect the specific context of their environment and the daily rhythms of those who inhabit them.
+              At Real Life Architecture, we believe great architecture is born from deep listening, rigorous technical inquiry, and respect for natural light. We design homes and developments that reflect the specific context of their environment and the daily rhythms of those who inhabit them.
             </p>
 
             <div className="space-y-3 pt-2">
@@ -80,7 +80,7 @@ export function PhilosophySection() {
                 href="/about"
                 className="inline-flex items-center gap-2 px-6 py-3.5 bg-[#171717] text-white text-xs sm:text-sm font-semibold tracking-tight hover:bg-[#2C2C2C] transition-all group"
               >
-                <span>About RA Architects</span>
+                <span>About Real Life Architecture</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>

@@ -42,7 +42,7 @@ export function ContactPage() {
                   </span>
                 </div>
                 <h2 className="font-serif text-2xl sm:text-3xl font-normal text-[#1a1a1a] tracking-tight">
-                  RA Architects
+                  Real Life Architecture
                 </h2>
                 <p className="text-sm sm:text-base text-[#5c5850] leading-relaxed font-light">
                   We work with homeowners, landowners, and developers across Birmingham, Solihull, Sutton Coldfield, and the wider West Midlands.

@@ -245,7 +245,7 @@ export function ServiceDetailPage({ slug }: { slug: string }) {
         <CTASection
           id="service-detail-cta"
           title={`Ready to start your project with ${service.title}?`}
-          subtitle="Get in touch with RA Architects to discuss your property, timeline, and statutory requirements."
+          subtitle="Get in touch with Real Life Architecture to discuss your property, timeline, and statutory requirements."
         />
       </main>
 

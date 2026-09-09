@@ -7,7 +7,7 @@ export function DifferenceSection() {
     <section id="difference-section" className="py-20 sm:py-28 lg:py-32 bg-[#f4f1ea] border-t border-[#dcd8cc]">
       <div className="max-w-[1360px] mx-auto px-5 sm:px-8 lg:px-12">
         <SectionHeading
-          label="THE ARCHITEX DIFFERENCE"
+          label="THE REAL LIFE ARCHITECTURE DIFFERENCE"
           title="Design that balances creativity, practicality and purpose."
           description="We take a deliberate approach to every commission, ensuring every design decision is supported by spatial reason, statutory foresight, and real-world constructability."
         />

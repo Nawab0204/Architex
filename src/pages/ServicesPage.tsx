@@ -63,7 +63,7 @@ export function ServicesPage() {
             {/* Drawing Viewer */}
             <ProjectDrawingsViewer
               drawings={allPlanningDrawings}
-              projectTitle="RA Architects Planning & Technical Packages"
+              projectTitle="Real Life Architecture Planning & Technical Packages"
             />
           </div>
         </section>
@@ -77,7 +77,7 @@ export function ServicesPage() {
         {/* CTA */}
         <CTASection
           id="services-page-cta"
-          title="Discuss your project requirements with RA Architects."
+          title="Discuss your project requirements with Real Life Architecture."
           subtitle="We tailor our architectural scope to suit your exact stage of development and project goals."
         />
       </main>

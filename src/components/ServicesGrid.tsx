@@ -15,7 +15,7 @@ export function ServicesGrid({ limit }: { limit?: number }) {
           <SectionHeading
             label="OUR SERVICES"
             title="Comprehensive architectural & statutory services."
-            description="Discover how RA Architects can guide and develop your project from initial concept through to planning approvals and construction detailing."
+            description="Discover how Real Life Architecture can guide and develop your project from initial concept through to planning approvals and construction detailing."
             className="mb-0"
           />
 

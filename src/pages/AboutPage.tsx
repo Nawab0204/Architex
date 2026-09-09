@@ -24,7 +24,7 @@ export function AboutPage() {
             </div>
 
             <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal tracking-[-0.02em] text-[#1a1a1a] leading-[1.1]">
-              About RA Architects
+              About Real Life Architecture
             </h1>
 
             <p className="mt-4 text-base sm:text-xl text-[#5c5850] max-w-2xl font-light leading-relaxed">
@@ -50,7 +50,7 @@ export function AboutPage() {
                 </h2>
 
                 <p className="text-base sm:text-lg text-[#4a4740] leading-relaxed font-light">
-                  RA Architects approaches every commission with clarity, creativity, and close attention to the lifestyle of those who will use the building. We understand that a home is more than an arrangement of rooms—it is where daily memories unfold.
+                  Real Life Architecture approaches every commission with clarity, creativity, and close attention to the lifestyle of those who will use the building. We understand that a home is more than an arrangement of rooms—it is where daily memories unfold.
                 </p>
 
                 <p className="text-sm sm:text-base text-[#5c5850] leading-relaxed font-light">
@@ -59,10 +59,10 @@ export function AboutPage() {
 
                 <div className="pt-2">
                   <Link
-                    href="/projects"
+                    href="/portfolio"
                     className="inline-flex items-center gap-2 px-7 py-4 bg-[#1a1a1a] text-[#f4f1ea] text-[11px] font-semibold uppercase tracking-[0.2em] hover:bg-[#333333] transition-all group"
                   >
-                    <span>Explore Our Work</span>
+                    <span>Explore Our Portfolio</span>
                     <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </Link>
                 </div>
@@ -72,7 +72,7 @@ export function AboutPage() {
                 <div className="relative overflow-hidden bg-[#e8e4d8] aspect-[4/3] sm:aspect-[16/11] border border-[#dcd8cc] shadow-[8px_8px_0px_0px_rgba(26,26,26,0.06)]">
                   <img
                     src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80"
-                    alt="RA Architects practice workspace and architecture"
+                    alt="Real Life Architecture practice workspace and architecture"
                     className="w-full h-full object-cover object-center"
                     loading="lazy"
                     decoding="async"
@@ -86,13 +86,13 @@ export function AboutPage() {
         {/* Practice Standards */}
         <TrustSection />
 
-        {/* The RA Architects Difference */}
+        {/* The Real Life Architecture Difference */}
         <DifferenceSection />
 
         {/* CTA */}
         <CTASection
           id="about-page-cta"
-          title="Work with RA Architects on your next project."
+          title="Work with Real Life Architecture on your next project."
           subtitle="Book an initial consultation to review your property and discuss spatial opportunities."
         />
       </main>

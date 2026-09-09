@@ -85,7 +85,7 @@ export function IndexPage() {
                   Project Master Index
                 </h1>
                 <p className="mt-3 text-sm sm:text-base text-[#70706B] max-w-2xl font-light">
-                  A structured chronological and technical register of infrastructure facilities, public landscapes, cultural institutions, and residential adaptations designed by RA Architects.
+                  A structured chronological and technical register of infrastructure facilities, public landscapes, cultural institutions, and residential adaptations designed by Real Life Architecture.
                 </p>
               </div>
 

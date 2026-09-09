@@ -9,7 +9,7 @@ export const FAQ_ITEMS: FAQItem[] = [
   },
   {
     id: 'faq-2',
-    question: 'How do I get started with RA Architects?',
+    question: 'How do I get started with Real Life Architecture?',
     answer: 'Simply get in touch via our Contact page or call our studio. We will discuss your initial ideas, property location, timeline, and budget. From there, we arrange a site consultation to evaluate spatial opportunities and prepare a tailored fee proposal.',
     category: 'Getting Started'
   },

@@ -43,9 +43,9 @@ export function HomePage() {
         <CTASection
           id="homepage-consultation-cta"
           title="Turn your ideas into a space worth living in."
-          subtitle="Tell us about your project and start a conversation with RA Architects. We evaluate feasibility, unlock daylight, and handle planning with rigor."
+          subtitle="Tell us about your project and start a conversation with Real Life Architecture. We evaluate feasibility, unlock daylight, and handle planning with rigor."
           primaryButtonText="Start a Project"
-          secondaryButtonText="Contact RA Architects"
+          secondaryButtonText="Contact Us"
           variant="dark"
         />
 
@@ -55,12 +55,12 @@ export function HomePage() {
         {/* 09 SERVICES */}
         <ServicesGrid limit={6} />
 
-        {/* 10 OUR WORK / PROJECTS */}
+        {/* 10 PORTFOLIO */}
         <ProjectsGrid
           limit={6}
           title="Selected architectural works."
           subtitle="A preview of bespoke residential extensions, heritage conversions, and new build homes delivered across Birmingham and the West Midlands."
-          eyebrow="OUR WORK"
+          eyebrow="PORTFOLIO"
         />
 
         {/* 11 TESTIMONIALS */}

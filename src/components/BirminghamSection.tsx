@@ -30,7 +30,7 @@ export function BirminghamSection() {
             </h2>
 
             <p className="text-base sm:text-lg text-[#4a4740] leading-relaxed font-light">
-              RA Architects provides architectural design and related services in Birmingham, working with clients to develop thoughtful solutions for residential, commercial and development projects.
+              Real Life Architecture provides architectural design and related services in Birmingham, working with clients to develop thoughtful solutions for residential, commercial and development projects.
             </p>
 
             <p className="text-sm sm:text-base text-[#5c5850] leading-relaxed font-light">

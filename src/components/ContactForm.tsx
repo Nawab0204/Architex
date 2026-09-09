@@ -145,7 +145,7 @@ export function ContactForm() {
             <CheckCircle className="w-8 h-8" />
           </div>
           <h3 className="font-serif text-2xl sm:text-3xl font-normal text-[#1a1a1a] tracking-tight">
-            Thank you for contacting RA Architects.
+            Thank you for contacting Real Life Architecture.
           </h3>
           <p className="text-sm text-[#5c5850] max-w-md mx-auto leading-relaxed font-light">
             Your enquiry has been routed directly to our <strong className="text-[#1a1a1a] font-semibold">{selectedPersonObj?.name}</strong>. A dedicated specialist will review your project brief and reach out via your preferred method ({formData.contactMethod}) within 1 business day.

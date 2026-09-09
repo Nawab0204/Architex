@@ -14,7 +14,7 @@ interface CTASectionProps {
 export function CTASection({
   id = 'consultation-cta-section',
   title = 'Turn your ideas into a space worth living in.',
-  subtitle = 'Tell us about your project and start a conversation with RA Architects. We are here to guide you through feasibility, design, planning and delivery.',
+  subtitle = 'Tell us about your project and start a conversation with Real Life Architecture. We are here to guide you through feasibility, design, planning and delivery.',
   primaryButtonText = 'Start a Project',
   secondaryButtonText = 'Contact Us',
   variant = 'dark',
