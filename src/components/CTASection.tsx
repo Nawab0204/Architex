@@ -14,7 +14,7 @@ interface CTASectionProps {
 export function CTASection({
   id = 'consultation-cta-section',
   title = 'Turn your ideas into a space worth living in.',
-  subtitle = 'Tell us about your project and start a conversation with Architex. We are here to guide you through feasibility, design, planning and delivery.',
+  subtitle = 'Tell us about your project and start a conversation with RA Architects. We are here to guide you through feasibility, design, planning and delivery.',
   primaryButtonText = 'Start a Project',
   secondaryButtonText = 'Contact Us',
   variant = 'dark',
@@ -98,8 +98,8 @@ export function CTASection({
               <div className="space-y-3 pt-3 border-t border-[#dcd8cc]/40">
                 <div className="flex items-center gap-3 text-xs sm:text-sm">
                   <Mail className="w-4 h-4 text-[#736e65] shrink-0" />
-                  <a href="mailto:studio@architex.co.uk" className="hover:underline">
-                    studio@architex.co.uk
+                  <a href="mailto:studio@raarchitects.co.uk" className="hover:underline">
+                    studio@raarchitects.co.uk
                   </a>
                 </div>
                 <div className="flex items-center gap-3 text-xs sm:text-sm">

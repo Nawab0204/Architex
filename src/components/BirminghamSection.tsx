@@ -13,8 +13,8 @@ export function BirminghamSection() {
   ];
 
   return (
-    <section id="birmingham-services-section" className="py-20 sm:py-28 lg:py-32 bg-[#ffffff] border-y border-[#dcd8cc]">
-      <div className="max-w-[1360px] mx-auto px-5 sm:px-8 lg:px-12">
+    <section id="birmingham-services-section" className="py-20 sm:py-28 lg:py-32 bg-[#ffffff] border-y border-[#dcd8cc] w-full">
+      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left Text */}
           <div className="lg:col-span-6 space-y-6">
@@ -30,7 +30,7 @@ export function BirminghamSection() {
             </h2>
 
             <p className="text-base sm:text-lg text-[#4a4740] leading-relaxed font-light">
-              Architex provides architectural design and related services in Birmingham, working with clients to develop thoughtful solutions for residential, commercial and development projects.
+              RA Architects provides architectural design and related services in Birmingham, working with clients to develop thoughtful solutions for residential, commercial and development projects.
             </p>
 
             <p className="text-sm sm:text-base text-[#5c5850] leading-relaxed font-light">

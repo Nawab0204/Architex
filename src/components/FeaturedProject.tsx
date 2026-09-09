@@ -1,14 +1,14 @@
 import React from 'react';
 import { PROJECTS } from '../data/projects';
 import { Link } from '../context/NavigationContext';
-import { ArrowRight, MapPin, Calendar, Layers } from 'lucide-react';
+import { ArrowRight, MapPin, Calendar, Box, FileText } from 'lucide-react';
 
 export function FeaturedProject() {
   const latestProject = PROJECTS.find((p) => p.latest) || PROJECTS[0];
 
   return (
-    <section id="latest-project-section" className="py-20 sm:py-28 lg:py-32 bg-[#ffffff] border-b border-[#dcd8cc]">
-      <div className="max-w-[1360px] mx-auto px-5 sm:px-8 lg:px-12">
+    <section id="latest-project-section" className="py-20 sm:py-28 lg:py-32 bg-[#ffffff] border-b border-[#dcd8cc] w-full">
+      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12">
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12 sm:mb-16">
           <div>
@@ -47,9 +47,16 @@ export function FeaturedProject() {
                 alt={latestProject.title}
                 className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
                 loading="lazy"
+                decoding="async"
               />
-              <div className="absolute top-4 left-4 bg-[#f4f1ea]/95 backdrop-blur-sm px-3.5 py-1 text-[10px] font-mono font-semibold uppercase tracking-[0.2em] text-[#1a1a1a] border border-[#dcd8cc]">
-                {latestProject.category}
+              <div className="absolute top-4 left-4 flex gap-2">
+                <span className="bg-[#f4f1ea]/95 backdrop-blur-sm px-3.5 py-1 text-[10px] font-mono font-semibold uppercase tracking-[0.2em] text-[#1a1a1a] border border-[#dcd8cc]">
+                  {latestProject.category}
+                </span>
+                <span className="bg-[#1a1a1a]/90 backdrop-blur-sm px-3 py-1 text-[9px] font-mono font-semibold uppercase tracking-[0.15em] text-[#f4f1ea] border border-white/20 flex items-center gap-1.5">
+                  <Box className="w-3 h-3 text-[#C51B18]" />
+                  Interactive 3D Model
+                </span>
               </div>
             </Link>
           </div>
@@ -83,7 +90,7 @@ export function FeaturedProject() {
 
             {/* Quick Specs */}
             <div className="space-y-2.5 pt-4 border-t border-[#dcd8cc]">
-              <span className="text-[11px] font-mono font-semibold uppercase tracking-[0.2em] text-[#1a1a1a] block">Services Provided</span>
+              <span className="text-[11px] font-mono font-semibold uppercase tracking-[0.2em] text-[#1a1a1a] block">Services & Deliverables</span>
               <div className="flex flex-wrap gap-2">
                 {latestProject.specifications.servicesProvided.map((service, idx) => (
                   <span
@@ -93,17 +100,23 @@ export function FeaturedProject() {
                     {service}
                   </span>
                 ))}
+                {latestProject.drawings && (
+                  <span className="text-xs px-3 py-1 bg-[#ffffff] border border-[#dcd8cc] text-[#C51B18] font-mono flex items-center gap-1">
+                    <FileText className="w-3 h-3 text-[#C51B18]" />
+                    {latestProject.drawings.length} Planning Drawings
+                  </span>
+                )}
               </div>
             </div>
 
             {/* CTA */}
-            <div className="pt-2">
+            <div className="pt-2 flex flex-wrap gap-3">
               <Link
                 id="latest-project-view-btn"
                 href={`/projects/${latestProject.slug}`}
                 className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#1a1a1a] text-[#f4f1ea] text-[11px] font-semibold uppercase tracking-[0.2em] hover:bg-[#333333] transition-all group"
               >
-                <span>View Project</span>
+                <span>View Project & 3D Model</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>

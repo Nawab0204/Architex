@@ -3,11 +3,14 @@ import { NavigationProvider, useNavigation } from './context/NavigationContext';
 import { HomePage } from './pages/HomePage';
 import { ProjectsPage } from './pages/ProjectsPage';
 import { ProjectDetailPage } from './pages/ProjectDetailPage';
+import { IndexPage } from './pages/IndexPage';
 import { ServicesPage } from './pages/ServicesPage';
 import { ServiceDetailPage } from './pages/ServiceDetailPage';
 import { AboutPage } from './pages/AboutPage';
 import { ProcessPage } from './pages/ProcessPage';
 import { InsightsPage } from './pages/InsightsPage';
+import { BlogsPage } from './pages/BlogsPage';
+import { FAQPage } from './pages/FAQPage';
 import { ArticleDetailPage } from './pages/ArticleDetailPage';
 import { ContactPage } from './pages/ContactPage';
 import { LegalPage } from './pages/LegalPage';
@@ -18,9 +21,16 @@ function Router() {
   // Parse path without query strings
   const pathname = currentPath.split('?')[0] || '/';
 
-  // Match /projects/:slug
+  // Match /projects/:slug or /project/:slug
   if (pathname.startsWith('/projects/')) {
     const slug = pathname.replace('/projects/', '');
+    if (slug) {
+      return <ProjectDetailPage slug={slug} />;
+    }
+  }
+
+  if (pathname.startsWith('/project/')) {
+    const slug = pathname.replace('/project/', '');
     if (slug) {
       return <ProjectDetailPage slug={slug} />;
     }
@@ -45,16 +55,26 @@ function Router() {
   switch (pathname) {
     case '/':
       return <HomePage />;
+    case '/portfolio':
     case '/projects':
       return <ProjectsPage />;
+    case '/index':
+      return <IndexPage />;
     case '/services':
       return <ServicesPage />;
     case '/about':
+    case '/about-us':
       return <AboutPage />;
     case '/process':
       return <ProcessPage />;
     case '/insights':
       return <InsightsPage />;
+    case '/blog':
+    case '/blogs':
+      return <BlogsPage />;
+    case '/faq':
+    case '/faqs':
+      return <FAQPage />;
     case '/contact':
       return <ContactPage />;
     case '/privacy':

@@ -4,15 +4,15 @@ import { ArrowRight, Compass, Layers, ShieldCheck } from 'lucide-react';
 
 export function IntroSection() {
   return (
-    <section id="intro-section" className="py-20 sm:py-28 lg:py-32 bg-[#f4f1ea]">
-      <div className="max-w-[1360px] mx-auto px-5 sm:px-8 lg:px-12">
+    <section id="intro-section" className="py-20 sm:py-28 lg:py-32 bg-[#f4f1ea] w-full">
+      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left Editorial Copy */}
           <div className="lg:col-span-6 space-y-6">
             <div className="flex items-center gap-2.5">
               <span className="inline-block w-6 h-[1px] bg-[#1a1a1a]" />
               <span className="text-[11px] font-semibold tracking-[0.25em] uppercase text-[#736e65]">
-                ABOUT ARCHITEX
+                ABOUT RA ARCHITECTS
               </span>
             </div>
 
@@ -21,7 +21,7 @@ export function IntroSection() {
             </h2>
 
             <p className="text-base sm:text-lg text-[#4a4740] leading-relaxed font-light">
-              Architex develops architectural ideas into thoughtful, practical and visually distinctive spaces. Each project is approached with clarity, creativity and close attention to the needs of the people who will use it.
+              RA Architects develops architectural ideas into thoughtful, practical and visually distinctive spaces. Each project is approached with clarity, creativity and close attention to the needs of the people who will use it.
             </p>
 
             <p className="text-base sm:text-lg text-[#5c5850] leading-relaxed font-light">
@@ -61,15 +61,16 @@ export function IntroSection() {
           <div className="lg:col-span-6 relative">
             <div className="relative overflow-hidden bg-[#e8e4d8] aspect-[4/5] sm:aspect-[5/4] lg:aspect-[4/5] border border-[#dcd8cc] shadow-[8px_8px_0px_0px_rgba(26,26,26,0.06)]">
               <img
-                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=85"
-                alt="Contemporary architectural home designed by Architex"
+                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80"
+                alt="Contemporary architectural home designed by RA Architects"
                 className="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-105"
                 loading="lazy"
+                decoding="async"
               />
               <div className="absolute bottom-4 left-4 right-4 bg-[#f4f1ea]/95 backdrop-blur-sm p-4 border border-[#dcd8cc] flex items-center justify-between">
                 <div>
                   <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#736e65] block">Featured Practice</span>
-                  <span className="text-sm font-serif font-medium text-[#1a1a1a] block">Birmingham & West Midlands Practice</span>
+                  <span className="text-sm font-serif font-medium text-[#1a1a1a] block">RA Architects • Birmingham Studio</span>
                 </div>
                 <span className="text-[11px] font-mono text-[#736e65] uppercase tracking-wider">Est. 2018</span>
               </div>

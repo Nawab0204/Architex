@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1100" width="100%" height="100%" style="background:#FCFCF9; font-family:'Courier New', monospace, sans-serif;">
+  <defs>
+    <pattern id="concrete" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="0.5" fill="#999990"/>
+      <circle cx="7" cy="8" r="0.5" fill="#999990"/>
+    </pattern>
+  </defs>
+
+  <rect x="30" y="30" width="1540" height="1040" fill="none" stroke="#111111" stroke-width="1.5"/>
+  <rect x="36" y="36" width="1528" height="1028" fill="none" stroke="#111111" stroke-width="0.5"/>
+
+  <!-- Title Block -->
+  <g transform="translate(1160, 48)">
+    <rect x="0" y="0" width="390" height="120" fill="#FFFFFF" stroke="#111111" stroke-width="1"/>
+    <text x="15" y="24" font-size="11" font-weight="bold" fill="#111111" letter-spacing="1">PROJECT: COOMBE FIELDS 33kV SUBSTATION</text>
+    <text x="15" y="44" font-size="9" fill="#555550">DRAWING: FOUNDATION, SUB-FLOOR DUCTS &amp; DETAILS A–E</text>
+    <text x="15" y="60" font-size="8" fill="#777770">DRAWING REF: DWG-04 / REV C | SCALE 1:50 &amp; 1:20 @ A1</text>
+    <text x="15" y="76" font-size="8" fill="#777770">STRUCTURAL WATERPROOFING &amp; CABLE BASEMENT</text>
+    <line x1="0" y1="88" x2="390" y2="88" stroke="#111111" stroke-width="0.5"/>
+    <text x="15" y="106" font-size="9" font-weight="bold" fill="#1C3B52">WATERPROOFING: BITUTHENE 8000 MEMBRANE</text>
+  </g>
+
+  <!-- Plan: Sub Floor Duct Setting Out (Left) -->
+  <g transform="translate(80, 80)">
+    <text x="0" y="0" font-size="11" font-weight="bold" fill="#111111" letter-spacing="1">SUB FLOOR DUCT SETTING OUT PLAN (SCALE 1:50)</text>
+    <rect x="0" y="30" width="800" height="420" fill="url(#concrete)" stroke="#111111" stroke-width="1.5"/>
+
+    <!-- High-Voltage Cable Duct Openings -->
+    <g transform="translate(60, 80)">
+      <text x="0" y="-10" font-size="8" font-weight="bold" fill="#C51B18">33kV INCOMING DUCT ENTRIES (150mm DIA PVC PIPES)</text>
+      <circle cx="20" cy="20" r="14" fill="#FFFFFF" stroke="#C51B18" stroke-width="1.5"/>
+      <circle cx="60" cy="20" r="14" fill="#FFFFFF" stroke="#C51B18" stroke-width="1.5"/>
+      <circle cx="100" cy="20" r="14" fill="#FFFFFF" stroke="#C51B18" stroke-width="1.5"/>
+      <circle cx="140" cy="20" r="14" fill="#FFFFFF" stroke="#C51B18" stroke-width="1.5"/>
+      <circle cx="180" cy="20" r="14" fill="#FFFFFF" stroke="#C51B18" stroke-width="1.5"/>
+      <circle cx="220" cy="20" r="14" fill="#FFFFFF" stroke="#C51B18" stroke-width="1.5"/>
+    </g>
+
+    <!-- Longitudinal Trench Network -->
+    <rect x="60" y="150" width="680" height="90" fill="#FFFFFF" stroke="#1C3B52" stroke-width="2"/>
+    <text x="240" y="200" font-size="10" font-weight="bold" fill="#1C3B52">MAIN CONTINUOUS REINFORCED CONCRETE CABLE TRENCH</text>
+    <text x="260" y="220" font-size="8" fill="#555550">FALL TO SUMP 1:100 (AUTOMATIC DISCHARGE DUCT)</text>
+
+    <!-- Sump Pit Location -->
+    <rect x="650" y="160" width="70" height="70" fill="#E8E8E2" stroke="#C51B18" stroke-width="1.5"/>
+    <text x="660" y="200" font-size="8" font-weight="bold" fill="#C51B18">SUMP PIT</text>
+
+    <!-- Details Callout Markers -->
+    <circle cx="70" cy="30" r="16" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
+    <text x="63" y="35" font-size="9" font-weight="bold" fill="#111111">A</text>
+
+    <circle cx="400" cy="150" r="16" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
+    <text x="393" y="155" font-size="9" font-weight="bold" fill="#111111">C</text>
+
+    <circle cx="740" cy="240" r="16" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
+    <text x="733" y="245" font-size="9" font-weight="bold" fill="#111111">D</text>
+  </g>
+
+  <!-- Technical Waterproofing Details A to E (Right & Lower) -->
+  <g transform="translate(940, 200)">
+    <text x="0" y="0" font-size="11" font-weight="bold" fill="#111111" letter-spacing="1">TECHNICAL WATERPROOFING DETAILS (SCALE 1:20 / 1:10)</text>
+
+    <!-- Detail A: Foundation / External Wall Interface -->
+    <g transform="translate(0, 30)">
+      <rect x="0" y="0" width="280" height="180" fill="#FFFFFF" stroke="#111111" stroke-width="1"/>
+      <text x="12" y="20" font-size="9" font-weight="bold" fill="#111111">DETAIL A: EXTERNAL WALL TANKING</text>
+      <!-- Brick outer, cavity, block inner -->
+      <rect x="20" y="40" width="30" height="100" fill="#E8E8E2" stroke="#111111"/>
+      <rect x="55" y="40" width="20" height="100" fill="#FFFFFF" stroke="#111111"/>
+      <rect x="80" y="40" width="40" height="100" fill="#D0D0C8" stroke="#111111"/>
+      <!-- Membrane blue line -->
+      <path d="M 50,140 L 75,140 L 75,40" fill="none" stroke="#1C3B52" stroke-width="2.5"/>
+      <text x="130" y="60" font-size="7.5" fill="#1C3B52">Continuous Bituthene DPC</text>
+      <text x="130" y="75" font-size="7.5" fill="#1C3B52">lapped with floor slab</text>
+      <text x="130" y="90" font-size="7.5" fill="#1C3B52">tanking membrane</text>
+    </g>
+
+    <!-- Detail C: Duct Penetration Waterproofing -->
+    <g transform="translate(300, 30)">
+      <rect x="0" y="0" width="280" height="180" fill="#FFFFFF" stroke="#111111" stroke-width="1"/>
+      <text x="12" y="20" font-size="9" font-weight="bold" fill="#111111">DETAIL C: DUCT SLEEVE SEALING</text>
+      <circle cx="80" cy="90" r="35" fill="#E8E8E2" stroke="#111111" stroke-width="1.5"/>
+      <circle cx="80" cy="90" r="25" fill="#1C3B52" stroke="#111111" stroke-width="1"/>
+      <text x="130" y="70" font-size="7.5" fill="#111111">150mm PVC Duct</text>
+      <text x="130" y="85" font-size="7.5" fill="#1C3B52">Hydrophilic Waterstop</text>
+      <text x="130" y="100" font-size="7.5" fill="#1C3B52">gasket ring around pipe</text>
+      <text x="130" y="115" font-size="7.5" fill="#555550">Non-shrink structural grout</text>
+    </g>
+
+    <!-- Detail D: Column Base Footing Isolation -->
+    <g transform="translate(0, 230)">
+      <rect x="0" y="0" width="280" height="180" fill="#FFFFFF" stroke="#111111" stroke-width="1"/>
+      <text x="12" y="20" font-size="9" font-weight="bold" fill="#111111">DETAIL D: STEELWORK INTERFACE</text>
+      <rect x="40" y="40" width="30" height="80" fill="#1C3B52"/>
+      <rect x="25" y="120" width="60" height="12" fill="#111111"/>
+      <rect x="10" y="132" width="90" height="30" fill="#E0E0DA" stroke="#111111"/>
+      <text x="120" y="60" font-size="7.5" fill="#111111">Universal Column 203x203</text>
+      <text x="120" y="75" font-size="7.5" fill="#555550">Holding down bolts M24</text>
+      <text x="120" y="90" font-size="7.5" fill="#1C3B52">25mm flowable cementitious</text>
+      <text x="120" y="105" font-size="7.5" fill="#1C3B52">high-strength grout</text>
+    </g>
+
+    <!-- Detail E: Structural Movement Joint -->
+    <g transform="translate(300, 230)">
+      <rect x="0" y="0" width="280" height="180" fill="#FFFFFF" stroke="#111111" stroke-width="1"/>
+      <text x="12" y="20" font-size="9" font-weight="bold" fill="#111111">DETAIL E: MOVEMENT JOINT</text>
+      <rect x="20" y="40" width="45" height="100" fill="#E8E8E2" stroke="#111111"/>
+      <rect x="80" y="40" width="45" height="100" fill="#E8E8E2" stroke="#111111"/>
+      <!-- Joint with waterstop -->
+      <line x1="67" y1="40" x2="67" y2="140" stroke="#C51B18" stroke-width="3"/>
+      <circle cx="67" cy="90" r="8" fill="#C51B18"/>
+      <text x="140" y="60" font-size="7.5" fill="#C51B18">Centre-bulb PVC</text>
+      <text x="140" y="75" font-size="7.5" fill="#C51B18">waterstop expansion joint</text>
+      <text x="140" y="90" font-size="7.5" fill="#555550">Polysulphide sealant</text>
+    </g>
+  </g>
+</svg>

@@ -4,7 +4,7 @@ import { PROJECTS } from '../data/projects';
 import { ProjectCard } from './ProjectCard';
 import { SectionHeading } from './SectionHeading';
 import { Link } from '../context/NavigationContext';
-import { ArrowRight, Filter } from 'lucide-react';
+import { ArrowRight, Filter, TableProperties } from 'lucide-react';
 
 const CATEGORIES: ProjectCategory[] = [
   'All',
@@ -13,7 +13,10 @@ const CATEGORIES: ProjectCategory[] = [
   'New Build',
   'Renovation',
   'Commercial',
-  'Visualisation'
+  'Visualisation',
+  'Infrastructure',
+  'Civic & Landscape',
+  'Institutional'
 ];
 
 interface ProjectsGridProps {
@@ -29,9 +32,9 @@ export function ProjectsGrid({
   limit,
   initialCategory = 'All',
   showFilters = true,
-  title = 'A few selected projects.',
-  subtitle = 'Explore our portfolio of contemporary residential transformations, heritage extensions, and bespoke new builds in Birmingham and beyond.',
-  eyebrow = 'OUR WORK'
+  title = 'Selected Works & Case Studies.',
+  subtitle = 'Rigorous architectural planning, mission-critical infrastructure, and civic public realms documented to construction standards.',
+  eyebrow = 'CATALOGUE'
 }: ProjectsGridProps) {
   const [selectedCategory, setSelectedCategory] = useState<ProjectCategory>(initialCategory);
 
@@ -47,10 +50,10 @@ export function ProjectsGrid({
   }, [selectedCategory, limit]);
 
   return (
-    <section id="portfolio-section" className="py-20 sm:py-28 lg:py-32 bg-[#FFFFFF]">
-      <div className="max-w-[1360px] mx-auto px-5 sm:px-8 lg:px-12">
+    <section id="portfolio-section" className="py-20 sm:py-28 bg-[#FBFBF9] border-t border-[#E5E5DF]">
+      <div className="max-w-[1500px] mx-auto px-4 sm:px-8 lg:px-12">
         {/* Header and Controls */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 sm:mb-14">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 sm:mb-12">
           <SectionHeading
             label={eyebrow}
             title={title}
@@ -58,42 +61,52 @@ export function ProjectsGrid({
             className="mb-0"
           />
 
-          {limit && (
+          <div className="flex items-center gap-3 shrink-0">
             <Link
-              id="projects-grid-view-all-link"
-              href="/projects"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-[#171717] hover:text-[#B08D57] transition-colors group shrink-0"
+              id="projects-grid-index-table-link"
+              href="/index"
+              className="inline-flex items-center gap-1.5 px-4 py-2 border border-[#E5E5DF] bg-[#FFFFFF] hover:bg-[#F4F4F0] text-[11px] font-mono uppercase tracking-[0.16em] text-[#111111] transition-colors"
             >
-              <span>View All Projects ({PROJECTS.length})</span>
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              <TableProperties className="w-3.5 h-3.5 text-[#1C3B52]" />
+              <span>Index View</span>
             </Link>
-          )}
+
+            {limit && (
+              <Link
+                id="projects-grid-view-all-link"
+                href="/projects"
+                className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-[0.16em] text-[#111111] hover:text-[#1C3B52] transition-colors group"
+              >
+                <span>All Works ({PROJECTS.length})</span>
+                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+              </Link>
+            )}
+          </div>
         </div>
 
-        {/* Filter Pills */}
+        {/* Clean Filter Pill Bar */}
         {showFilters && (
-          <div className="flex items-center gap-2 pb-6 mb-8 overflow-x-auto border-b border-[#E5E2DC] no-scrollbar">
-            <span className="text-xs font-semibold uppercase tracking-wider text-[#999999] flex items-center gap-1.5 mr-2 shrink-0">
-              <Filter className="w-3 h-3" /> Filter:
+          <div className="flex items-center gap-2 pb-6 mb-10 overflow-x-auto border-b border-[#E5E5DF] no-scrollbar">
+            <span className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-[#70706B] flex items-center gap-1.5 mr-2 shrink-0">
+              <Filter className="w-3 h-3 text-[#1C3B52]" /> FILTER:
             </span>
             {CATEGORIES.map((cat) => {
               const count = cat === 'All' ? PROJECTS.length : PROJECTS.filter((p) => p.category === cat).length;
-              if (count === 0 && cat !== 'All') return null;
               const isSelected = selectedCategory === cat;
               return (
                 <button
                   key={cat}
-                  id={`filter-cat-${cat.toLowerCase().replace(/\s+/g, '-')}`}
+                  id={`filter-cat-${cat.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}
                   type="button"
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-4 py-2 text-xs sm:text-[13px] font-medium tracking-tight whitespace-nowrap transition-all shrink-0 border ${
+                  className={`px-4 py-2 text-xs font-mono tracking-wider uppercase transition-all shrink-0 border cursor-pointer ${
                     isSelected
-                      ? 'bg-[#171717] text-white border-[#171717]'
-                      : 'bg-[#F7F5F0] text-[#555555] border-[#E5E2DC] hover:border-[#CCCCCC] hover:text-[#171717]'
+                      ? 'bg-[#111111] text-[#FBFBF9] border-[#111111]'
+                      : 'bg-[#FFFFFF] text-[#70706B] border-[#E5E5DF] hover:border-[#111111] hover:text-[#111111]'
                   }`}
                 >
                   <span>{cat}</span>
-                  <span className={`ml-1.5 text-[11px] font-mono ${isSelected ? 'text-white/70' : 'text-[#888888]'}`}>
+                  <span className={`ml-1.5 text-[11px] ${isSelected ? 'text-[#FBFBF9]/70' : 'text-[#70706B]'}`}>
                     ({count})
                   </span>
                 </button>
@@ -104,11 +117,11 @@ export function ProjectsGrid({
 
         {/* Projects Grid */}
         {filteredProjects.length === 0 ? (
-          <div className="text-center py-16 bg-[#F7F5F0] border border-[#E5E2DC] p-8">
-            <p className="text-base text-[#6A6A6A]">No projects currently listed in this category.</p>
+          <div className="text-center py-16 bg-[#FFFFFF] border border-[#E5E5DF] p-8">
+            <p className="text-sm font-mono text-[#70706B]">No works found in this classification.</p>
             <button
               onClick={() => setSelectedCategory('All')}
-              className="mt-4 px-5 py-2.5 bg-[#171717] text-white text-xs font-semibold"
+              className="mt-4 px-5 py-2.5 bg-[#111111] text-[#FBFBF9] text-xs font-mono uppercase tracking-wider cursor-pointer"
             >
               Reset Filters
             </button>

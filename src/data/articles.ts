@@ -11,7 +11,7 @@ export const ARTICLES: Article[] = [
     excerpt: 'How to combine historic craftsmanship with contemporary open-plan living, daylight optimization, and energy efficiency in period properties.',
     heroImage: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=85',
     author: {
-      name: 'Architex Editorial',
+      name: 'RA Architects Editorial',
       role: 'Architectural Design Practice'
     },
     content: {
@@ -54,7 +54,7 @@ export const ARTICLES: Article[] = [
     excerpt: 'An overview of Permitted Development rights, conservation area considerations, and the statutory 8-week planning application journey.',
     heroImage: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=85',
     author: {
-      name: 'Architex Editorial',
+      name: 'RA Architects Editorial',
       role: 'Planning & Design Practice'
     },
     content: {
@@ -95,7 +95,7 @@ export const ARTICLES: Article[] = [
     excerpt: 'Why photorealistic 3D architectural imagery and spatial models help clients and planning officers make confident, informed decisions.',
     heroImage: 'https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?auto=format&fit=crop&w=1600&q=85',
     author: {
-      name: 'Architex Editorial',
+      name: 'RA Architects Editorial',
       role: '3D Visualisation Team'
     },
     content: {

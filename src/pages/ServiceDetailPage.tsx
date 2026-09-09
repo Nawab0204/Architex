@@ -6,14 +6,23 @@ import { PROJECTS } from '../data/projects';
 import { Link, useNavigation } from '../context/NavigationContext';
 import { CTASection } from '../components/CTASection';
 import { ProjectCard } from '../components/ProjectCard';
-import { ArrowLeft, ArrowRight, CheckCircle2, HelpCircle, Layers, FileCheck } from 'lucide-react';
+import { ProjectDrawingsViewer } from '../components/ProjectDrawingsViewer';
+import {
+  ArrowLeft,
+  ArrowRight,
+  CheckCircle2,
+  Layers,
+  FileCheck,
+  FileText,
+  Compass,
+} from 'lucide-react';
 
 export function ServiceDetailPage({ slug }: { slug: string }) {
   const service = SERVICES.find((s) => s.slug === slug);
 
   if (!service) {
     return (
-      <div className="min-h-screen flex flex-col bg-[#f4f1ea]">
+      <div className="min-h-screen flex flex-col bg-[#f4f1ea] w-full">
         <Header />
         <main className="flex-1 pt-32 pb-20 flex items-center justify-center">
           <div className="text-center p-8 bg-white border border-[#dcd8cc] max-w-md mx-auto shadow-[6px_6px_0px_0px_rgba(26,26,26,0.06)]">
@@ -32,21 +41,22 @@ export function ServiceDetailPage({ slug }: { slug: string }) {
   const relatedProjects = PROJECTS.filter((p) => service.relatedProjectSlugs.includes(p.slug));
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#f4f1ea]">
+    <div className="min-h-screen flex flex-col bg-[#f4f1ea] w-full">
       <Header isTransparentInitially={true} />
 
-      <main className="flex-1">
+      <main className="flex-1 w-full">
         {/* Large Service Hero */}
         <div className="relative w-full h-[65vh] min-h-[460px] max-h-[700px] bg-[#1a1a1a] text-[#f4f1ea] overflow-hidden select-none">
           <img
             src={service.heroImage}
             alt={service.title}
             className="w-full h-full object-cover object-center brightness-90"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a]/95 via-[#1a1a1a]/40 to-black/30" />
 
           {/* Hero Content */}
-          <div className="absolute inset-0 max-w-[1360px] mx-auto px-5 sm:px-8 lg:px-12 flex flex-col justify-between pt-28 pb-12">
+          <div className="absolute inset-0 w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 flex flex-col justify-between pt-28 pb-12">
             <div>
               <Link
                 href="/services"
@@ -60,7 +70,7 @@ export function ServiceDetailPage({ slug }: { slug: string }) {
               <div className="flex items-center gap-2.5 mb-3">
                 <span className="inline-block w-6 h-[1px] bg-[#f4f1ea]" />
                 <span className="text-[11px] font-semibold tracking-[0.25em] uppercase text-[#e8e4d8]">
-                  ARCHITECTURAL DISCIPLINE
+                  ARCHITECTURAL DISCIPLINE • RA ARCHITECTS
                 </span>
               </div>
 
@@ -76,10 +86,10 @@ export function ServiceDetailPage({ slug }: { slug: string }) {
         </div>
 
         {/* Narrative & Deliverables Grid */}
-        <div className="py-16 sm:py-24 max-w-[1360px] mx-auto px-5 sm:px-8 lg:px-12">
+        <div className="py-16 sm:py-24 w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
             {/* Left Narrative */}
-            <div className="lg:col-span-7 space-y-8">
+            <div className="lg:col-span-7 space-y-10">
               <div className="space-y-4">
                 <div className="flex items-center gap-2.5">
                   <span className="inline-block w-6 h-[1px] bg-[#1a1a1a]" />
@@ -102,10 +112,10 @@ export function ServiceDetailPage({ slug }: { slug: string }) {
                   {service.processStages.map((stg, idx) => (
                     <div key={idx} className="bg-white border border-[#dcd8cc] p-6 space-y-2 shadow-[4px_4px_0px_0px_rgba(26,26,26,0.04)]">
                       <div className="flex items-center gap-3">
-                        <span className="font-mono text-xs font-bold text-[#736e65]">0{idx + 1}</span>
+                        <span className="font-mono text-xs font-bold text-[#C51B18]">0{idx + 1}</span>
                         <h4 className="text-base font-semibold text-[#1a1a1a]">{stg.title}</h4>
                       </div>
-                      <p className="text-sm text-[#5c5850] leading-relaxed font-light pl-6">
+                      <p className="text-sm text-[#5c5850] leading-relaxed font-light pl-7">
                         {stg.description}
                       </p>
                     </div>
@@ -153,37 +163,64 @@ export function ServiceDetailPage({ slug }: { slug: string }) {
           </div>
         </div>
 
-        {/* Relevant Case Studies */}
-        {relatedProjects.length > 0 && (
-          <div className="py-20 sm:py-28 bg-[#ffffff] border-y border-[#dcd8cc]">
-            <div className="max-w-[1360px] mx-auto px-5 sm:px-8 lg:px-12">
-              <div className="flex items-center justify-between mb-10">
+        {/* PLANNING DRAWINGS & TECHNICAL SPECIFICATIONS SECTION FOR THIS SERVICE */}
+        {service.planningDrawings && service.planningDrawings.length > 0 && (
+          <div className="py-16 sm:py-24 bg-[#ffffff] border-y border-[#dcd8cc] w-full">
+            <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 space-y-8">
+              <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
                 <div>
-                  <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-[#736e65] block mb-1">
-                    PROJECT APPLICATIONS
-                  </span>
-                  <h3 className="font-serif text-2xl sm:text-3xl font-normal text-[#1a1a1a]">
-                    Relevant Case Studies
+                  <div className="flex items-center gap-2 mb-2">
+                    <FileText className="w-4 h-4 text-[#C51B18]" />
+                    <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-[#736e65]">
+                      TECHNICAL DRAWINGS & STATUTORY SHEETS
+                    </span>
+                  </div>
+                  <h3 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-normal text-[#1a1a1a]">
+                    Sample Planning Drawings & Details
                   </h3>
                 </div>
-
-                <Link href="/projects" className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#1a1a1a] hover:text-[#736e65]">
-                  View All Projects →
-                </Link>
+                <p className="text-xs font-mono text-[#5c5850] max-w-md">
+                  High-precision architectural plans and technical elevations produced for planning submission and building control sign-off.
+                </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {relatedProjects.map((p) => (
-                  <ProjectCard key={p.id} project={p} />
-                ))}
+              <ProjectDrawingsViewer
+                drawings={service.planningDrawings}
+                projectTitle={service.title}
+              />
+            </div>
+          </div>
+        )}
+
+        {/* Relevant Case Studies */}
+        {relatedProjects.length > 0 && (
+          <div className="py-20 sm:py-28 w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12">
+            <div className="flex items-center justify-between mb-10">
+              <div>
+                <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-[#736e65] block mb-1">
+                  PROJECT APPLICATIONS
+                </span>
+                <h3 className="font-serif text-2xl sm:text-3xl font-normal text-[#1a1a1a]">
+                  Relevant Case Studies
+                </h3>
               </div>
+
+              <Link href="/projects" className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#1a1a1a] hover:text-[#736e65]">
+                View All Projects →
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {relatedProjects.map((p) => (
+                <ProjectCard key={p.id} project={p} />
+              ))}
             </div>
           </div>
         )}
 
         {/* Service FAQ */}
         {service.faq && service.faq.length > 0 && (
-          <div className="py-16 sm:py-24 max-w-[1000px] mx-auto px-5 sm:px-8 lg:px-12">
+          <div className="py-16 sm:py-24 w-full max-w-[1200px] mx-auto px-4 sm:px-8 lg:px-12">
             <div className="text-center mb-10">
               <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-[#736e65] block mb-1">
                 FAQ
@@ -208,7 +245,7 @@ export function ServiceDetailPage({ slug }: { slug: string }) {
         <CTASection
           id="service-detail-cta"
           title={`Ready to start your project with ${service.title}?`}
-          subtitle="Get in touch to discuss your property, timeline, and statutory requirements."
+          subtitle="Get in touch with RA Architects to discuss your property, timeline, and statutory requirements."
         />
       </main>
 

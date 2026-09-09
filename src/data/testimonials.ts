@@ -3,7 +3,7 @@ import { Testimonial } from '../types';
 export const TESTIMONIALS: Testimonial[] = [
   {
     id: 'test-1',
-    quote: 'Architex completely unlocked the potential of our Edwardian home. The rear pavilion feels like a natural part of the house while bringing in incredible natural light from morning to dusk.',
+    quote: 'RA Architects completely unlocked the potential of our Edwardian home. The rear pavilion feels like a natural part of the house while bringing in incredible natural light from morning to dusk.',
     name: 'Homeowner, Harborne',
     project: 'Harborne House Transformation',
     location: 'Harborne, Birmingham',

@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="100%" height="100%" style="background:#0c1824; font-family: 'Space Mono', monospace;">
+  <!-- Title Block Grid -->
+  <rect x="20" y="20" width="1160" height="760" fill="none" stroke="#254668" stroke-width="2"/>
+  <rect x="25" y="25" width="1150" height="750" fill="none" stroke="#162e48" stroke-width="1"/>
+  
+  <!-- Architectural Grid Lines -->
+  <g stroke="#1a3552" stroke-width="0.75" stroke-dasharray="8,8">
+    <line x1="80" y1="60" x2="80" y2="680"/>
+    <line x1="280" y1="60" x2="280" y2="680"/>
+    <line x1="480" y1="60" x2="480" y2="680"/>
+    <line x1="680" y1="60" x2="680" y2="680"/>
+    <line x1="880" y1="60" x2="880" y2="680"/>
+    
+    <line x1="60" y1="120" x2="1140" y2="120"/>
+    <line x1="60" y1="280" x2="1140" y2="280"/>
+    <line x1="60" y1="440" x2="1140" y2="440"/>
+    <line x1="60" y1="600" x2="1140" y2="600"/>
+  </g>
+
+  <!-- Title Block Bottom Right -->
+  <rect x="780" y="620" width="390" height="150" fill="#08111b" stroke="#376899" stroke-width="1.5"/>
+  <text x="800" y="650" fill="#6ba7df" font-size="11" letter-spacing="2">REAL LIFE ARCHITECTURE • BIRMINGHAM</text>
+  <text x="800" y="675" fill="#f0f4f8" font-size="16" font-weight="bold" letter-spacing="1">HARBORNE HOUSE — GA GROUND PLAN</text>
+  <text x="800" y="700" fill="#8cb9e5" font-size="11">DRAWING NO: HH-01 • SCALE: 1:50 @ A1 • STATUS: PLANNING</text>
+  <text x="800" y="725" fill="#588bb8" font-size="10">REAR PAVILION EXTENSION &amp; OPEN-PLAN LIVING</text>
+  <text x="800" y="745" fill="#c51b18" font-size="10" font-weight="bold">STAGE 3 PLANNING APPROVAL GRANTED</text>
+
+  <!-- North Arrow -->
+  <g transform="translate(1080, 100)">
+    <circle cx="0" cy="0" r="28" fill="none" stroke="#6ba7df" stroke-width="1.5"/>
+    <polygon points="0,-24 7,8 0,3 -7,8" fill="#c51b18"/>
+    <text x="-4" y="-30" fill="#f0f4f8" font-size="12" font-weight="bold">N</text>
+  </g>
+
+  <!-- Outer Walls Main House -->
+  <path d="M 120,160 L 520,160 L 520,380 L 1020,380 L 1020,620 L 120,620 Z" fill="#13273d" stroke="#6ba7df" stroke-width="4"/>
+  <path d="M 140,180 L 500,180 L 500,400 L 1000,400 L 1000,600 L 140,600 Z" fill="#0f1d2c" stroke="#3b6998" stroke-width="1"/>
+
+  <!-- Rear Pavilion Glass Cantilever Wall -->
+  <line x1="520" y1="380" x2="1020" y2="380" stroke="#f59e0b" stroke-width="4" stroke-dasharray="16,8"/>
+  <text x="640" y="370" fill="#f59e0b" font-size="12" font-weight="bold">STRUCTURAL MINIMAL-FRAME SLIDING GLAZING (12.4m)</text>
+
+  <!-- Room Partitions & Internal Layout -->
+  <line x1="320" y1="180" x2="320" y2="440" stroke="#6ba7df" stroke-width="2.5"/>
+  <line x1="140" y1="440" x2="500" y2="440" stroke="#6ba7df" stroke-width="2.5"/>
+  <line x1="680" y1="400" x2="680" y2="600" stroke="#6ba7df" stroke-width="2.5"/>
+
+  <!-- Kitchen Island Detail -->
+  <rect x="580" y="460" width="160" height="70" fill="#1b3652" stroke="#6ba7df" stroke-width="1.5"/>
+  <circle cx="620" cy="495" r="14" fill="#0c1824" stroke="#8cb9e5" stroke-width="1"/>
+  <circle cx="660" cy="495" r="14" fill="#0c1824" stroke="#8cb9e5" stroke-width="1"/>
+  <circle cx="700" cy="495" r="14" fill="#0c1824" stroke="#8cb9e5" stroke-width="1"/>
+
+  <!-- Dining Table Layout -->
+  <rect x="800" y="450" width="150" height="90" rx="6" fill="#1b3652" stroke="#6ba7df" stroke-width="1.5"/>
+
+  <!-- Annotations & Labels -->
+  <text x="220" y="240" fill="#f0f4f8" font-size="14" font-weight="bold">FORMAL LOUNGE</text>
+  <text x="220" y="260" fill="#8cb9e5" font-size="11">FFL: +0.00m • PARQUET OAK</text>
+
+  <text x="200" y="510" fill="#f0f4f8" font-size="14" font-weight="bold">UTILITY &amp; BOOT ROOM</text>
+  <text x="200" y="530" fill="#8cb9e5" font-size="11">ACOUSTIC PARTITION RW45dB</text>
+
+  <text x="640" y="430" fill="#f0f4f8" font-size="15" font-weight="bold">OPEN PLAN CHEF'S KITCHEN &amp; DINING</text>
+  <text x="640" y="570" fill="#8cb9e5" font-size="11">POLISHED CONCRETE SLAB • UNDERFLOOR HEATING</text>
+
+  <text x="760" y="280" fill="#f59e0b" font-size="13" font-weight="bold">LANDSCAPED REFLECTING POOL &amp; TERRACE</text>
+  <rect x="620" y="220" width="360" height="120" fill="none" stroke="#f59e0b" stroke-width="1" stroke-dasharray="4,4"/>
+
+  <!-- Dimension Lines -->
+  <g stroke="#8cb9e5" stroke-width="1">
+    <line x1="120" y1="130" x2="520" y2="130"/>
+    <line x1="120" y1="125" x2="120" y2="135"/>
+    <line x1="520" y1="125" x2="520" y2="135"/>
+    <text x="300" y="122" fill="#8cb9e5" font-size="11" text-anchor="middle">8,200 mm</text>
+
+    <line x1="520" y1="350" x2="1020" y2="350"/>
+    <line x1="520" y1="345" x2="520" y2="355"/>
+    <line x1="1020" y1="345" x2="1020" y2="355"/>
+    <text x="770" y="342" fill="#8cb9e5" font-size="11" text-anchor="middle">12,400 mm (PAVILION EXTENSION)</text>
+  </g>
+</svg>

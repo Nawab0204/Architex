@@ -43,9 +43,9 @@ export function HomePage() {
         <CTASection
           id="homepage-consultation-cta"
           title="Turn your ideas into a space worth living in."
-          subtitle="Tell us about your project and start a conversation with Architex. We evaluate feasibility, unlock daylight, and handle planning with rigor."
+          subtitle="Tell us about your project and start a conversation with RA Architects. We evaluate feasibility, unlock daylight, and handle planning with rigor."
           primaryButtonText="Start a Project"
-          secondaryButtonText="Contact Architex"
+          secondaryButtonText="Contact RA Architects"
           variant="dark"
         />
 

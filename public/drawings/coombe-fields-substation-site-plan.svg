@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1100" width="100%" height="100%" style="background:#FCFCF9; font-family:'Courier New', monospace, sans-serif;">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#EAEAE5" stroke-width="0.75"/>
+    </pattern>
+    <pattern id="hatch" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#1C3B52" stroke-width="0.8" opacity="0.4" />
+    </pattern>
+    <pattern id="gravel" width="12" height="12" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="0.75" fill="#888880"/>
+      <circle cx="8" cy="7" r="0.75" fill="#888880"/>
+      <circle cx="5" cy="10" r="0.75" fill="#888880"/>
+    </pattern>
+  </defs>
+
+  <!-- Background Grid -->
+  <rect width="1600" height="1100" fill="url(#grid)"/>
+
+  <!-- Border Frame -->
+  <rect x="30" y="30" width="1540" height="1040" fill="none" stroke="#111111" stroke-width="1.5"/>
+  <rect x="36" y="36" width="1528" height="1028" fill="none" stroke="#111111" stroke-width="0.5"/>
+
+  <!-- Title Block (Top Right) -->
+  <g transform="translate(1160, 48)">
+    <rect x="0" y="0" width="390" height="120" fill="#FFFFFF" stroke="#111111" stroke-width="1"/>
+    <text x="15" y="24" font-size="11" font-weight="bold" fill="#111111" letter-spacing="1">PROJECT: COOMBE FIELDS 33kV SUBSTATION</text>
+    <text x="15" y="44" font-size="9" fill="#555550">DRAWING: GENERAL SUBSTATION MASTER SITE PLAN &amp; ELEVATIONS</text>
+    <text x="15" y="60" font-size="8" fill="#777770">DRAWING REF: DWG-01 / REV C | SCALE 1:500 &amp; 1:200 @ A1</text>
+    <text x="15" y="76" font-size="8" fill="#777770">LOCATION: COOMBE FIELDS ROAD, ANSTY / COVENTRY, WARWICKSHIRE</text>
+    <line x1="0" y1="88" x2="390" y2="88" stroke="#111111" stroke-width="0.5"/>
+    <text x="15" y="106" font-size="9" font-weight="bold" fill="#1C3B52">STATUS: TECHNICAL DESIGN &amp; STATUTORY APPROVALS</text>
+  </g>
+
+  <!-- North Arrow -->
+  <g transform="translate(1480, 200)">
+    <circle cx="0" cy="0" r="24" fill="none" stroke="#111111" stroke-width="1"/>
+    <polygon points="0,-22 -6,0 0,-4" fill="#111111"/>
+    <polygon points="0,-22 6,0 0,-4" fill="none" stroke="#111111" stroke-width="0.75"/>
+    <line x1="0" y1="-22" x2="0" y2="22" stroke="#111111" stroke-width="0.75"/>
+    <text x="-4" y="-28" font-size="12" font-weight="bold" fill="#111111">N</text>
+  </g>
+
+  <!-- Master Site Boundary Plan (Upper Half) -->
+  <g transform="translate(80, 80)">
+    <text x="20" y="20" font-size="12" font-weight="bold" fill="#111111" letter-spacing="1">OVERALL SUBSTATION COMPOUND SETTING OUT PLAN</text>
+    <text x="20" y="36" font-size="9" fill="#777770">SCALE 1:500 (METRIC mm)</text>
+
+    <!-- Adjacent ROLLS ROYCE Land Boundary -->
+    <line x1="40" y1="360" x2="820" y2="360" stroke="#111111" stroke-width="2" stroke-dasharray="10,5,2,5"/>
+    <text x="120" y="385" font-size="11" font-weight="bold" fill="#777770" letter-spacing="2">BOUNDARY TO ROLLS-ROYCE LAND</text>
+
+    <!-- Site Perimeter Poly -->
+    <polygon points="80,120 780,60 880,320 80,360" fill="url(#gravel)" stroke="#111111" stroke-width="1.5"/>
+    
+    <!-- 2400mm Palisade Fencing Line -->
+    <polygon points="120,140 740,90 830,310 120,340" fill="#FFFFFF" stroke="#1C3B52" stroke-width="1" stroke-dasharray="6,3"/>
+    <text x="140" y="130" font-size="8" fill="#1C3B52">PROPOSED 2400mm HIGH GALVANISED STEEL PALISADE FENCE</text>
+    <text x="320" y="80" font-size="8" fill="#555550">PROPOSED 1800mm OPEN MESH STEEL FENCE (BS 1722 PART 14)</text>
+
+    <!-- Coombe Fields Road Alignment -->
+    <path d="M 860,20 Q 940,240 1020,440" fill="none" stroke="#111111" stroke-width="2.5"/>
+    <path d="M 920,20 Q 1000,240 1080,440" fill="none" stroke="#111111" stroke-width="1" stroke-dasharray="8,4"/>
+    <text x="960" y="220" font-size="11" font-weight="bold" fill="#111111" transform="rotate(68 960 220)" letter-spacing="2">COOMBE FIELDS ROAD</text>
+
+    <!-- Bellmouth Entrance Splay -->
+    <path d="M 830,240 C 880,250 890,260 920,280" fill="none" stroke="#1C3B52" stroke-width="1.5"/>
+    <path d="M 830,300 C 880,310 930,340 960,370" fill="none" stroke="#1C3B52" stroke-width="1.5"/>
+    <text x="840" y="270" font-size="8" fill="#1C3B52">15m RADIUS BELLMOUTH SPLAY WITH 125x255 HB2 KERBS</text>
+
+    <!-- Primary 33kV Switch House Footprint -->
+    <rect x="220" y="230" width="220" height="80" fill="url(#hatch)" stroke="#111111" stroke-width="2"/>
+    <rect x="220" y="230" width="220" height="80" fill="none" stroke="#111111" stroke-width="0.5"/>
+    <text x="235" y="265" font-size="10" font-weight="bold" fill="#111111">33kV SWITCH HOUSE</text>
+    <text x="235" y="280" font-size="8" fill="#1C3B52">FFL: * 101.30m AOD (17.765m x 6.16m)</text>
+    <text x="235" y="295" font-size="7.5" fill="#555550">REF TO DWGS 01, 02, 03, 04, 05 &amp; 11</text>
+
+    <!-- 2No Transformer Bays -->
+    <g transform="translate(480, 150)">
+      <rect x="0" y="0" width="100" height="90" fill="#F4F4F0" stroke="#111111" stroke-width="1.5"/>
+      <rect x="15" y="15" width="70" height="60" fill="none" stroke="#1C3B52" stroke-width="1"/>
+      <circle cx="50" cy="45" r="18" fill="none" stroke="#111111" stroke-width="1"/>
+      <text x="20" y="48" font-size="7.5" font-weight="bold" fill="#111111">33/11kV TX 1</text>
+      <text x="5" y="105" font-size="7.5" fill="#555550">BUNDED ENCLOSURE</text>
+    </g>
+    <g transform="translate(610, 150)">
+      <rect x="0" y="0" width="100" height="90" fill="#F4F4F0" stroke="#111111" stroke-width="1.5"/>
+      <rect x="15" y="15" width="70" height="60" fill="none" stroke="#1C3B52" stroke-width="1"/>
+      <circle cx="50" cy="45" r="18" fill="none" stroke="#111111" stroke-width="1"/>
+      <text x="20" y="48" font-size="7.5" font-weight="bold" fill="#111111">33/11kV TX 2</text>
+      <text x="5" y="105" font-size="7.5" fill="#555550">BUNDED ENCLOSURE</text>
+    </g>
+
+    <!-- Cable Route Vectors -->
+    <path d="M 440,270 L 530,240" fill="none" stroke="#C51B18" stroke-width="1.2" stroke-dasharray="4,2"/>
+    <path d="M 440,270 L 660,240" fill="none" stroke="#C51B18" stroke-width="1.2" stroke-dasharray="4,2"/>
+    <text x="460" y="290" font-size="8" fill="#C51B18">UNDERFLOOR 33kV CABLE DUCTING CORRIDOR</text>
+  </g>
+
+  <!-- Orthographic Context Elevations (Lower Section) -->
+  <g transform="translate(80, 520)">
+    <line x1="0" y1="0" x2="1420" y2="0" stroke="#111111" stroke-width="1"/>
+    <text x="20" y="30" font-size="11" font-weight="bold" fill="#111111" letter-spacing="1">CONTEXT BOUNDARY &amp; SITE ELEVATIONS</text>
+    <text x="20" y="45" font-size="8" fill="#777770">SCALE 1:200</text>
+
+    <!-- North Elevation -->
+    <g transform="translate(40, 70)">
+      <text x="0" y="0" font-size="9" font-weight="bold" fill="#111111">NORTH ELEVATION (COMPOUND BOUNDARY)</text>
+      <!-- Ground line -->
+      <line x1="0" y1="50" x2="640" y2="50" stroke="#111111" stroke-width="1.5"/>
+      <!-- Palisade Fence -->
+      <line x1="0" y1="16" x2="640" y2="16" stroke="#888880" stroke-width="0.8" stroke-dasharray="2,2"/>
+      <text x="50" y="35" font-size="7.5" fill="#888880">2400mm GALVANISED STEEL PALISADE</text>
+      <!-- Switch house silhouette in background -->
+      <polygon points="180,50 180,10 400,18 400,50" fill="#E8E8E2" stroke="#111111" stroke-width="1"/>
+      <text x="240" y="35" font-size="8" fill="#111111">SWITCH HOUSE REAR</text>
+    </g>
+
+    <!-- South Elevation -->
+    <g transform="translate(740, 70)">
+      <text x="0" y="0" font-size="9" font-weight="bold" fill="#111111">SOUTH ELEVATION (FACING ROLLS-ROYCE LAND)</text>
+      <line x1="0" y1="50" x2="640" y2="50" stroke="#111111" stroke-width="1.5"/>
+      <!-- Switch house front elevation -->
+      <polygon points="120,50 120,18 340,10 340,50" fill="#F4F4F0" stroke="#111111" stroke-width="1.2"/>
+      <!-- Doors & highline gutter -->
+      <rect x="140" y="24" width="22" height="26" fill="#1C3B52"/>
+      <rect x="300" y="24" width="22" height="26" fill="#1C3B52"/>
+      <line x1="120" y1="18" x2="340" y2="10" stroke="#1C3B52" stroke-width="2"/>
+      <text x="170" y="35" font-size="8" fill="#111111">KINGSPAN RW1000 ROOF (MERLIN GREY)</text>
+    </g>
+
+    <!-- East Elevation -->
+    <g transform="translate(40, 240)">
+      <text x="0" y="0" font-size="9" font-weight="bold" fill="#111111">EAST ELEVATION (FACING COOMBE FIELDS ROAD)</text>
+      <line x1="0" y1="50" x2="640" y2="50" stroke="#111111" stroke-width="1.5"/>
+      <polygon points="200,50 200,15 280,10 280,50" fill="#E8E8E2" stroke="#111111" stroke-width="1"/>
+      <text x="210" y="35" font-size="7.5" fill="#111111">GABLE MONOPITCH</text>
+    </g>
+
+    <!-- West Elevation -->
+    <g transform="translate(740, 240)">
+      <text x="0" y="0" font-size="9" font-weight="bold" fill="#111111">WEST ELEVATION</text>
+      <line x1="0" y1="50" x2="640" y2="50" stroke="#111111" stroke-width="1.5"/>
+      <polygon points="200,50 200,10 280,15 280,50" fill="#E8E8E2" stroke="#111111" stroke-width="1"/>
+      <text x="210" y="35" font-size="7.5" fill="#111111">WEST WALL MONOPITCH</text>
+    </g>
+
+    <!-- Scale Bar -->
+    <g transform="translate(580, 420)">
+      <rect x="0" y="0" width="240" height="6" fill="#FFFFFF" stroke="#111111" stroke-width="0.8"/>
+      <rect x="0" y="0" width="60" height="6" fill="#111111"/>
+      <rect x="120" y="0" width="60" height="6" fill="#111111"/>
+      <text x="0" y="-4" font-size="8" fill="#111111">0</text>
+      <text x="56" y="-4" font-size="8" fill="#111111">5m</text>
+      <text x="114" y="-4" font-size="8" fill="#111111">10m</text>
+      <text x="174" y="-4" font-size="8" fill="#111111">15m</text>
+      <text x="234" y="-4" font-size="8" fill="#111111">20m</text>
+      <text x="80" y="20" font-size="8" font-weight="bold" fill="#111111">SCALE BAR 1:500</text>
+    </g>
+  </g>
+</svg>

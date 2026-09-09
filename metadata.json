@@ -1,6 +1,6 @@
 {
-  "name": "Architex",
-  "description": "Architectural design and related architectural services in Birmingham, United Kingdom.",
+  "name": "Real Life Architecture",
+  "description": "Real Life Architecture — Contemporary architectural design, residential extensions, bespoke new builds, heritage renovations, and planning applications in Birmingham & the West Midlands.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

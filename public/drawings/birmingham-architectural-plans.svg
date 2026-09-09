@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="100%" height="100%" style="background:#0c1824; font-family: 'Space Mono', monospace;">
+  <rect x="20" y="20" width="1160" height="760" fill="none" stroke="#254668" stroke-width="2"/>
+  <rect x="25" y="25" width="1150" height="750" fill="none" stroke="#162e48" stroke-width="1"/>
+  
+  <rect x="780" y="620" width="390" height="150" fill="#08111b" stroke="#376899" stroke-width="1.5"/>
+  <text x="800" y="650" fill="#6ba7df" font-size="11" letter-spacing="2">REAL LIFE ARCHITECTURE • BIRMINGHAM</text>
+  <text x="800" y="675" fill="#f0f4f8" font-size="16" font-weight="bold" letter-spacing="1">BIRMINGHAM PRACTICE TECHNICAL ARCHIVE</text>
+  <text x="800" y="700" fill="#8cb9e5" font-size="11">HERITAGE ADAPTATION &amp; LOW CARBON HOUSING</text>
+  <text x="800" y="725" fill="#588bb8" font-size="10">RIBA PLAN OF WORK STAGES 2 - 5 TECHNICAL SCHEMATIC</text>
+  <text x="800" y="745" fill="#c51b18" font-size="10" font-weight="bold">STATUTORY BUILDING REGULATIONS COMPLIANT</text>
+
+  <!-- Architectural structural grid -->
+  <g stroke="#1e3b5c" stroke-width="1.5">
+    <line x1="100" y1="200" x2="700" y2="200"/>
+    <line x1="100" y1="520" x2="700" y2="520"/>
+    <line x1="100" y1="200" x2="100" y2="520"/>
+    <line x1="700" y1="200" x2="700" y2="520"/>
+
+    <line x1="280" y1="200" x2="280" y2="520" stroke-dasharray="8,6"/>
+    <line x1="480" y1="200" x2="480" y2="520" stroke-dasharray="8,6"/>
+  </g>
+
+  <!-- Structural bays and mezzanine -->
+  <rect x="120" y="220" width="140" height="280" fill="#142c44" stroke="#6ba7df" stroke-width="2"/>
+  <text x="190" y="340" fill="#f0f4f8" font-size="13" font-weight="bold" text-anchor="middle">WORK / STUDIO</text>
+  <text x="190" y="365" fill="#8cb9e5" font-size="10" text-anchor="middle">EXPOSED TIMBER JOISTS</text>
+
+  <rect x="300" y="220" width="160" height="280" fill="#173552" stroke="#6ba7df" stroke-width="2"/>
+  <text x="380" y="340" fill="#f0f4f8" font-size="13" font-weight="bold" text-anchor="middle">MAIN GALLERY</text>
+  <text x="380" y="365" fill="#8cb9e5" font-size="10" text-anchor="middle">DOUBLE-HEIGHT CEILING</text>
+
+  <rect x="500" y="220" width="180" height="280" fill="#142c44" stroke="#6ba7df" stroke-width="2"/>
+  <text x="590" y="340" fill="#f0f4f8" font-size="13" font-weight="bold" text-anchor="middle">MEZZANINE DUPLEX</text>
+  <text x="590" y="365" fill="#8cb9e5" font-size="10" text-anchor="middle">STEEL &amp; RECLAIMED BRICK</text>
+
+  <!-- North Arrow -->
+  <g transform="translate(1080, 100)">
+    <circle cx="0" cy="0" r="28" fill="none" stroke="#6ba7df" stroke-width="1.5"/>
+    <polygon points="0,-24 7,8 0,3 -7,8" fill="#c51b18"/>
+    <text x="-4" y="-30" fill="#f0f4f8" font-size="12" font-weight="bold">N</text>
+  </g>
+</svg>

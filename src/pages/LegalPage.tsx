@@ -34,7 +34,7 @@ export function LegalPage({ type }: { type: 'privacy' | 'cookies' | 'terms' }) {
               <>
                 <h2 className="font-serif text-xl font-normal text-[#1a1a1a] pt-4">1. Information We Collect</h2>
                 <p>
-                  Architex collects personal information that you voluntarily provide when submitting enquiry forms through our website (such as your name, email address, telephone number, site location, and project briefs).
+                  RA Architects collects personal information that you voluntarily provide when submitting enquiry forms through our website (such as your name, email address, telephone number, site location, and project briefs).
                 </p>
 
                 <h2 className="font-serif text-xl font-normal text-[#1a1a1a] pt-4">2. How We Use Your Information</h2>
@@ -67,7 +67,7 @@ export function LegalPage({ type }: { type: 'privacy' | 'cookies' | 'terms' }) {
               <>
                 <h2 className="font-serif text-xl font-normal text-[#1a1a1a] pt-4">1. Website Terms of Use</h2>
                 <p>
-                  All architectural drawings, project photographs, renders, and written content displayed on this website are the intellectual property of Architex or used with client consent. No content may be reproduced without prior written permission.
+                  All architectural drawings, project photographs, renders, and written content displayed on this website are the intellectual property of RA Architects or used with client consent. No content may be reproduced without prior written permission.
                 </p>
 
                 <h2 className="font-serif text-xl font-normal text-[#1a1a1a] pt-4">2. Architectural Consultations & Proposals</h2>

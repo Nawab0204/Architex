@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1100" width="100%" height="100%" style="background:#FCFCF9; font-family:'Courier New', monospace, sans-serif;">
+  <defs>
+    <pattern id="brick" width="20" height="10" patternUnits="userSpaceOnUse">
+      <rect width="20" height="10" fill="#F0EFEA"/>
+      <line x1="0" y1="0" x2="20" y2="0" stroke="#D0CFC8" stroke-width="0.75"/>
+      <line x1="0" y1="5" x2="20" y2="5" stroke="#D0CFC8" stroke-width="0.75"/>
+      <line x1="10" y1="0" x2="10" y2="5" stroke="#D0CFC8" stroke-width="0.75"/>
+      <line x1="0" y1="5" x2="0" y2="10" stroke="#D0CFC8" stroke-width="0.75"/>
+    </pattern>
+    <pattern id="roof" width="15" height="15" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="15" stroke="#7A8B99" stroke-width="1.2"/>
+    </pattern>
+  </defs>
+
+  <rect x="30" y="30" width="1540" height="1040" fill="none" stroke="#111111" stroke-width="1.5"/>
+  <rect x="36" y="36" width="1528" height="1028" fill="none" stroke="#111111" stroke-width="0.5"/>
+
+  <!-- Title Block -->
+  <g transform="translate(1160, 48)">
+    <rect x="0" y="0" width="390" height="120" fill="#FFFFFF" stroke="#111111" stroke-width="1"/>
+    <text x="15" y="24" font-size="11" font-weight="bold" fill="#111111" letter-spacing="1">PROJECT: COOMBE FIELDS 33kV SUBSTATION</text>
+    <text x="15" y="44" font-size="9" fill="#555550">DRAWING: SWITCH HOUSE ELEVATIONS, SECTIONS &amp; GA PLAN</text>
+    <text x="15" y="60" font-size="8" fill="#777770">DRAWING REF: DWG-03 / REV D | SCALE 1:50 &amp; 1:100 @ A1</text>
+    <text x="15" y="76" font-size="8" fill="#777770">ROOF: KINGSPAN RW1000 MERLIN GREY (BS 18B-25)</text>
+    <line x1="0" y1="88" x2="390" y2="88" stroke="#111111" stroke-width="0.5"/>
+    <text x="15" y="106" font-size="9" font-weight="bold" fill="#1C3B52">PRIMARY DATUM: FFL * 101.30m AOD</text>
+  </g>
+
+  <!-- Elevation A (Long Front Elevation) -->
+  <g transform="translate(80, 80)">
+    <text x="0" y="0" font-size="11" font-weight="bold" fill="#111111" letter-spacing="1">ELEVATION A (FACING ENTRANCE FORECOURT)</text>
+    <text x="0" y="15" font-size="8" fill="#777770">SCALE 1:50</text>
+
+    <!-- Ground datum line -->
+    <line x1="-20" y1="180" x2="880" y2="180" stroke="#111111" stroke-width="1.5"/>
+    <text x="-20" y="195" font-size="8" font-weight="bold" fill="#111111">FFL * 101.30</text>
+
+    <!-- Wall massing 17,765mm representation -->
+    <rect x="0" y="40" width="840" height="140" fill="url(#brick)" stroke="#111111" stroke-width="1.5"/>
+
+    <!-- Kingspan RW1000 Roof Slope -->
+    <polygon points="0,40 840,15 840,25 0,48" fill="#7A8B99" stroke="#1C3B52" stroke-width="1.5"/>
+    <text x="240" y="10" font-size="8.5" font-weight="bold" fill="#1C3B52">ROOF: KINGSPAN RW1000 INSULATED PANELS (MERLIN GREY BS 18B-25)</text>
+
+    <!-- Highline gutter trim -->
+    <line x1="0" y1="48" x2="840" y2="25" stroke="#111111" stroke-width="2"/>
+    <text x="20" y="32" font-size="7.5" fill="#555550">PROPRIETARY TRIM WITH HIGHLINE GUTTERS</text>
+
+    <!-- Double Steel Security Doors (Personnel & Equipment) -->
+    <!-- Switch Room Equipment Doors -->
+    <rect x="60" y="70" width="80" height="110" fill="#244C66" stroke="#111111" stroke-width="1"/>
+    <line x1="100" y1="70" x2="100" y2="180" stroke="#FFFFFF" stroke-width="0.8"/>
+    <text x="65" y="64" font-size="7.5" font-weight="bold" fill="#111111">SWITCH ROOM ACCESS</text>
+
+    <!-- Control Room Personnel Door -->
+    <rect x="580" y="75" width="45" height="105" fill="#244C66" stroke="#111111" stroke-width="1"/>
+    <text x="570" y="68" font-size="7.5" font-weight="bold" fill="#111111">CONTROL ROOM</text>
+
+    <!-- Downpipes in Goosewing Grey BS 10-A-05 -->
+    <line x1="5" y1="48" x2="5" y2="180" stroke="#99A3A4" stroke-width="3"/>
+    <line x1="835" y1="25" x2="835" y2="180" stroke="#99A3A4" stroke-width="3"/>
+    <text x="845" y="100" font-size="7" fill="#777770">SQUARE DOWNPIPE (GOOSEWING GREY BS 10-A-05)</text>
+
+    <!-- String course -->
+    <line x1="0" y1="130" x2="840" y2="130" stroke="#C51B18" stroke-width="1"/>
+    <text x="360" y="142" font-size="7" fill="#C51B18">CONTRASTING ENGINEERING BRICK STRING COURSE</text>
+  </g>
+
+  <!-- Elevation B (Gable Elevation) & Section A-A -->
+  <g transform="translate(980, 200)">
+    <text x="0" y="0" font-size="11" font-weight="bold" fill="#111111" letter-spacing="1">ELEVATION B &amp; SECTION A-A</text>
+    <text x="0" y="15" font-size="8" fill="#777770">SCALE 1:50</text>
+
+    <!-- Elevation B Monopitch Gable -->
+    <polygon points="20,180 20,40 280,10 280,180" fill="url(#brick)" stroke="#111111" stroke-width="1.5"/>
+    <line x1="0" y1="180" x2="300" y2="180" stroke="#111111" stroke-width="1.5"/>
+    <text x="60" y="100" font-size="8" fill="#111111">ELEVATION B (GABLE PROFILE)</text>
+    <text x="60" y="115" font-size="7.5" fill="#555550">Eaves: ~3210mm | Ridge: ~4150mm</text>
+
+    <!-- Section A-A through Switch Room Trench -->
+    <g transform="translate(320, 0)">
+      <polygon points="20,180 20,40 220,10 220,180" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
+      <!-- Trench cutout -->
+      <rect x="50" y="180" width="120" height="60" fill="#E8E8E2" stroke="#111111" stroke-width="1"/>
+      <line x1="50" y1="180" x2="170" y2="180" stroke="#111111" stroke-width="1" stroke-dasharray="3,3"/>
+      <text x="60" y="215" font-size="7.5" font-weight="bold" fill="#C51B18">CABLE TRENCH BASEMENT</text>
+      <!-- Switchboard inside -->
+      <rect x="60" y="90" width="100" height="90" fill="#1C3B52"/>
+      <text x="70" y="140" font-size="7.5" fill="#FFFFFF">33kV SWITCHGEAR</text>
+    </g>
+  </g>
+
+  <!-- GA Floor Plan (Lower Half) -->
+  <g transform="translate(80, 420)">
+    <text x="0" y="0" font-size="11" font-weight="bold" fill="#111111" letter-spacing="1">GENERAL ARRANGEMENT GROUND FLOOR PLAN</text>
+    <text x="0" y="15" font-size="8" fill="#777770">SCALE 1:50 | OVERALL INTERNAL DIMENSIONS: 17,765mm x 6,160mm</text>
+
+    <!-- Outer Walls -->
+    <rect x="0" y="40" width="880" height="280" fill="#FFFFFF" stroke="#111111" stroke-width="2.5"/>
+    <rect x="12" y="52" width="856" height="256" fill="#FFFFFF" stroke="#111111" stroke-width="0.8"/>
+
+    <!-- Room Partitions -->
+    <!-- Switch Room (Left side) -->
+    <line x1="520" y1="52" x2="520" y2="308" stroke="#111111" stroke-width="2"/>
+    <text x="180" y="110" font-size="12" font-weight="bold" fill="#111111">SWITCH ROOM (84.0 m²)</text>
+    <text x="180" y="130" font-size="8.5" fill="#555550">12-PANEL 33kV VACUUM CIRCUIT BREAKER SWITCHBOARD</text>
+
+    <!-- Switchgear Floor Trench with Chequer Plates -->
+    <rect x="60" y="150" width="400" height="60" fill="url(#hatch)" stroke="#1C3B52" stroke-width="1.2"/>
+    <text x="120" y="185" font-size="8.5" font-weight="bold" fill="#1C3B52">CABLE TRENCH WITH REMOVABLE CHEQUER PLATES</text>
+
+    <!-- Control Room -->
+    <line x1="520" y1="180" x2="740" y2="180" stroke="#111111" stroke-width="1.5"/>
+    <text x="540" y="90" font-size="10" font-weight="bold" fill="#111111">CONTROL &amp; RELAY ROOM</text>
+    <text x="540" y="110" font-size="8" fill="#777770">SCADA &amp; TELEMETRY RACKS</text>
+
+    <!-- Meter Room -->
+    <line x1="740" y1="52" x2="740" y2="308" stroke="#111111" stroke-width="1.5"/>
+    <text x="750" y="90" font-size="8.5" font-weight="bold" fill="#111111">METER RM</text>
+
+    <!-- Store Room & WC -->
+    <line x1="520" y1="240" x2="740" y2="240" stroke="#111111" stroke-width="1.2"/>
+    <text x="540" y="215" font-size="8.5" font-weight="bold" fill="#111111">STORE ROOM</text>
+    
+    <text x="540" y="280" font-size="8.5" font-weight="bold" fill="#111111">PERSONNEL WC</text>
+    <text x="540" y="295" font-size="7" fill="#555550">50mm DUCTED WATER ENTRY</text>
+
+    <!-- Dimension Strings -->
+    <!-- Overall Width String -->
+    <g transform="translate(0, 340)">
+      <line x1="0" y1="0" x2="880" y2="0" stroke="#111111" stroke-width="0.8"/>
+      <line x1="0" y1="-8" x2="0" y2="8" stroke="#111111" stroke-width="0.8"/>
+      <line x1="880" y1="-8" x2="880" y2="8" stroke="#111111" stroke-width="0.8"/>
+      <text x="400" y="-6" font-size="9" font-weight="bold" fill="#111111">17,765 mm OVERALL LENGTH</text>
+    </g>
+    <!-- Bay Spacing Grid Strings -->
+    <g transform="translate(0, 365)">
+      <text x="80" y="0" font-size="7.5" fill="#555550">3453 mm</text>
+      <text x="240" y="0" font-size="7.5" fill="#555550">3453 mm</text>
+      <text x="400" y="0" font-size="7.5" fill="#555550">3453 mm</text>
+      <text x="560" y="0" font-size="7.5" fill="#555550">3453 mm</text>
+      <text x="720" y="0" font-size="7.5" fill="#555550">3453 mm</text>
+    </g>
+  </g>
+</svg>

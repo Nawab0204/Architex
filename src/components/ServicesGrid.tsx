@@ -9,13 +9,13 @@ export function ServicesGrid({ limit }: { limit?: number }) {
   const displayedServices = limit ? SERVICES.slice(0, limit) : SERVICES;
 
   return (
-    <section id="services-section" className="py-20 sm:py-28 lg:py-32 bg-[#F7F5F0]">
-      <div className="max-w-[1360px] mx-auto px-5 sm:px-8 lg:px-12">
+    <section id="services-section" className="py-20 sm:py-28 lg:py-32 bg-[#F7F5F0] w-full">
+      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12 sm:mb-16">
           <SectionHeading
             label="OUR SERVICES"
             title="Comprehensive architectural & statutory services."
-            description="Discover how Architex can guide and develop your project from initial concept through to planning approvals and construction detailing."
+            description="Discover how RA Architects can guide and develop your project from initial concept through to planning approvals and construction detailing."
             className="mb-0"
           />
 

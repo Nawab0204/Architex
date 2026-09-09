@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { Send, CheckCircle, AlertCircle, Upload, X, FileCheck, Loader2 } from 'lucide-react';
+import { Send, CheckCircle, AlertCircle, Upload, X, FileCheck, Loader2, UserCheck, PhoneCall, MailCheck, Video, Building2 } from 'lucide-react';
 
 interface FormData {
   name: string;
   email: string;
   phone: string;
+  contactPerson: string;
+  contactMethod: string;
   projectType: string;
   location: string;
   estimatedBudget: string;
@@ -15,11 +17,47 @@ const INITIAL_FORM: FormData = {
   name: '',
   email: '',
   phone: '',
+  contactPerson: 'lead-architect',
+  contactMethod: 'email',
   projectType: 'Residential Extension',
   location: '',
   estimatedBudget: '£50,000 - £150,000',
   message: '',
 };
+
+const CONTACT_PERSON_OPTIONS = [
+  {
+    id: 'lead-architect',
+    name: 'Lead Architect / Director',
+    role: 'Principal Architectural Designer',
+    desc: 'For bespoke design concepts, extensions, transformations & overall project vision.',
+  },
+  {
+    id: 'planning-specialist',
+    name: 'Planning & Conservation Specialist',
+    role: 'Statutory Approvals & Heritage',
+    desc: 'For local authority planning permissions, permitted development, green belt & appeals.',
+  },
+  {
+    id: 'building-regulations',
+    name: 'Technical & Building Regulations Officer',
+    role: 'Technical Detailing & Building Control',
+    desc: 'For building regulations drawings, structural coordination & construction packages.',
+  },
+  {
+    id: 'studio-manager',
+    name: 'Client Liaison & Studio Manager',
+    role: 'Consultations & Fee Proposals',
+    desc: 'For general practice enquiries, consultation bookings, timeframes & fee schedules.',
+  },
+];
+
+const CONTACT_METHOD_OPTIONS = [
+  { id: 'email', label: 'Email Consultation', icon: MailCheck },
+  { id: 'phone', label: 'Phone Discussion', icon: PhoneCall },
+  { id: 'video', label: 'Video Call (Teams/Zoom)', icon: Video },
+  { id: 'in-person', label: 'Studio Meeting (Birmingham)', icon: Building2 },
+];
 
 export function ContactForm() {
   const [formData, setFormData] = useState<FormData>(INITIAL_FORM);
@@ -59,13 +97,12 @@ export function ContactForm() {
 
     setIsSubmitting(true);
 
-    // Simulate clean API submission / endpoint handling
+    // Clean simulation
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSuccess(true);
-      setFormData(INITIAL_FORM);
       setFiles([]);
-    }, 1000);
+    }, 900);
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -98,43 +135,149 @@ export function ContactForm() {
     }
   };
 
+  const selectedPersonObj = CONTACT_PERSON_OPTIONS.find((p) => p.id === formData.contactPerson);
+
   return (
-    <div id="architex-contact-form-container" className="bg-[#ffffff] border border-[#dcd8cc] p-6 sm:p-10 lg:p-12 shadow-[8px_8px_0px_0px_rgba(26,26,26,0.04)]">
+    <div id="ra-contact-form-container" className="bg-[#ffffff] border border-[#dcd8cc] p-6 sm:p-10 lg:p-12 shadow-[8px_8px_0px_0px_rgba(26,26,26,0.04)] w-full">
       {isSuccess ? (
         <div id="contact-form-success-state" className="text-center py-12 space-y-4 animate-fade-in">
-          <div className="w-16 h-16 bg-[#f4f1ea] border border-[#1a1a1a] flex items-center justify-center mx-auto text-[#1a1a1a]">
+          <div className="w-16 h-16 bg-[#f4f1ea] border border-[#C51B18] flex items-center justify-center mx-auto text-[#C51B18]">
             <CheckCircle className="w-8 h-8" />
           </div>
-          <h3 className="font-serif text-2xl font-normal text-[#1a1a1a] tracking-tight">
-            Thank you for reaching out to Architex.
+          <h3 className="font-serif text-2xl sm:text-3xl font-normal text-[#1a1a1a] tracking-tight">
+            Thank you for contacting RA Architects.
           </h3>
           <p className="text-sm text-[#5c5850] max-w-md mx-auto leading-relaxed font-light">
-            We have received your project details. A member of our architectural team in Birmingham will review your enquiry and respond within 1–2 business days.
+            Your enquiry has been routed directly to our <strong className="text-[#1a1a1a] font-semibold">{selectedPersonObj?.name}</strong>. A dedicated specialist will review your project brief and reach out via your preferred method ({formData.contactMethod}) within 1 business day.
           </p>
-          <button
-            type="button"
-            onClick={() => setIsSuccess(false)}
-            className="mt-4 inline-flex items-center gap-2 px-7 py-3.5 bg-[#1a1a1a] text-[#f4f1ea] text-[11px] font-semibold uppercase tracking-[0.2em] hover:bg-[#333333] transition-all"
-          >
-            Submit Another Project Brief
-          </button>
+          <div className="pt-2">
+            <button
+              type="button"
+              onClick={() => {
+                setIsSuccess(false);
+                setFormData(INITIAL_FORM);
+              }}
+              className="mt-4 inline-flex items-center gap-2 px-7 py-3.5 bg-[#1a1a1a] text-[#f4f1ea] text-[11px] font-semibold uppercase tracking-[0.2em] hover:bg-[#333333] transition-all cursor-pointer"
+            >
+              Submit Another Project Brief
+            </button>
+          </div>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} noValidate className="space-y-6" id="project-enquiry-form">
+        <form onSubmit={handleSubmit} noValidate className="space-y-8" id="project-enquiry-form">
           <div className="space-y-1">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 bg-[#C51B18]" />
+              <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#736e65]">
+                RA ARCHITECTS • DIRECT CONSULTATION
+              </span>
+            </div>
             <h3 className="font-serif text-2xl sm:text-3xl font-normal text-[#1a1a1a] tracking-tight">
               Start Your Project Enquiry
             </h3>
             <p className="text-xs sm:text-sm text-[#5c5850] font-light">
-              Fill in the form below with details of your site or ideas for a tailored response.
+              Select the specialist team member you would like to connect with and share your requirements.
             </p>
+          </div>
+
+          {/* RADIO BUTTONS: Selective Option for Contacting a Person */}
+          <div className="space-y-3 bg-[#faf8f4] p-5 sm:p-6 border border-[#e5e0d3]">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-[#dcd8cc] pb-3">
+              <label className="text-[11px] font-mono font-bold uppercase tracking-[0.15em] text-[#1a1a1a] flex items-center gap-2">
+                <UserCheck className="w-4 h-4 text-[#C51B18]" />
+                Select Who You Wish to Contact <span className="text-[#C51B18]">*</span>
+              </label>
+              <span className="text-[10px] font-mono text-[#736e65] uppercase tracking-wider">
+                Direct Team Routing
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
+              {CONTACT_PERSON_OPTIONS.map((person) => {
+                const isChecked = formData.contactPerson === person.id;
+                return (
+                  <label
+                    key={person.id}
+                    id={`contact-person-option-${person.id}`}
+                    htmlFor={`radio-person-${person.id}`}
+                    className={`relative flex items-start gap-3.5 p-3.5 border transition-all cursor-pointer ${
+                      isChecked
+                        ? 'bg-white border-[#1a1a1a] shadow-sm ring-1 ring-[#1a1a1a]'
+                        : 'bg-white/70 border-[#dcd8cc] hover:border-[#1a1a1a] hover:bg-white'
+                    }`}
+                  >
+                    <div className="pt-0.5 shrink-0">
+                      <input
+                        type="radio"
+                        id={`radio-person-${person.id}`}
+                        name="contactPerson"
+                        value={person.id}
+                        checked={isChecked}
+                        onChange={() => setFormData({ ...formData, contactPerson: person.id })}
+                        className="w-4 h-4 accent-[#1a1a1a] cursor-pointer"
+                      />
+                    </div>
+                    <div className="space-y-0.5">
+                      <span className="text-xs font-semibold text-[#1a1a1a] block leading-tight">
+                        {person.name}
+                      </span>
+                      <span className="text-[10px] font-mono text-[#C51B18] uppercase tracking-wider block">
+                        {person.role}
+                      </span>
+                      <p className="text-[11px] text-[#5c5850] font-light leading-snug mt-1">
+                        {person.desc}
+                      </p>
+                    </div>
+                  </label>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* RADIO BUTTONS: Preferred Contact Method */}
+          <div className="space-y-3">
+            <label className="text-[11px] font-mono font-bold uppercase tracking-[0.15em] text-[#1a1a1a] block">
+              Preferred Contact Channel
+            </label>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+              {CONTACT_METHOD_OPTIONS.map((opt) => {
+                const isSelected = formData.contactMethod === opt.id;
+                const IconComponent = opt.icon;
+                return (
+                  <label
+                    key={opt.id}
+                    id={`contact-method-${opt.id}`}
+                    htmlFor={`radio-method-${opt.id}`}
+                    className={`flex flex-col items-center justify-center text-center p-3 border cursor-pointer transition-all ${
+                      isSelected
+                        ? 'bg-[#1a1a1a] text-[#f4f1ea] border-[#1a1a1a]'
+                        : 'bg-[#f4f1ea] text-[#5c5850] border-[#dcd8cc] hover:border-[#1a1a1a]'
+                    }`}
+                  >
+                    <input
+                      type="radio"
+                      id={`radio-method-${opt.id}`}
+                      name="contactMethod"
+                      value={opt.id}
+                      checked={isSelected}
+                      onChange={() => setFormData({ ...formData, contactMethod: opt.id })}
+                      className="sr-only"
+                    />
+                    <IconComponent className={`w-4 h-4 mb-1.5 ${isSelected ? 'text-[#f4f1ea]' : 'text-[#1a1a1a]'}`} />
+                    <span className="text-[11px] font-mono uppercase tracking-wider leading-tight">
+                      {opt.label}
+                    </span>
+                  </label>
+                );
+              })}
+            </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {/* Name */}
             <div className="space-y-1.5">
               <label htmlFor="contact-name" className="text-[11px] font-mono font-bold uppercase tracking-[0.15em] text-[#1a1a1a] block">
-                Your Name <span className="text-[#1a1a1a]">*</span>
+                Your Full Name <span className="text-[#C51B18]">*</span>
               </label>
               <input
                 id="contact-name"
@@ -162,7 +305,7 @@ export function ContactForm() {
             {/* Email */}
             <div className="space-y-1.5">
               <label htmlFor="contact-email" className="text-[11px] font-mono font-bold uppercase tracking-[0.15em] text-[#1a1a1a] block">
-                Email Address <span className="text-[#1a1a1a]">*</span>
+                Email Address <span className="text-[#C51B18]">*</span>
               </label>
               <input
                 id="contact-email"
@@ -218,7 +361,7 @@ export function ContactForm() {
                 <option value="Heritage / Conservation Renovation">Heritage / Conservation Renovation</option>
                 <option value="Planning Permission & Appeals">Planning Permission & Appeals</option>
                 <option value="Building Regulations Package">Building Regulations Package</option>
-                <option value="3D Architectural Visualisation">3D Architectural Visualisation</option>
+                <option value="3D Architectural Visualisation & BIM">3D Architectural Visualisation & BIM</option>
                 <option value="Commercial / Development Feasibility">Commercial / Development Feasibility</option>
               </select>
             </div>
@@ -262,7 +405,7 @@ export function ContactForm() {
           {/* Message */}
           <div className="space-y-1.5">
             <label htmlFor="contact-message" className="text-[11px] font-mono font-bold uppercase tracking-[0.15em] text-[#1a1a1a] block">
-              Project Overview / Brief <span className="text-[#1a1a1a]">*</span>
+              Project Overview / Brief <span className="text-[#C51B18]">*</span>
             </label>
             <textarea
               id="contact-message"
@@ -331,7 +474,7 @@ export function ContactForm() {
                     <button
                       type="button"
                       onClick={() => removeFile(idx)}
-                      className="p-1 text-[#736e65] hover:text-red-600 transition-colors"
+                      className="p-1 text-[#736e65] hover:text-red-600 transition-colors cursor-pointer"
                       aria-label={`Remove file ${f.name}`}
                     >
                       <X className="w-3.5 h-3.5" />
@@ -357,7 +500,7 @@ export function ContactForm() {
                 </>
               ) : (
                 <>
-                  <span>Submit Enquiry</span>
+                  <span>Submit Consultation Enquiry</span>
                   <Send className="w-4 h-4" />
                 </>
               )}

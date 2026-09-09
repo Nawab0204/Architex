@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 120" width="100%" height="100%" fill="none">
+  <!-- Red Stylized RA Emblem -->
+  <g transform="translate(10, 15)">
+    <!-- Left vertical stem with diagonal notch -->
+    <path d="M 12 18 L 12 78 L 30 78 L 30 38 L 22 38 L 26 18 Z" fill="#C51B18" />
+    
+    <!-- Diagonal slit cutout effect and top curve -->
+    <path d="M 33 18 L 60 18 C 76 18 86 28 86 42 C 86 52 80 60 68 64 L 88 88 L 64 88 L 48 66 L 30 66 L 30 48 L 56 48 C 63 48 68 46 68 41 C 68 36 63 34 56 34 L 23 34 L 33 18 Z" fill="#C51B18" />
+  </g>
+
+  <!-- Vertical Red Accent Divider with Center Indicator Node -->
+  <line x1="124" y1="18" x2="124" y2="102" stroke="#C51B18" stroke-width="2" />
+  <rect x="120.5" y="53" width="7" height="14" rx="3.5" fill="#C51B18" />
+
+  <!-- Typography: RA ARCHITECTS & SUBTITLE -->
+  <!-- Main Brand Name -->
+  <g fill="currentColor">
+    <!-- R -->
+    <text x="156" y="65" font-family="'Plus Jakarta Sans', system-ui, -apple-system, sans-serif" font-size="34" font-weight="700" letter-spacing="0.28em">RA ARCHITECTS</text>
+  </g>
+  
+  <!-- Stylized Red Horizontal Bars for E if applicable, or architectural accent line -->
+  <g transform="translate(425, 43)">
+    <rect x="0" y="0" width="12" height="3" fill="#C51B18" />
+    <rect x="0" y="7" width="12" height="3" fill="#C51B18" />
+    <rect x="0" y="14" width="12" height="3" fill="#C51B18" />
+  </g>
+
+  <!-- Subtitle: ARCHITECTURE | DESIGN | PLANNING -->
+  <text x="156" y="92" font-family="'Space Mono', monospace, sans-serif" font-size="11" font-weight="600" letter-spacing="0.22em" fill="#736e65">ARCHITECTURE  |  DESIGN  |  PLANNING</text>
+</svg>

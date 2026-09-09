@@ -7,8 +7,8 @@ export const SERVICES: Service[] = [
     title: 'Architectural Design',
     shortDescription: 'Comprehensive concept-to-detail design shaping bespoke residential and commercial spaces with thoughtful clarity.',
     fullDescription: 'Our architectural design service turns spatial ambitions into refined, buildable reality. We balance spatial flow, light, materials, context, and structural efficiency to design buildings and extensions that elevate daily life.',
-    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85',
-    heroImage: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=85',
+    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80',
+    heroImage: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=80',
     deliverables: [
       'Site analysis, measured survey review & spatial zoning',
       'Iterative concept options with floor plans, sections & sketches',
@@ -40,7 +40,33 @@ export const SERVICES: Service[] = [
         answer: 'Yes. Every project is approached with the exact same rigor, craftsmanship, and attention to detail, whether a focused kitchen extension or a multi-unit development.'
       }
     ],
-    relatedProjectSlugs: ['harborne-contemporary-residence', 'solihull-courtyard-villa', 'sutton-coldfield-terrace-redesign']
+    relatedProjectSlugs: ['harborne-contemporary-residence', 'solihull-courtyard-villa', 'sutton-coldfield-terrace-redesign'],
+    planningDrawings: [
+      {
+        id: 'ad-plan-1',
+        title: 'Proposed Ground Floor Open-Plan Masterplan',
+        type: 'Floor Plan',
+        image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80',
+        description: 'Comprehensive zoning demonstrating kitchen island flow, pocket sliding doors, and seamless threshold connection to outdoor terrace.',
+        scale: '1:50 @ A1'
+      },
+      {
+        id: 'ad-plan-2',
+        title: 'Longitudinal Daylight Section & Glazing Cut',
+        type: 'Section',
+        image: 'https://images.unsplash.com/photo-1541888946425-d0fbb18086f6?auto=format&fit=crop&w=1200&q=80',
+        description: 'Cross-sectional analysis illustrating rooflight light ingress, acoustic ceiling baffles, and structural beam integration.',
+        scale: '1:50 @ A1'
+      },
+      {
+        id: 'ad-plan-3',
+        title: 'Principal Rear Elevation & Material Specification',
+        type: 'Elevation',
+        image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80',
+        description: 'Detailed elevation illustrating standing seam zinc fascia, dark brick detailing, and ultra-slimline sliding glazed frames.',
+        scale: '1:100 @ A1'
+      }
+    ]
   },
   {
     id: 'planning-permission',
@@ -48,8 +74,8 @@ export const SERVICES: Service[] = [
     title: 'Planning Permission',
     shortDescription: 'Navigating local planning policy, permitted development rights, conservation constraints, and full planning applications.',
     fullDescription: 'Planning success requires a thorough understanding of local authority policies, urban context, and clear architectural drawings. We prepare thorough planning packages and act as your agent throughout the statutory determination period.',
-    image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=85',
-    heroImage: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2000&q=85',
+    image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80',
+    heroImage: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1400&q=80',
     deliverables: [
       'Permitted Development (PD) vs Full Planning appraisal',
       'Existing and proposed floor plans, elevations, sections & roof plans',
@@ -81,7 +107,33 @@ export const SERVICES: Service[] = [
         answer: 'Yes. Many single-storey rear extensions, loft conversions, and outbuildings can be completed under Permitted Development rights without full planning permission. We prepare Lawful Development Certificate packages for total peace of mind.'
       }
     ],
-    relatedProjectSlugs: ['edgbaston-pavilion-extension', 'moseley-heritage-conversion', 'barnt-green-sustainable-concept']
+    relatedProjectSlugs: ['edgbaston-pavilion-extension', 'moseley-heritage-conversion', 'barnt-green-sustainable-concept'],
+    planningDrawings: [
+      {
+        id: 'pp-plan-1',
+        title: 'Statutory Ordnance Survey Site Location & Block Plan',
+        type: 'Site Plan',
+        image: 'https://images.unsplash.com/photo-1524813686514-a57563d77d66?auto=format&fit=crop&w=1200&q=80',
+        description: 'Red-line ownership boundary and blue-line contiguous land holding prepared strictly to Ordnance Survey digital licensing standards.',
+        scale: '1:1250 / 1:500'
+      },
+      {
+        id: 'pp-plan-2',
+        title: 'Existing vs Proposed Comparative Streetscene Elevation',
+        type: 'Elevation',
+        image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80',
+        description: 'Demonstrating subservience to host property, matching ridge heights, and respectful relationship to neighboring habitable room windows.',
+        scale: '1:100 @ A1'
+      },
+      {
+        id: 'pp-plan-3',
+        title: '45-Degree Code & Daylight Compliance Layout',
+        type: 'Technical Drawing',
+        image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80',
+        description: 'Geometrical validation lines confirming compliance with Birmingham City Council 45-degree daylight and overlooking code.',
+        scale: '1:100 @ A2'
+      }
+    ]
   },
   {
     id: 'building-regulations',
@@ -89,8 +141,8 @@ export const SERVICES: Service[] = [
     title: 'Building Regulations',
     shortDescription: 'Detailed technical drawing packages ensuring compliance with UK Building Regulations, structural safety, and energy standards.',
     fullDescription: 'Once planning is secured, your scheme must satisfy national Building Regulations covering structural stability, thermal insulation (Part L), fire safety (Part B), drainage (Part H), and ventilation (Part F). We produce comprehensive technical packages for building control approval and builder tendering.',
-    image: 'https://images.unsplash.com/photo-1541888946425-d0fbb18086f6?auto=format&fit=crop&w=1200&q=85',
-    heroImage: 'https://images.unsplash.com/photo-1541888946425-d0fbb18086f6?auto=format&fit=crop&w=2000&q=85',
+    image: 'https://images.unsplash.com/photo-1541888946425-d0fbb18086f6?auto=format&fit=crop&w=800&q=80',
+    heroImage: 'https://images.unsplash.com/photo-1541888946425-d0fbb18086f6?auto=format&fit=crop&w=1400&q=80',
     deliverables: [
       'Full technical Building Regulations drawing package at 1:50 & 1:20 scales',
       'Construction details for foundations, roof junctions, damp proofing & insulation',
@@ -122,7 +174,33 @@ export const SERVICES: Service[] = [
         answer: 'Yes. A comprehensive Building Regs package provides builders with the exact specifications, steelwork, and insulation requirements, minimizing variations and unexpected costs during construction.'
       }
     ],
-    relatedProjectSlugs: ['harborne-contemporary-residence', 'jewellery-quarter-loft-conversion', 'solihull-courtyard-villa']
+    relatedProjectSlugs: ['harborne-contemporary-residence', 'jewellery-quarter-loft-conversion', 'solihull-courtyard-villa'],
+    planningDrawings: [
+      {
+        id: 'br-plan-1',
+        title: 'Part L Foundation, Sub-Base & DPM Construction Section',
+        type: 'Section',
+        image: 'https://images.unsplash.com/photo-1541888946425-d0fbb18086f6?auto=format&fit=crop&w=1200&q=80',
+        description: 'Engineered strip foundation depth, thermal block perimeter upstand, radon barrier, and 150mm PIR rigid floor insulation continuity.',
+        scale: '1:20 @ A1'
+      },
+      {
+        id: 'br-plan-2',
+        title: 'Warm Flat Roof Eaves & Parapet Gutter Detail',
+        type: 'Technical Drawing',
+        image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80',
+        description: 'Cross section of single-ply membrane, tapered insulation scheme, vapor control layer, and concealed zinc flashing details.',
+        scale: '1:10 @ A1'
+      },
+      {
+        id: 'br-plan-3',
+        title: 'Structural Steelwork Connection & Padstone Schedule',
+        type: 'Technical Drawing',
+        image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80',
+        description: 'Universal beam spliced junctions, bolted end plates, concrete bearing padstones, and fire encasement specifications.',
+        scale: '1:20 @ A1'
+      }
+    ]
   },
   {
     id: '3d-visualisation',
@@ -130,8 +208,8 @@ export const SERVICES: Service[] = [
     title: '3D Visualisation',
     shortDescription: 'Realistic architectural visuals and spatial renderings that bring proposals to life before construction begins.',
     fullDescription: 'Visualisation bridges the gap between technical two-dimensional architectural drawings and physical reality. We produce photorealistic exterior and interior perspectives to help you visualize light, materials, and volumes with total confidence.',
-    image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=85',
-    heroImage: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=2000&q=85',
+    image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80',
+    heroImage: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1400&q=80',
     deliverables: [
       'High-resolution exterior day, twilight, and seasonal renderings',
       'Interior spatial perspectives showcasing finishes, joinery & lighting',
@@ -163,7 +241,25 @@ export const SERVICES: Service[] = [
         answer: 'Yes. Our digital models allow swift adjustments to brick colors, window frame finishes, and interior layouts during the design phase.'
       }
     ],
-    relatedProjectSlugs: ['barnt-green-sustainable-concept', 'solihull-courtyard-villa', 'jewellery-quarter-loft-conversion']
+    relatedProjectSlugs: ['barnt-green-sustainable-concept', 'solihull-courtyard-villa', 'jewellery-quarter-loft-conversion'],
+    planningDrawings: [
+      {
+        id: 'vis-plan-1',
+        title: '3D Spatial Cutaway & Interior Daylight Study',
+        type: 'Technical Drawing',
+        image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80',
+        description: 'Isometric BIM cutaway revealing interior living zones, sunken conversation pit, and continuous ceiling datum.',
+        scale: '3D Axonometric'
+      },
+      {
+        id: 'vis-plan-2',
+        title: 'Solar Ingress & Shadow Path Model',
+        type: 'Technical Drawing',
+        image: 'https://images.unsplash.com/photo-1541888946425-d0fbb18086f6?auto=format&fit=crop&w=1200&q=80',
+        description: 'Equinox solar calculations demonstrating summer shading and winter solar gain capture on high performance glazing.',
+        scale: 'BIM Analytical'
+      }
+    ]
   },
   {
     id: 'extensions-renovations',
@@ -171,8 +267,8 @@ export const SERVICES: Service[] = [
     title: 'Extensions & Renovations',
     shortDescription: 'Tailored architectural solutions for rear extensions, wrap-arounds, loft conversions, and full house remodelling.',
     fullDescription: 'Extending or reconfiguring an existing property requires careful spatial diagnosis. We specialize in unlocking underutilized footprints, creating open-plan kitchen and living areas, and improving daylight and garden connectivity.',
-    image: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=1200&q=85',
-    heroImage: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=2000&q=85',
+    image: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=800&q=80',
+    heroImage: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=1400&q=80',
     deliverables: [
       'Feasibility study assessing structural wall removals and layout options',
       'Single-storey rear, side-return, and wrap-around extension drawings',
@@ -200,7 +296,25 @@ export const SERVICES: Service[] = [
         answer: 'Beyond financial equity, thoughtful architectural design transforms daily functionality, natural light levels, and thermal efficiency for decades.'
       }
     ],
-    relatedProjectSlugs: ['harborne-contemporary-residence', 'edgbaston-pavilion-extension', 'moseley-heritage-conversion']
+    relatedProjectSlugs: ['harborne-contemporary-residence', 'edgbaston-pavilion-extension', 'moseley-heritage-conversion'],
+    planningDrawings: [
+      {
+        id: 'ext-plan-1',
+        title: 'Existing vs Proposed Reconfiguration & Demolition Plan',
+        type: 'Floor Plan',
+        image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80',
+        description: 'Yellow dashed notation for masonry removal and red hatch notation for new cavity wall and structural beam positions.',
+        scale: '1:50 @ A1'
+      },
+      {
+        id: 'ext-plan-2',
+        title: 'Rear Extension Garden Elevation & Timber Pergola',
+        type: 'Elevation',
+        image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80',
+        description: 'Showing level transition from interior herringbone timber flooring through flush track thresholds to the exterior stone terrace.',
+        scale: '1:50 @ A1'
+      }
+    ]
   },
   {
     id: 'development-site-design',
@@ -208,8 +322,8 @@ export const SERVICES: Service[] = [
     title: 'Development & Site Design',
     shortDescription: 'Strategic site layout, density optimization, and planning feasibility for residential developers and landowners.',
     fullDescription: 'We assist private landowners, property investors, and developers in unlocking site potential. From backland plots and infill developments to multi-unit schemes and commercial conversions, we provide clear architectural strategy grounded in commercial realities.',
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=85',
-    heroImage: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2000&q=85',
+    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
+    heroImage: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=80',
     deliverables: [
       'Site capacity & density massing options',
       'Planning policy constraints appraisal (highways, overlooking, daylight angles)',
@@ -237,6 +351,24 @@ export const SERVICES: Service[] = [
         answer: 'Yes. We frequently conduct rapid feasibility reviews to assess whether a potential land acquisition or commercial property conversion is commercially viable before purchase.'
       }
     ],
-    relatedProjectSlugs: ['digbeth-creative-studios', 'jewellery-quarter-loft-conversion', 'solihull-courtyard-villa']
+    relatedProjectSlugs: ['digbeth-creative-studios', 'jewellery-quarter-loft-conversion', 'solihull-courtyard-villa'],
+    planningDrawings: [
+      {
+        id: 'dev-plan-1',
+        title: 'Infill Plot Masterplan & Vehicle Tracking Layout',
+        type: 'Site Plan',
+        image: 'https://images.unsplash.com/photo-1524813686514-a57563d77d66?auto=format&fit=crop&w=1200&q=80',
+        description: 'Swept path analysis for emergency refuse vehicles, parking space ratios, and secure cycle/bin enclosure zoning.',
+        scale: '1:200 @ A1'
+      },
+      {
+        id: 'dev-plan-2',
+        title: 'Urban Context Massing & Overlooking Envelope',
+        type: 'Technical Drawing',
+        image: 'https://images.unsplash.com/photo-1541888946425-d0fbb18086f6?auto=format&fit=crop&w=1200&q=80',
+        description: 'Height and volume calibration ensuring zero loss of privacy to adjoining residential boundaries.',
+        scale: '1:200 @ A1'
+      }
+    ]
   }
 ];

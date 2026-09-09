@@ -6,38 +6,67 @@ export type ProjectCategory =
   | 'Renovation'
   | 'Commercial'
   | 'Visualisation'
-  | 'Planning';
+  | 'Infrastructure'
+  | 'Civic & Landscape'
+  | 'Institutional';
 
 export interface TechnicalDrawing {
   id: string;
   title: string;
-  type: 'Floor Plan' | 'Elevation' | 'Section' | 'Technical Drawing' | 'Site Plan';
+  drawingNumber?: string;
+  scale?: string;
+  fileSource?: string;
+  type: 'Floor Plan' | 'Elevation' | 'Section' | 'Detail' | 'Site Plan' | 'Technical Drawing';
   image: string;
   description: string;
-  scale?: string;
+  caption?: string;
+  annotations?: string[];
 }
 
 export interface Project {
   id: string;
   slug: string;
+  projectNumber: string;
   title: string;
   subtitle: string;
   category: Exclude<ProjectCategory, 'All'>;
   location: string;
+  country?: string;
   year: string;
+  status: string;
+  area?: string;
   clientType?: string;
   image: string;
   heroImage: string;
+  heroType?: 'render' | 'photo' | 'vector-drawing';
   description: string;
   brief: string;
   approach: string;
+  ffl?: string;
+  eavesHeight?: string;
+  ridgeHeight?: string;
   specifications: {
     area?: string;
     duration?: string;
     servicesProvided: string[];
     localAuthority?: string;
+    dimensions?: {
+      width?: string;
+      depth?: string;
+      height?: string;
+      ceiling?: string;
+      cantilever?: string;
+    };
+    materials?: string[];
+    technicalSpecifications?: string[];
+    codesCompliance?: string[];
   };
-  gallery: string[];
+  gallery: Array<{
+    source: string;
+    caption: string;
+    type: 'render' | 'photo' | 'vector-drawing';
+    aspectRatio?: string;
+  }>;
   drawings: TechnicalDrawing[];
   featured?: boolean;
   latest?: boolean;
@@ -61,6 +90,7 @@ export interface Service {
     answer: string;
   }[];
   relatedProjectSlugs: string[];
+  planningDrawings?: TechnicalDrawing[];
 }
 
 export interface Testimonial {
