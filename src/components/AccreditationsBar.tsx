@@ -1,11 +1,14 @@
 import React from 'react';
+import arbLogo from '../assets/images/Architects-registration-board-300x79.png';
+import smarterPlanningLogo from '../assets/images/smarter-planning.png';
+import charteredTownPlannersLogo from '../assets/images/chartered-town-planners-300x96.png';
 
 export function AccreditationsBar() {
   const logos = [
     {
       id: 'arb-logo',
       name: 'Architects Registration Board',
-      src: '/images/accreditations/Architects-registration-board-300x79.png',
+      src: arbLogo,
       alt: 'Architects Registration Board Logo',
       link: 'https://arb.org.uk',
       maxWidth: 'max-w-[210px] sm:max-w-[240px]'
@@ -13,7 +16,7 @@ export function AccreditationsBar() {
     {
       id: 'smarter-planning-logo',
       name: 'Smarter Planning Champion',
-      src: '/images/accreditations/smarter-planning.png',
+      src: smarterPlanningLogo,
       alt: 'Smarter Planning Champion Logo',
       link: 'https://www.planningportal.co.uk',
       maxWidth: 'max-w-[170px] sm:max-w-[195px]'
@@ -21,7 +24,7 @@ export function AccreditationsBar() {
     {
       id: 'chartered-town-planners-logo',
       name: 'RTPI Chartered Town Planner',
-      src: '/images/accreditations/chartered-town-planners-300x96.png',
+      src: charteredTownPlannersLogo,
       alt: 'Chartered Town Planners RTPI Logo',
       link: 'https://www.rtpi.org.uk',
       maxWidth: 'max-w-[210px] sm:max-w-[240px]'
