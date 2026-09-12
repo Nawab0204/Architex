@@ -1,6 +1,6 @@
 {
-  "name": "Real Life Architecture",
-  "description": "Real Life Architecture — Contemporary architectural design, residential extensions, bespoke new builds, heritage renovations, and planning applications in Birmingham & the West Midlands.",
+  "name": "ACHITEX",
+  "description": "ACHITEX — Architecture | Design | Engineering. Bespoke residential architecture, planning advice, creative design, planning permissions, and building regulations across the UK.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

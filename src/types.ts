@@ -1,10 +1,14 @@
 export type ProjectCategory = 
   | 'All'
-  | 'Residential'
   | 'Extensions'
+  | 'Loft Conversions'
+  | 'New Builds'
+  | 'Renovations'
+  | 'Interiors'
+  | 'Commercial'
+  | 'Residential'
   | 'New Build'
   | 'Renovation'
-  | 'Commercial'
   | 'Visualisation'
   | 'Infrastructure'
   | 'Civic & Landscape'
@@ -68,6 +72,11 @@ export interface Project {
     aspectRatio?: string;
   }>;
   drawings: TechnicalDrawing[];
+  beforeAfter?: {
+    before: string;
+    after: string;
+    caption?: string;
+  };
   featured?: boolean;
   latest?: boolean;
 }
@@ -78,9 +87,15 @@ export interface Service {
   title: string;
   shortDescription: string;
   fullDescription: string;
+  iconName?: string;
   image: string;
   heroImage: string;
+  whatWeDo?: string[];
   deliverables: string[];
+  benefits?: {
+    title: string;
+    description: string;
+  }[];
   processStages: {
     title: string;
     description: string;
@@ -91,6 +106,15 @@ export interface Service {
   }[];
   relatedProjectSlugs: string[];
   planningDrawings?: TechnicalDrawing[];
+  galleryImages?: {
+    url: string;
+    caption: string;
+    tag?: string;
+  }[];
+  keyFeatures?: {
+    title: string;
+    desc: string;
+  }[];
 }
 
 export interface Testimonial {

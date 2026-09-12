@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { FAQ_ITEMS } from '../data/faq';
-import { SectionHeading } from './SectionHeading';
-import { Plus, Minus, HelpCircle } from 'lucide-react';
+import { Plus, Minus } from 'lucide-react';
 import { Link } from '../context/NavigationContext';
 
 export function FAQSection({ limit }: { limit?: number }) {
@@ -14,46 +13,65 @@ export function FAQSection({ limit }: { limit?: number }) {
   const displayedFaqs = limit ? FAQ_ITEMS.slice(0, limit) : FAQ_ITEMS;
 
   return (
-    <section id="faq-section" className="py-20 sm:py-28 lg:py-32 bg-[#F7F5F0]">
-      <div className="max-w-[1100px] mx-auto px-5 sm:px-8 lg:px-12">
-        <SectionHeading
-          label="FREQUENTLY ASKED QUESTIONS"
-          title="Clear answers to common architectural questions."
-          description="Everything you need to know about working with Real Life Architecture, from initial site consultations through to planning approvals and technical drawings."
-          align="center"
-        />
+    <section id="faq-section" className="py-16 sm:py-24 bg-[#fbfaf7] border-b border-[#e5e2d9]">
+      <div className="max-w-[1040px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
+          <div className="inline-flex items-center gap-2 mb-2">
+            <span className="w-2.5 h-[2px] bg-[#D01020]" />
+            <span className="text-xs font-mono font-bold uppercase tracking-[0.22em] text-[#D01020]">
+              FREQUENTLY ASKED QUESTIONS
+            </span>
+            <span className="w-2.5 h-[2px] bg-[#D01020]" />
+          </div>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-sans font-bold text-[#111111] tracking-tight">
+            Clear answers to common questions.
+          </h2>
+          <p className="mt-2 text-sm text-[#5c5850] font-light">
+            Simple, honest answers about residential planning, drawings, timescales, and building regulations.
+          </p>
+        </div>
 
-        {/* Accordion Container */}
-        <div className="space-y-3.5 mt-10 sm:mt-14">
+        {/* Numbered Accordion Container */}
+        <div className="space-y-3">
           {displayedFaqs.map((faq, idx) => {
             const isOpen = openIndex === idx;
+            const numberString = idx < 9 ? `0${idx + 1}` : `${idx + 1}`;
             return (
               <div
                 key={faq.id}
-                className={`border transition-colors duration-200 bg-[#FFFFFF] ${
-                  isOpen ? 'border-[#B08D57]' : 'border-[#E5E2DC] hover:border-[#D0CCC5]'
+                className={`border transition-all duration-200 bg-[#ffffff] rounded-sm ${
+                  isOpen
+                    ? 'border-[#D01020]/50 shadow-[0_4px_16px_rgba(0,0,0,0.04)]'
+                    : 'border-[#e5e2d9] hover:border-[#111111]/30'
                 }`}
               >
                 <button
                   id={`faq-btn-${faq.id}`}
                   type="button"
                   onClick={() => toggle(idx)}
-                  className="w-full py-5 px-6 sm:px-8 flex items-center justify-between text-left gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B08D57]"
+                  className="w-full py-4.5 px-5 sm:px-6 flex items-center justify-between text-left gap-4 focus:outline-none cursor-pointer"
                   aria-expanded={isOpen}
                   aria-controls={`faq-answer-${faq.id}`}
                 >
-                  <span className="text-base sm:text-lg font-medium text-[#171717] tracking-tight">
-                    {faq.question}
-                  </span>
-                  <span className="w-8 h-8 rounded-full bg-[#F7F5F0] border border-[#E5E2DC] flex items-center justify-center shrink-0 text-[#171717]">
-                    {isOpen ? <Minus className="w-4 h-4 text-[#B08D57]" /> : <Plus className="w-4 h-4" />}
+                  <div className="flex items-center gap-3 sm:gap-4">
+                    <span className="font-mono text-xs sm:text-sm font-bold text-[#D01020] shrink-0">
+                      {numberString}
+                    </span>
+                    <span className="text-base sm:text-lg font-sans font-semibold text-[#111111] tracking-tight">
+                      {faq.question}
+                    </span>
+                  </div>
+                  <span className={`w-7 h-7 rounded-sm border flex items-center justify-center shrink-0 transition-colors ${
+                    isOpen ? 'bg-[#D01020] text-white border-[#D01020]' : 'bg-[#f4f1ea] border-[#e5e2d9] text-[#111111]'
+                  }`}>
+                    {isOpen ? <Minus className="w-3.5 h-3.5" /> : <Plus className="w-3.5 h-3.5" />}
                   </span>
                 </button>
 
                 {isOpen && (
                   <div
                     id={`faq-answer-${faq.id}`}
-                    className="px-6 sm:px-8 pb-6 pt-1 text-sm sm:text-base text-[#6A6A6A] leading-relaxed border-t border-[#F0ECE4] animate-fade-in"
+                    className="px-5 sm:px-6 pb-5 pt-1 text-sm text-[#5c5850] leading-relaxed border-t border-[#f0ede6] pl-10 sm:pl-14"
                   >
                     <p>{faq.answer}</p>
                   </div>
@@ -64,10 +82,10 @@ export function FAQSection({ limit }: { limit?: number }) {
         </div>
 
         {/* Help footer prompt */}
-        <div className="mt-12 text-center text-xs sm:text-sm text-[#6A6A6A] flex items-center justify-center gap-2">
-          <span>Have a question not listed here?</span>
-          <Link href="/contact" className="font-semibold text-[#171717] hover:text-[#B08D57] underline">
-            Ask our team directly
+        <div className="mt-10 text-center text-xs sm:text-sm text-[#706c64] flex items-center justify-center gap-1.5">
+          <span>Have a question about your property?</span>
+          <Link href="/contact" className="font-bold text-[#D01020] hover:underline">
+            Ask our architects directly &rarr;
           </Link>
         </div>
       </div>

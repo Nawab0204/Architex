@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 79" width="300" height="79" fill="none">
+  <!-- ARB Dotted Letters in #5c5c5c -->
+  <g fill="#5a5a5a">
+    <!-- Dot matrix letter 'a' -->
+    <circle cx="15" cy="54" r="4.2"/>
+    <circle cx="25" cy="24" r="4.2"/>
+    <circle cx="35" cy="24" r="4.2"/>
+    <circle cx="45" cy="24" r="4.2"/>
+    
+    <circle cx="21" cy="34" r="4.2"/>
+    <circle cx="31" cy="34" r="4.2"/>
+    <circle cx="41" cy="34" r="4.2"/>
+    <circle cx="51" cy="34" r="4.2"/>
+    
+    <circle cx="21" cy="44" r="4.2"/>
+    <circle cx="31" cy="44" r="4.2"/>
+    <circle cx="41" cy="44" r="4.2"/>
+    <circle cx="51" cy="44" r="4.2"/>
+    
+    <circle cx="21" cy="54" r="4.2"/>
+    <circle cx="31" cy="54" r="4.2"/>
+    <circle cx="41" cy="54" r="4.2"/>
+    <circle cx="51" cy="54" r="4.2"/>
+
+    <!-- Dot matrix letter 'r' -->
+    <circle cx="69" cy="34" r="4.2"/>
+    <circle cx="69" cy="44" r="4.2"/>
+    <circle cx="69" cy="54" r="4.2"/>
+    <circle cx="69" cy="24" r="4.2"/>
+    
+    <circle cx="79" cy="24" r="4.2"/>
+    <circle cx="89" cy="24" r="4.2"/>
+    <circle cx="99" cy="24" r="4.2"/>
+
+    <!-- Dot matrix letter 'b' -->
+    <circle cx="117" cy="4" r="4.2"/>
+    <circle cx="117" cy="14" r="4.2"/>
+    <circle cx="117" cy="24" r="4.2"/>
+    <circle cx="117" cy="34" r="4.2"/>
+    <circle cx="117" cy="44" r="4.2"/>
+    <circle cx="117" cy="54" r="4.2"/>
+    
+    <circle cx="127" cy="34" r="4.2"/>
+    <circle cx="137" cy="34" r="4.2"/>
+    <circle cx="147" cy="40" r="4.2"/>
+    <circle cx="147" cy="48" r="4.2"/>
+    <circle cx="137" cy="54" r="4.2"/>
+    <circle cx="127" cy="54" r="4.2"/>
+  </g>
+
+  <!-- Text "Architects Registration Board" -->
+  <g fill="#5a5a5a" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="500">
+    <text x="172" y="24" font-size="20" letter-spacing="-0.2">Architects</text>
+    <text x="172" y="44" font-size="20" letter-spacing="-0.2">Registration</text>
+    <text x="172" y="64" font-size="20" letter-spacing="-0.2">Board</text>
+  </g>
+</svg>

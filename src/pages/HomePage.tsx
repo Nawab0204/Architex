@@ -1,98 +1,57 @@
 import React from 'react';
 import { Header } from '../components/Header';
 import { HeroSlider } from '../components/HeroSlider';
-import { IntroSection } from '../components/IntroSection';
-import { TrustSection } from '../components/TrustSection';
-import { DifferenceSection } from '../components/DifferenceSection';
-import { ImageBreak } from '../components/ImageBreak';
-import { CTASection } from '../components/CTASection';
-import { FeaturedProject } from '../components/FeaturedProject';
+import { AccreditationsBar } from '../components/AccreditationsBar';
+import { DesignVideoSection } from '../components/DesignVideoSection';
+import { KeyFeaturesSection } from '../components/KeyFeaturesSection';
 import { ServicesGrid } from '../components/ServicesGrid';
 import { ProjectsGrid } from '../components/ProjectsGrid';
 import { TestimonialsSection } from '../components/TestimonialsSection';
-import { PhilosophySection } from '../components/PhilosophySection';
-import { ProcessSection } from '../components/ProcessSection';
-import { BirminghamSection } from '../components/BirminghamSection';
 import { FAQSection } from '../components/FAQSection';
-import { InsightsGrid } from '../components/InsightsGrid';
+import { HomeContactSection } from '../components/HomeContactSection';
 import { Footer } from '../components/Footer';
 
 export function HomePage() {
   return (
-    <div className="min-h-screen flex flex-col bg-[#F7F5F0]">
-      {/* 01 HEADER */}
+    <div className="min-h-screen flex flex-col bg-[#ffffff] text-[#111111]">
+      {/* 01 HEADER WITH 4 OPTIONS & CLEAN NAVIGATION */}
       <Header isTransparentInitially={true} />
 
       <main className="flex-1">
-        {/* 02 HERO SLIDER */}
+        {/* 02 HERO SLIDER (Bright, cinematic, on-point residential copy) */}
         <HeroSlider />
 
-        {/* 03 ABOUT / INTRODUCTION */}
-        <IntroSection />
+        {/* 03 BIG ACCREDITATION LOGOS & REGULATORY BODIES */}
+        <AccreditationsBar />
 
-        {/* 04 TRUST / CREDIBILITY */}
-        <TrustSection />
+        {/* 04 SINGLE BUILDING TIMELAPSE (Under 1 minute) */}
+        <DesignVideoSection />
 
-        {/* 05 THE ARCHITEX DIFFERENCE */}
-        <DifferenceSection />
+        {/* 05 WHY HOMEOWNERS CHOOSE US */}
+        <KeyFeaturesSection />
 
-        {/* 06 LARGE ARCHITECTURAL IMAGE BREAK */}
-        <ImageBreak />
+        {/* 06 OUR SERVICES (Rectangular shaped cards, clean & representative) */}
+        <ServicesGrid limit={5} />
 
-        {/* 07 CONSULTATION CTA */}
-        <CTASection
-          id="homepage-consultation-cta"
-          title="Turn your ideas into a space worth living in."
-          subtitle="Tell us about your project and start a conversation with Real Life Architecture. We evaluate feasibility, unlock daylight, and handle planning with rigor."
-          primaryButtonText="Start a Project"
-          secondaryButtonText="Contact Us"
-          variant="dark"
-        />
-
-        {/* 08 LATEST PROJECT */}
-        <FeaturedProject />
-
-        {/* 09 SERVICES */}
-        <ServicesGrid limit={6} />
-
-        {/* 10 PORTFOLIO */}
+        {/* 07 OUR WORK (Left-to-right, well-mannered panoramic rectangular cards, no wording below) */}
         <ProjectsGrid
           limit={6}
-          title="Selected architectural works."
-          subtitle="A preview of bespoke residential extensions, heritage conversions, and new build homes delivered across Birmingham and the West Midlands."
-          eyebrow="PORTFOLIO"
+          title="A selection of our residential projects."
+          subtitle="Bespoke home extensions, loft conversions, and new build houses delivered with precision."
+          eyebrow="OUR WORK"
         />
 
-        {/* 11 TESTIMONIALS */}
+        {/* 08 CLIENT REVIEWS (Continuous automated carousel) */}
         <TestimonialsSection />
 
-        {/* 13 ABOUT / PHILOSOPHY */}
-        <PhilosophySection />
-
-        {/* 14 PROCESS */}
-        <ProcessSection showCta={true} />
-
-        {/* 15 BIRMINGHAM SECTION */}
-        <BirminghamSection />
-
-        {/* 16 FAQ */}
+        {/* 09 FREQUENTLY ASKED QUESTIONS */}
         <FAQSection limit={6} />
 
-        {/* 17 INSIGHTS / ARTICLES */}
-        <InsightsGrid limit={3} />
-
-        {/* 18 FINAL CONTACT CTA */}
-        <CTASection
-          id="homepage-final-cta"
-          title="Have an architectural project in mind?"
-          subtitle="Let's discuss what could be possible for your home, development site, or commercial building. We look forward to talking through your brief."
-          primaryButtonText="Book Initial Consultation"
-          secondaryButtonText="Contact Our Studio"
-          variant="dark"
-        />
+        {/* 10 CONTACT US */}
+        <HomeContactSection />
       </main>
 
-      {/* 19 FOOTER */}
+      {/* 11 FOOTER */}
       <Footer />
     </div>
   );

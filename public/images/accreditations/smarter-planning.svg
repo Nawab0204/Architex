@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 120" width="240" height="120" fill="none">
+  <!-- Gray Circle with P Cutout -->
+  <g fill="#606060">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M60 10 C32.38 10 10 32.38 10 60 C10 87.62 32.38 110 60 110 C87.62 110 110 87.62 110 60 C110 32.38 87.62 10 60 10 Z M60 28 L60 48 L76 48 C83.73 48 90 53.37 90 60 C90 66.63 83.73 72 76 72 L60 72 L60 92 L46 92 L46 28 L60 28 Z" />
+  </g>
+  
+  <!-- Right text: SMARTER PLANNING CHAMPION -->
+  <g fill="#555555" font-family="'Century Gothic', 'Montserrat', 'Inter', -apple-system, sans-serif" font-weight="400" letter-spacing="3.5">
+    <text x="126" y="44" font-size="16.5" font-weight="300">SMARTER</text>
+    <text x="126" y="68" font-size="16.5" font-weight="400">PLANNING</text>
+    <text x="126" y="92" font-size="16.5" font-weight="400">CHAMPION</text>
+  </g>
+</svg>

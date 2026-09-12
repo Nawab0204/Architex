@@ -1,22 +1,15 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { Project, ProjectCategory } from '../types';
 import { PROJECTS } from '../data/projects';
 import { ProjectCard } from './ProjectCard';
-import { SectionHeading } from './SectionHeading';
-import { Link } from '../context/NavigationContext';
-import { ArrowRight, Filter, TableProperties } from 'lucide-react';
+import { ChevronDown, Check } from 'lucide-react';
 
-const CATEGORIES: ProjectCategory[] = [
-  'All',
-  'Residential',
-  'Extensions',
-  'New Build',
-  'Renovation',
-  'Commercial',
-  'Visualisation',
-  'Infrastructure',
-  'Civic & Landscape',
-  'Institutional'
+export const ARCHITECTURAL_CATEGORIES: { id: ProjectCategory; label: string }[] = [
+  { id: 'All', label: 'All Projects' },
+  { id: 'Extensions', label: 'Extensions' },
+  { id: 'Loft Conversions', label: 'Loft Conversions' },
+  { id: 'New Builds', label: 'New Builds' },
+  { id: 'Renovations', label: 'Renovations' }
 ];
 
 interface ProjectsGridProps {
@@ -32,11 +25,24 @@ export function ProjectsGrid({
   limit,
   initialCategory = 'All',
   showFilters = true,
-  title = 'Selected Works & Case Studies.',
-  subtitle = 'Rigorous architectural planning, mission-critical infrastructure, and civic public realms documented to construction standards.',
-  eyebrow = 'CATALOGUE'
+  title = 'A selection of our residential projects.',
+  subtitle = 'Bespoke home extensions, loft transformations, and new build houses delivered across the UK.',
+  eyebrow = 'OUR WORK'
 }: ProjectsGridProps) {
   const [selectedCategory, setSelectedCategory] = useState<ProjectCategory>(initialCategory);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setDropdownOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const filteredProjects = useMemo(() => {
     let list = PROJECTS;
@@ -49,94 +55,104 @@ export function ProjectsGrid({
     return list;
   }, [selectedCategory, limit]);
 
+  const selectedCategoryLabel =
+    ARCHITECTURAL_CATEGORIES.find((c) => c.id === selectedCategory)?.label || 'All Projects';
+
   return (
-    <section id="portfolio-section" className="py-20 sm:py-28 bg-[#FBFBF9] border-t border-[#E5E5DF]">
-      <div className="max-w-[1500px] mx-auto px-4 sm:px-8 lg:px-12">
-        {/* Header and Controls */}
+    <section id="portfolio-section" className="py-14 sm:py-20 bg-[#ffffff] border-b border-[#e5e7eb] w-full">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10">
+        {/* Header with clean dropdown filter button */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 sm:mb-12">
-          <SectionHeading
-            label={eyebrow}
-            title={title}
-            description={subtitle}
-            className="mb-0"
-          />
-
-          <div className="flex items-center gap-3 shrink-0">
-            <Link
-              id="projects-grid-index-table-link"
-              href="/index"
-              className="inline-flex items-center gap-1.5 px-4 py-2 border border-[#E5E5DF] bg-[#FFFFFF] hover:bg-[#F4F4F0] text-[11px] font-mono uppercase tracking-[0.16em] text-[#111111] transition-colors"
-            >
-              <TableProperties className="w-3.5 h-3.5 text-[#1C3B52]" />
-              <span>Index View</span>
-            </Link>
-
-            {limit && (
-              <Link
-                id="projects-grid-view-all-link"
-                href="/projects"
-                className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-[0.16em] text-[#111111] hover:text-[#1C3B52] transition-colors group"
-              >
-                <span>All Works ({PROJECTS.length})</span>
-                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-              </Link>
+          <div className="max-w-2xl">
+            {eyebrow && (
+              <div className="flex items-center gap-2 mb-2">
+                <span className="w-2.5 h-[2px] bg-[#D01020]" />
+                <span className="text-xs font-mono font-bold uppercase tracking-[0.22em] text-[#D01020]">
+                  {eyebrow}
+                </span>
+              </div>
+            )}
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-sans font-bold text-[#111827] tracking-tight">
+              {title}
+            </h2>
+            {subtitle && (
+              <p className="mt-2 text-sm sm:text-base text-[#4b5563] font-light leading-relaxed">
+                {subtitle}
+              </p>
             )}
           </div>
+
+          {/* Clean Dropdown Button Filter */}
+          {showFilters && (
+            <div className="relative shrink-0 self-start md:self-auto" ref={dropdownRef}>
+              <button
+                id="portfolio-category-dropdown-btn"
+                type="button"
+                onClick={() => setDropdownOpen(!dropdownOpen)}
+                className="flex items-center justify-between gap-3 px-5 py-3 bg-[#f9fafb] hover:bg-[#f3f4f6] text-[#111827] border border-[#d1d5db] hover:border-[#111827] rounded-sm transition-all text-xs font-mono font-bold uppercase tracking-wider shadow-sm min-w-[210px] cursor-pointer"
+                aria-expanded={dropdownOpen}
+                aria-haspopup="listbox"
+              >
+                <div className="flex items-center gap-2">
+                  <span className="text-[10px] text-[#6b7280]">FILTER:</span>
+                  <span className="text-[#D01020]">{selectedCategoryLabel}</span>
+                </div>
+                <ChevronDown className={`w-4 h-4 text-[#111827] transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              {dropdownOpen && (
+                <div
+                  id="portfolio-category-dropdown-menu"
+                  className="absolute right-0 mt-1.5 w-60 bg-white border border-[#e5e7eb] rounded-sm shadow-xl z-30 py-1.5 animate-fade-in"
+                  role="listbox"
+                >
+                  {ARCHITECTURAL_CATEGORIES.map((cat) => {
+                    const count =
+                      cat.id === 'All'
+                        ? PROJECTS.length
+                        : PROJECTS.filter((p) => p.category === cat.id).length;
+                    const isSelected = selectedCategory === cat.id;
+
+                    return (
+                      <button
+                        key={cat.id}
+                        type="button"
+                        onClick={() => {
+                          setSelectedCategory(cat.id);
+                          setDropdownOpen(false);
+                        }}
+                        className={`w-full px-4 py-2.5 text-xs font-mono text-left flex items-center justify-between transition-colors cursor-pointer ${
+                          isSelected
+                            ? 'bg-[#111827] text-white font-bold'
+                            : 'text-[#374151] hover:bg-[#f3f4f6]'
+                        }`}
+                        role="option"
+                        aria-selected={isSelected}
+                      >
+                        <span className="tracking-wide">{cat.label}</span>
+                        <span className="flex items-center gap-2">
+                          <span className={`text-[10px] px-1.5 py-0.5 rounded ${isSelected ? 'bg-white/20 text-white' : 'bg-gray-100 text-[#6b7280]'}`}>
+                            {count}
+                          </span>
+                          {isSelected && <Check className="w-3.5 h-3.5 text-[#D01020]" />}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
-        {/* Clean Filter Pill Bar */}
-        {showFilters && (
-          <div className="flex items-center gap-2 pb-6 mb-10 overflow-x-auto border-b border-[#E5E5DF] no-scrollbar">
-            <span className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-[#70706B] flex items-center gap-1.5 mr-2 shrink-0">
-              <Filter className="w-3 h-3 text-[#1C3B52]" /> FILTER:
-            </span>
-            {CATEGORIES.map((cat) => {
-              const count = cat === 'All' ? PROJECTS.length : PROJECTS.filter((p) => p.category === cat).length;
-              const isSelected = selectedCategory === cat;
-              return (
-                <button
-                  key={cat}
-                  id={`filter-cat-${cat.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}
-                  type="button"
-                  onClick={() => setSelectedCategory(cat)}
-                  className={`px-4 py-2 text-xs font-mono tracking-wider uppercase transition-all shrink-0 border cursor-pointer ${
-                    isSelected
-                      ? 'bg-[#111111] text-[#FBFBF9] border-[#111111]'
-                      : 'bg-[#FFFFFF] text-[#70706B] border-[#E5E5DF] hover:border-[#111111] hover:text-[#111111]'
-                  }`}
-                >
-                  <span>{cat}</span>
-                  <span className={`ml-1.5 text-[11px] ${isSelected ? 'text-[#FBFBF9]/70' : 'text-[#70706B]'}`}>
-                    ({count})
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-        )}
-
-        {/* Projects Grid */}
-        {filteredProjects.length === 0 ? (
-          <div className="text-center py-16 bg-[#FFFFFF] border border-[#E5E5DF] p-8">
-            <p className="text-sm font-mono text-[#70706B]">No works found in this classification.</p>
-            <button
-              onClick={() => setSelectedCategory('All')}
-              className="mt-4 px-5 py-2.5 bg-[#111111] text-[#FBFBF9] text-xs font-mono uppercase tracking-wider cursor-pointer"
-            >
-              Reset Filters
-            </button>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {filteredProjects.map((project, idx) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                featured={!limit && idx === 0 && selectedCategory === 'All'}
-              />
-            ))}
-          </div>
-        )}
+        {/* Clean, well-mannered rectangular projects from left to right - no wording down below */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+          {filteredProjects.map((project, idx) => (
+            <div key={project.id} className="w-full">
+              <ProjectCard project={project} index={idx} />
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

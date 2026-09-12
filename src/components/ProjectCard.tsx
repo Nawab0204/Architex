@@ -1,122 +1,72 @@
 import React from 'react';
 import { Project } from '../types';
 import { Link } from '../context/NavigationContext';
-import { ArrowUpRight, MapPin, Box, FileText, Ruler } from 'lucide-react';
+import { ArrowUpRight, MapPin } from 'lucide-react';
 
 interface ProjectCardProps {
   key?: React.Key;
   project: Project;
   featured?: boolean;
+  index?: number;
 }
 
-export function ProjectCard({ project, featured = false }: ProjectCardProps) {
+export function ProjectCard({ project }: ProjectCardProps) {
   return (
     <article
       id={`project-card-${project.slug}`}
-      className={`group flex flex-col bg-[#FFFFFF] border border-[#E5E5DF] transition-all duration-300 hover:border-[#111111] hover:shadow-[0_8px_24px_rgba(0,0,0,0.06)] ${
-        featured ? 'md:col-span-2 lg:col-span-2' : ''
-      }`}
+      className="group relative overflow-hidden bg-[#111111] rounded-sm border border-[#e5e2d9] transition-all duration-500 hover:border-[#111111] hover:shadow-[0_16px_36px_rgba(0,0,0,0.12)] w-full"
     >
-      {/* Project Visual Stage */}
+      {/* Sleek, wide rectangular format without wording below */}
       <Link
         href={`/projects/${project.slug}`}
-        className={`block relative overflow-hidden bg-[#F4F4F0] border-b border-[#E5E5DF] ${
-          featured ? 'aspect-[16/9]' : 'aspect-[16/10]'
-        }`}
-        aria-label={`View dossier for ${project.title}`}
+        className="block relative overflow-hidden w-full aspect-[16/9] sm:aspect-[16/9] md:aspect-[21/10]"
+        aria-label={`View project details for ${project.title}`}
       >
         <img
           src={project.image || project.heroImage}
           alt={project.title}
-          className="w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-[1.015]"
+          className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
           loading="lazy"
           decoding="async"
         />
 
-        {/* Top Badges */}
-        <div className="absolute top-3.5 left-3.5 flex flex-wrap gap-2 items-center">
-          <span className="bg-[#111111] text-[#FBFBF9] px-2.5 py-1 text-[10px] font-mono font-bold uppercase tracking-[0.16em]">
-            REF {project.projectNumber}
-          </span>
-          <span className="bg-[#FFFFFF]/95 backdrop-blur-sm px-2.5 py-1 text-[10px] font-mono uppercase tracking-[0.16em] text-[#111111] border border-[#E5E5DF]">
+        {/* Subtle Gradient Veil for Perfect Contrast */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300" />
+
+        {/* Top Badges: Category & Reference */}
+        <div className="absolute top-3.5 left-3.5 sm:top-4 sm:left-4 flex items-center gap-2">
+          <span className="bg-white/95 backdrop-blur-sm text-[#111111] px-2.5 py-1 text-[10px] font-mono font-bold uppercase tracking-[0.16em] rounded-sm shadow-sm">
             {project.category}
           </span>
-          {project.heroType === 'vector-drawing' && (
-            <span className="bg-[#1C3B52] text-white px-2 py-1 text-[9px] font-mono uppercase tracking-[0.16em] flex items-center gap-1">
-              <FileText className="w-2.5 h-2.5" /> Vector Drawing
-            </span>
-          )}
+          <span className="bg-black/70 backdrop-blur-sm text-white/90 px-2 py-1 text-[10px] font-mono uppercase tracking-[0.16em] rounded-sm border border-white/20">
+            {project.year}
+          </span>
         </div>
 
-        {/* Hover Action Corner */}
-        <div className="absolute bottom-3 right-3 w-8 h-8 bg-[#FFFFFF] border border-[#E5E5DF] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-          <ArrowUpRight className="w-4 h-4 text-[#111111]" />
+        {/* Top Right Action Arrow */}
+        <div className="absolute top-3.5 right-3.5 sm:top-4 sm:right-4 w-8 h-8 rounded-full bg-white/95 backdrop-blur-sm text-[#111111] flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:bg-[#D01020] group-hover:text-white shadow-sm">
+          <ArrowUpRight className="w-4 h-4" />
+        </div>
+
+        {/* Clean, minimalist overlay at the bottom of the image - No wording down below! */}
+        <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 text-white flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <div className="flex items-center gap-1.5 text-xs text-white/80 font-mono mb-1">
+              <MapPin className="w-3.5 h-3.5 text-[#D01020] shrink-0" />
+              <span>{project.location}</span>
+            </div>
+            <h3 className="text-lg sm:text-xl md:text-2xl font-sans font-bold tracking-tight text-white group-hover:text-white/95 transition-colors">
+              {project.title}
+            </h3>
+          </div>
+
+          {project.area && (
+            <span className="self-start sm:self-auto text-[11px] font-mono text-white/90 bg-white/15 backdrop-blur-sm px-2.5 py-1 rounded-sm border border-white/20">
+              {project.area}
+            </span>
+          )}
         </div>
       </Link>
-
-      {/* Metadata Section */}
-      <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between space-y-4">
-        <div className="space-y-2.5">
-          <div className="flex items-center justify-between text-[11px] font-mono text-[#70706B] border-b border-[#E5E5DF] pb-2">
-            <span className="flex items-center gap-1.5 truncate max-w-[200px]">
-              <MapPin className="w-3.5 h-3.5 text-[#111111] shrink-0" />
-              {project.location}
-            </span>
-            <span className="font-semibold text-[#111111]">{project.year}</span>
-          </div>
-
-          <h3 className="font-serif text-xl sm:text-2xl font-normal text-[#111111] tracking-tight group-hover:text-[#1C3B52] transition-colors">
-            {project.title}
-          </h3>
-
-          <p className="text-xs sm:text-sm text-[#70706B] leading-relaxed line-clamp-2 font-light">
-            {project.subtitle}
-          </p>
-
-          {/* Key Architectural Metric Pill */}
-          <div className="pt-1 flex flex-wrap items-center gap-2 text-[10px] font-mono text-[#70706B]">
-            {project.area && (
-              <span className="bg-[#F4F4F0] px-2 py-0.5 border border-[#E5E5DF]">
-                {project.area}
-              </span>
-            )}
-            {project.ffl && (
-              <span className="bg-[#F4F4F0] px-2 py-0.5 border border-[#E5E5DF]">
-                FFL {project.ffl}
-              </span>
-            )}
-            {project.ridgeHeight && (
-              <span className="bg-[#F4F4F0] px-2 py-0.5 border border-[#E5E5DF]">
-                Ridge {project.ridgeHeight}
-              </span>
-            )}
-          </div>
-        </div>
-
-        {/* Footer info link */}
-        <div className="pt-3 border-t border-[#E5E5DF] flex items-center justify-between text-[10px] font-mono">
-          <Link
-            id={`project-view-link-${project.slug}`}
-            href={`/projects/${project.slug}`}
-            className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.16em] text-[#111111] group-hover:text-[#1C3B52] transition-colors"
-          >
-            <span>Examine Dossier</span>
-            <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </Link>
-
-          {project.drawings && project.drawings.length > 0 ? (
-            <span className="flex items-center gap-1 text-[#1C3B52] uppercase tracking-wider font-semibold">
-              <FileText className="w-3 h-3" />
-              {project.drawings.length} {project.drawings.length === 1 ? 'Drawing' : 'Drawings'}
-            </span>
-          ) : (
-            <span className="flex items-center gap-1 text-[#70706B] uppercase tracking-wider">
-              <Box className="w-3 h-3 text-amber-600" />
-              Visual Renders
-            </span>
-          )}
-        </div>
-      </div>
     </article>
   );
 }

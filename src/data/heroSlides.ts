@@ -3,66 +3,66 @@ import { HeroSlide } from '../types';
 export const HERO_SLIDES: HeroSlide[] = [
   {
     id: 'slide-1',
-    eyebrow: 'RA ARCHITECTS // ARCHIVE',
-    title: 'Precision Infrastructure, Civic Landscapes & Resilient Architecture.',
-    description: 'Statutory planning approvals, mission-critical engineering documentation, and contemporary civic public realm masterplanning executed to construction precision.',
-    image: '/drawings/coombe-fields-switch-house-elevations.svg',
+    eyebrow: 'ACHITEX • ARCHITECTURE & ENGINEERING',
+    title: 'Spaces designed around the way you live.',
+    description: 'Personal, director-led architectural care from early ideas to planning approval and completed construction.',
+    image: '/images/hero/hero-slide-1-contemporary-extension.jpg',
     primaryCta: {
-      text: 'Examine Case Studies',
-      href: '/projects'
+      text: 'Book Your Consultation',
+      href: '/contact'
     },
     secondaryCta: {
-      text: 'Index Archive',
-      href: '/index'
+      text: 'Our Portfolio',
+      href: '/projects'
     },
-    projectSlug: 'coombe-fields-33kv-substation'
+    projectSlug: 'harborne-house'
   },
   {
     id: 'slide-2',
-    eyebrow: 'CIVIC & PUBLIC REALM',
-    title: 'Al-Waha Civic Oasis & Parametric Canopy Park.',
-    description: 'An undulating anticlastic canopy and radial vertical glulam timber colonnade framing a protected microclimate gathering lawn and public promenade.',
-    image: '/images/projects/civic-oasis-park-aerial-overview.jpg',
+    eyebrow: 'BRIGHT 3D DESIGN & EXTENSIONS',
+    title: 'Bright, open living spaces flooded with natural light.',
+    description: 'Kitchen extensions, loft conversions, and modern family homes visualised in photorealistic 3D.',
+    image: '/images/hero/hero-slide-2-open-plan-living.jpg',
     primaryCta: {
-      text: 'View Project Dossier',
-      href: '/projects/al-waha-civic-oasis'
+      text: 'Creative Design',
+      href: '/services/creative-design'
     },
     secondaryCta: {
-      text: 'All Works',
+      text: 'Our Portfolio',
       href: '/projects'
     },
-    projectSlug: 'al-waha-civic-oasis'
+    projectSlug: 'edgbaston-pavilion'
   },
   {
     id: 'slide-3',
-    eyebrow: 'INSTITUTIONAL FACILITY',
-    title: 'The Monolith & Veil: Cultural / Educational Architecture.',
-    description: 'A monolithic mineral plaster massing counterbalanced by calibrated twisted aerofoil louvre systems, modulating incoming daylight and passive thermal loads.',
-    image: '/images/projects/monolith-veil-front-elevation-100.jpg',
+    eyebrow: '100% PLANNING APPROVALS & BUILDING REGULATIONS',
+    title: '100% planning approvals with zero stress.',
+    description: 'We manage council applications, Permitted Development rights, and building regulation drawings with certainty.',
+    image: '/images/hero/hero-slide-3-glazed-pavilion.jpg',
     primaryCta: {
-      text: 'View Façade Studies',
-      href: '/projects/monolith-veil-facility'
+      text: 'Book Your Consultation',
+      href: '/contact'
     },
     secondaryCta: {
-      text: 'Explore Archive',
-      href: '/index'
+      text: 'Our Services',
+      href: '/services'
     },
-    projectSlug: 'monolith-veil-facility'
+    projectSlug: 'residential-loft-adaptation'
   },
   {
     id: 'slide-4',
-    eyebrow: 'MISSION-CRITICAL INFRASTRUCTURE',
-    title: 'Coombe Fields 33kV Primary Substation & Switch House.',
-    description: 'Engineered sub-floor cable trenches, Kingspan RW1000 insulated panels, and Section 278 highway bellmouth junction designed directly adjacent to Rolls-Royce.',
-    image: '/drawings/coombe-fields-substation-site-plan.svg',
+    eyebrow: 'BESPOKE HOMES & SUSTAINABLE ENGINEERING',
+    title: 'Transforming UK houses into timeless homes.',
+    description: 'Architectural vision aligned with structural engineering precision for seamless, worry-free builds.',
+    image: '/images/hero/hero-slide-4-bespoke-villa.jpg',
     primaryCta: {
-      text: 'Inspect Technical Package',
-      href: '/projects/coombe-fields-33kv-substation'
-    },
-    secondaryCta: {
-      text: 'Consult Studio',
+      text: 'Book Your Consultation',
       href: '/contact'
     },
-    projectSlug: 'coombe-fields-33kv-substation'
+    secondaryCta: {
+      text: 'Our Services',
+      href: '/services'
+    },
+    projectSlug: 'solihull-courtyard-villa'
   }
 ];

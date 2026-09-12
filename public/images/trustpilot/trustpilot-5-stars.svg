@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 30" width="160" height="30" fill="none">
+  <!-- 5 Trustpilot Green Stars -->
+  <g>
+    <!-- Star 1 -->
+    <rect x="0" y="0" width="30" height="30" fill="#00b67a" rx="2"/>
+    <polygon points="15,5 18,12 25,12 19,17 21,24 15,20 9,24 11,17 5,12 12,12" fill="#ffffff"/>
+    
+    <!-- Star 2 -->
+    <rect x="32" y="0" width="30" height="30" fill="#00b67a" rx="2"/>
+    <polygon points="47,5 50,12 57,12 51,17 53,24 47,20 41,24 43,17 37,12 44,12" fill="#ffffff"/>
+
+    <!-- Star 3 -->
+    <rect x="64" y="0" width="30" height="30" fill="#00b67a" rx="2"/>
+    <polygon points="79,5 82,12 89,12 83,17 85,24 79,20 73,24 75,17 69,12 76,12" fill="#ffffff"/>
+
+    <!-- Star 4 -->
+    <rect x="96" y="0" width="30" height="30" fill="#00b67a" rx="2"/>
+    <polygon points="111,5 114,12 121,12 115,17 117,24 111,20 105,24 107,17 101,12 108,12" fill="#ffffff"/>
+
+    <!-- Star 5 -->
+    <rect x="128" y="0" width="30" height="30" fill="#00b67a" rx="2"/>
+    <polygon points="143,5 146,12 153,12 147,17 149,24 143,20 137,24 139,17 133,12 140,12" fill="#ffffff"/>
+  </g>
+</svg>

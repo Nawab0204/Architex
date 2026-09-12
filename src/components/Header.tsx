@@ -1,17 +1,21 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useNavigation, Link } from '../context/NavigationContext';
-import { Menu, ChevronDown, BookOpen, Compass, HelpCircle, FileText } from 'lucide-react';
+import { Menu, ChevronDown, ArrowRight } from 'lucide-react';
 import { MobileMenu } from './MobileMenu';
 import { Logo } from './Logo';
-import { PROJECTS } from '../data/projects';
 
 export function Header({ isTransparentInitially = false }: { isTransparentInitially?: boolean }) {
   const { currentPath } = useNavigation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Dropdown states
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const [aboutOpen, setAboutOpen] = useState(false);
+
+  // Timeout refs to ensure rock-solid, flicker-free hover transitions
+  const servicesTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const aboutTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,75 +26,62 @@ export function Header({ isTransparentInitially = false }: { isTransparentInitia
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Click outside to dismiss dropdown
+  // Services hover handlers with graceful leave buffer
+  const handleServicesEnter = () => {
+    if (servicesTimeoutRef.current) clearTimeout(servicesTimeoutRef.current);
+    if (aboutTimeoutRef.current) clearTimeout(aboutTimeoutRef.current);
+    setAboutOpen(false);
+    setServicesOpen(true);
+  };
+
+  const handleServicesLeave = () => {
+    servicesTimeoutRef.current = setTimeout(() => {
+      setServicesOpen(false);
+    }, 180);
+  };
+
+  // About Us hover handlers with graceful leave buffer
+  const handleAboutEnter = () => {
+    if (aboutTimeoutRef.current) clearTimeout(aboutTimeoutRef.current);
+    if (servicesTimeoutRef.current) clearTimeout(servicesTimeoutRef.current);
+    setServicesOpen(false);
+    setAboutOpen(true);
+  };
+
+  const handleAboutLeave = () => {
+    aboutTimeoutRef.current = setTimeout(() => {
+      setAboutOpen(false);
+    }, 180);
+  };
+
+  // Close menus on path change
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setAboutDropdownOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
-
-  const handleMouseEnter = () => {
-    if (dropdownTimeoutRef.current) {
-      clearTimeout(dropdownTimeoutRef.current);
-    }
-    setAboutDropdownOpen(true);
-  };
-
-  const handleMouseLeave = () => {
-    dropdownTimeoutRef.current = setTimeout(() => {
-      setAboutDropdownOpen(false);
-    }, 150);
-  };
+    setServicesOpen(false);
+    setAboutOpen(false);
+    setMobileMenuOpen(false);
+  }, [currentPath]);
 
   const isDarkHeroText = !isScrolled && isTransparentInitially;
 
   const isServicesActive = currentPath === '/services' || currentPath.startsWith('/services/');
-  const isPortfolioActive =
-    currentPath === '/portfolio' ||
-    currentPath === '/projects' ||
-    currentPath === '/index' ||
-    currentPath.startsWith('/projects/') ||
-    currentPath.startsWith('/project/');
-  const isAboutActive =
-    currentPath === '/about' ||
-    currentPath === '/process' ||
-    currentPath === '/insights' ||
-    currentPath.startsWith('/insights/') ||
-    currentPath === '/blog' ||
-    currentPath === '/blogs' ||
-    currentPath.startsWith('/blog/') ||
-    currentPath === '/faq';
+  const isPortfolioActive = currentPath === '/projects' || currentPath.startsWith('/projects/') || currentPath === '/portfolio';
+  const isAboutActive = currentPath === '/about' || currentPath === '/about-us' || currentPath === '/insights' || currentPath === '/faq';
   const isContactActive = currentPath === '/contact';
 
-  const aboutDropdownItems = [
-    {
-      label: 'About Practice',
-      subtitle: 'Ethos, Leadership, RIBA Stages & Heritage',
-      href: '/about',
-      icon: Compass
-    },
-    {
-      label: 'Insights & Guides',
-      subtitle: 'Planning, Conservation & Building Regulations',
-      href: '/insights',
-      icon: BookOpen
-    },
-    {
-      label: 'Architectural Blogs',
-      subtitle: 'Articles, Contemporary Trends & Case Studies',
-      href: '/blog',
-      icon: FileText
-    },
-    {
-      label: 'Frequently Asked Questions',
-      subtitle: 'Planning, Fees, Timelines & Structural Engineering',
-      href: '/faq',
-      icon: HelpCircle
-    }
+  // Exactly the 5 requested services - zero clutter
+  const servicesList = [
+    { title: 'Architecture services', href: '/services/all-architectural-services' },
+    { title: 'Planning advice', href: '/services/planning-advice' },
+    { title: 'Creative design', href: '/services/creative-design' },
+    { title: 'Planning permission', href: '/services/planning-permissions' },
+    { title: 'Building regulation', href: '/services/building-regulations' }
+  ];
+
+  // About us items with 'Our Portfolio' removed
+  const aboutList = [
+    { title: 'About the Business', href: '/about' },
+    { title: 'Blogs', href: '/insights' },
+    { title: 'Frequently Asked Questions', href: '/faq' }
   ];
 
   return (
@@ -99,221 +90,240 @@ export function Header({ isTransparentInitially = false }: { isTransparentInitia
         id="main-header"
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 w-full ${
           isScrolled
-            ? 'bg-[#FBFBF9]/95 backdrop-blur-md border-b border-[#E5E5DF] py-3.5 shadow-[0_1px_8px_rgba(0,0,0,0.03)]'
-            : 'bg-transparent py-4 lg:py-5'
+            ? 'bg-[#ffffff]/95 backdrop-blur-md border-b border-[#e5e2d9] py-3.5 shadow-[0_4px_24px_rgba(0,0,0,0.06)]'
+            : isTransparentInitially
+            ? 'bg-gradient-to-b from-black/70 via-black/40 to-transparent py-4 lg:py-5'
+            : 'bg-[#ffffff] border-b border-[#e5e2d9] py-4'
         }`}
       >
-        <div className="w-full px-4 sm:px-8 lg:px-12 flex items-center justify-between">
-          {/* Studio Mark / Logo on leftmost corner */}
-          <div className="flex items-center gap-4 shrink-0">
-            <Link
-              id="header-logo"
-              href="/"
-              className="group flex items-center focus:outline-none"
-              aria-label="Real Life Architecture Homepage"
-            >
-              <Logo isDarkBackground={isDarkHeroText} />
-            </Link>
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 flex items-center justify-between w-full">
+          {/* ACHITEX Official Logo linking to Home Page */}
+          <Link
+            id="header-home-logo-link"
+            href="/"
+            className="flex items-center group transition-transform active:scale-95"
+            aria-label="ACHITEX Home Page"
+          >
+            <Logo isDarkBackground={isDarkHeroText} />
+          </Link>
 
-            <span className={`hidden md:inline-block h-4 w-[1px] ${isDarkHeroText ? 'bg-white/30' : 'bg-[#E5E5DF]'}`} />
-
-            {/* Live project count indicator */}
+          {/* Desktop Navigation Links positioned on the rightmost side */}
+          <nav
+            id="desktop-nav"
+            className="hidden lg:flex items-center gap-7 xl:gap-8"
+            aria-label="Main Navigation"
+          >
+            {/* 1. Our Services (Dropdown) */}
             <div
-              id="header-catalogue-count"
-              className={`hidden md:flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-mono uppercase tracking-[0.16em] border transition-colors ${
-                isDarkHeroText
-                  ? 'bg-black/30 text-white/90 border-white/20'
-                  : 'bg-[#F4F4F0] text-[#70706B] border-[#E5E5DF]'
-              }`}
-            >
-              <span className="w-1.5 h-1.5 bg-[#C51B18] rounded-full animate-pulse" />
-              <span>[ {PROJECTS.length} WORKS CATALOGUED ]</span>
-            </div>
-          </div>
-
-          {/* Desktop Navigation Links: Services -> Portfolio -> About Us (Dropdown) -> Contact */}
-          <nav id="desktop-nav" className="hidden lg:flex items-center gap-8 xl:gap-10" aria-label="Main Navigation">
-            {/* 1. SERVICES */}
-            <Link
-              id="nav-link-services"
-              href="/services"
-              className={`text-[11px] xl:text-[12px] font-mono tracking-[0.18em] uppercase transition-colors py-1 relative ${
-                isServicesActive
-                  ? isDarkHeroText
-                    ? 'text-white font-semibold'
-                    : 'text-[#111111] font-bold'
-                  : isDarkHeroText
-                  ? 'text-white/80 hover:text-white'
-                  : 'text-[#70706B] hover:text-[#111111]'
-              }`}
-            >
-              SERVICES
-              {isServicesActive && (
-                <span
-                  className={`absolute bottom-0 left-0 w-full h-[1.5px] transition-colors ${
-                    isDarkHeroText ? 'bg-white' : 'bg-[#C51B18]'
-                  }`}
-                />
-              )}
-            </Link>
-
-            {/* 2. PORTFOLIO */}
-            <Link
-              id="nav-link-portfolio"
-              href="/portfolio"
-              className={`text-[11px] xl:text-[12px] font-mono tracking-[0.18em] uppercase transition-colors py-1 relative ${
-                isPortfolioActive
-                  ? isDarkHeroText
-                    ? 'text-white font-semibold'
-                    : 'text-[#111111] font-bold'
-                  : isDarkHeroText
-                  ? 'text-white/80 hover:text-white'
-                  : 'text-[#70706B] hover:text-[#111111]'
-              }`}
-            >
-              PORTFOLIO
-              {isPortfolioActive && (
-                <span
-                  className={`absolute bottom-0 left-0 w-full h-[1.5px] transition-colors ${
-                    isDarkHeroText ? 'bg-white' : 'bg-[#C51B18]'
-                  }`}
-                />
-              )}
-            </Link>
-
-            {/* 3. ABOUT US (Dropdown Button) */}
-            <div
-              ref={dropdownRef}
+              id="nav-container-services"
               className="relative"
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
+              onMouseEnter={handleServicesEnter}
+              onMouseLeave={handleServicesLeave}
             >
               <button
-                id="nav-link-about-us"
+                id="nav-services-btn"
                 type="button"
-                onClick={() => setAboutDropdownOpen(!aboutDropdownOpen)}
-                aria-expanded={aboutDropdownOpen}
+                onClick={() => setServicesOpen(!servicesOpen)}
+                aria-expanded={servicesOpen}
                 aria-haspopup="true"
-                className={`text-[11px] xl:text-[12px] font-mono tracking-[0.18em] uppercase transition-colors py-1 flex items-center gap-1.5 cursor-pointer relative ${
-                  isAboutActive
+                className={`text-xs font-mono uppercase tracking-[0.18em] py-2 px-1 flex items-center gap-1.5 cursor-pointer transition-colors relative ${
+                  isServicesActive
                     ? isDarkHeroText
-                      ? 'text-white font-semibold'
+                      ? 'text-white font-bold'
                       : 'text-[#111111] font-bold'
                     : isDarkHeroText
-                    ? 'text-white/80 hover:text-white'
-                    : 'text-[#70706B] hover:text-[#111111]'
+                    ? 'text-white/90 hover:text-white'
+                    : 'text-[#3d3a33] hover:text-[#111111]'
                 }`}
               >
-                <span>ABOUT US</span>
+                <span>Our Services</span>
                 <ChevronDown
                   className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                    aboutDropdownOpen ? 'rotate-180 text-[#C51B18]' : ''
+                    servicesOpen ? 'rotate-180 text-[#D01020]' : ''
                   }`}
                 />
-                {isAboutActive && (
+                {isServicesActive && (
                   <span
-                    className={`absolute bottom-0 left-0 w-full h-[1.5px] transition-colors ${
-                      isDarkHeroText ? 'bg-white' : 'bg-[#C51B18]'
+                    className={`absolute bottom-0 left-0 w-full h-[2px] ${
+                      isDarkHeroText ? 'bg-[#D01020]' : 'bg-[#D01020]'
                     }`}
                   />
                 )}
               </button>
 
-              {/* Dropdown Menu Panel */}
-              {aboutDropdownOpen && (
+              {/* Clean, Clutter-free Dropdown - Only the 5 items */}
+              <div
+                className={`absolute right-0 top-full pt-2 w-[240px] transition-all duration-200 z-50 ${
+                  servicesOpen
+                    ? 'opacity-100 visible translate-y-0 pointer-events-auto'
+                    : 'opacity-0 invisible -translate-y-1 pointer-events-none'
+                }`}
+              >
                 <div
-                  id="about-us-dropdown-panel"
-                  className="absolute left-0 mt-2 w-80 bg-[#FFFFFF] text-[#111111] border border-[#E5E5DF] shadow-[0_12px_32px_rgba(0,0,0,0.12)] p-2 animate-fade-in z-50"
+                  id="services-dropdown-panel"
+                  className="bg-[#ffffff] text-[#111111] border border-[#e5e2d9] rounded-sm shadow-[0_16px_36px_rgba(0,0,0,0.08)] p-1.5 divide-y divide-[#f5f2eb]"
                   role="menu"
                 >
-                  <div className="px-3 py-2 border-b border-[#F0EFEB] mb-1">
-                    <span className="text-[9px] font-mono font-bold tracking-[0.22em] uppercase text-[#888880]">
-                      ABOUT REAL LIFE ARCHITECTURE
-                    </span>
-                  </div>
-
-                  <div className="space-y-1">
-                    {aboutDropdownItems.map((item) => {
-                      const ItemIcon = item.icon;
-                      const isItemActive = currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href));
-                      return (
-                        <Link
-                          key={item.href}
-                          id={`dropdown-item-${item.label.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}
-                          href={item.href}
-                          onClick={() => setAboutDropdownOpen(false)}
-                          className={`flex items-start gap-3 p-2.5 rounded-none transition-all group ${
-                            isItemActive
-                              ? 'bg-[#F4F4F0] border-l-2 border-[#C51B18]'
-                              : 'hover:bg-[#F9F9F7] border-l-2 border-transparent'
-                          }`}
-                          role="menuitem"
-                        >
-                          <ItemIcon className={`w-4 h-4 mt-0.5 shrink-0 transition-colors ${
-                            isItemActive ? 'text-[#C51B18]' : 'text-[#70706B] group-hover:text-[#C51B18]'
-                          }`} />
-                          <div className="flex flex-col">
-                            <span className="text-xs font-sans font-semibold tracking-wide text-[#111111] group-hover:text-[#C51B18] transition-colors">
-                              {item.label}
-                            </span>
-                            <span className="text-[10px] font-sans text-[#70706B] leading-tight mt-0.5">
-                              {item.subtitle}
-                            </span>
-                          </div>
-                        </Link>
-                      );
-                    })}
+                  <div className="flex flex-col py-0.5">
+                    {servicesList.map((item, idx) => (
+                      <Link
+                        key={item.href}
+                        id={`header-dropdown-service-${idx}`}
+                        href={item.href}
+                        onClick={() => setServicesOpen(false)}
+                        className="group flex items-center justify-between px-3.5 py-2.5 rounded-sm hover:bg-[#fbfaf7] transition-colors"
+                        role="menuitem"
+                      >
+                        <span className="text-xs font-sans font-medium text-[#111111] group-hover:text-[#D01020] transition-colors capitalize">
+                          {item.title}
+                        </span>
+                        <ArrowRight className="w-3 h-3 text-[#b0aca2] group-hover:text-[#D01020] group-hover:translate-x-0.5 transition-all shrink-0" />
+                      </Link>
+                    ))}
                   </div>
                 </div>
-              )}
+              </div>
             </div>
 
-            {/* 4. CONTACT */}
+            {/* 2. Our Portfolio (Direct Button) */}
+            <Link
+              id="nav-link-portfolio"
+              href="/projects"
+              className={`text-xs font-mono uppercase tracking-[0.18em] py-2 px-1 transition-colors relative ${
+                isPortfolioActive
+                  ? isDarkHeroText
+                    ? 'text-white font-bold'
+                    : 'text-[#111111] font-bold'
+                  : isDarkHeroText
+                  ? 'text-white/90 hover:text-white'
+                  : 'text-[#3d3a33] hover:text-[#111111]'
+              }`}
+            >
+              Our Portfolio
+              {isPortfolioActive && (
+                <span
+                  className={`absolute bottom-0 left-0 w-full h-[2px] ${
+                    isDarkHeroText ? 'bg-[#D01020]' : 'bg-[#D01020]'
+                  }`}
+                />
+              )}
+            </Link>
+
+            {/* 3. About Us (Dropdown - without Our Portfolio) */}
+            <div
+              id="nav-container-about"
+              className="relative"
+              onMouseEnter={handleAboutEnter}
+              onMouseLeave={handleAboutLeave}
+            >
+              <button
+                id="nav-about-btn"
+                type="button"
+                onClick={() => setAboutOpen(!aboutOpen)}
+                aria-expanded={aboutOpen}
+                aria-haspopup="true"
+                className={`text-xs font-mono uppercase tracking-[0.18em] py-2 px-1 flex items-center gap-1.5 cursor-pointer transition-colors relative ${
+                  isAboutActive
+                    ? isDarkHeroText
+                      ? 'text-white font-bold'
+                      : 'text-[#111111] font-bold'
+                    : isDarkHeroText
+                    ? 'text-white/90 hover:text-white'
+                    : 'text-[#3d3a33] hover:text-[#111111]'
+                }`}
+              >
+                <span>About Us</span>
+                <ChevronDown
+                  className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                    aboutOpen ? 'rotate-180 text-[#D01020]' : ''
+                  }`}
+                />
+                {isAboutActive && (
+                  <span
+                    className={`absolute bottom-0 left-0 w-full h-[2px] ${
+                      isDarkHeroText ? 'bg-[#D01020]' : 'bg-[#D01020]'
+                    }`}
+                  />
+                )}
+              </button>
+
+              {/* Clean About Dropdown - no portfolio */}
+              <div
+                className={`absolute right-0 top-full pt-2 w-[240px] transition-all duration-200 z-50 ${
+                  aboutOpen
+                    ? 'opacity-100 visible translate-y-0 pointer-events-auto'
+                    : 'opacity-0 invisible -translate-y-1 pointer-events-none'
+                }`}
+              >
+                <div
+                  id="about-dropdown-panel"
+                  className="bg-[#ffffff] text-[#111111] border border-[#e5e2d9] rounded-sm shadow-[0_16px_36px_rgba(0,0,0,0.08)] p-1.5 divide-y divide-[#f5f2eb]"
+                  role="menu"
+                >
+                  <div className="flex flex-col py-0.5">
+                    {aboutList.map((item, idx) => (
+                      <Link
+                        key={item.href}
+                        id={`header-dropdown-about-${idx}`}
+                        href={item.href}
+                        onClick={() => setAboutOpen(false)}
+                        className="group flex items-center justify-between px-3.5 py-2.5 rounded-sm hover:bg-[#fbfaf7] transition-colors"
+                        role="menuitem"
+                      >
+                        <span className="text-xs font-sans font-medium text-[#111111] group-hover:text-[#D01020] transition-colors">
+                          {item.title}
+                        </span>
+                        <ArrowRight className="w-3 h-3 text-[#b0aca2] group-hover:text-[#D01020] group-hover:translate-x-0.5 transition-all shrink-0" />
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 4. Contact Us (Direct Button) */}
             <Link
               id="nav-link-contact"
               href="/contact"
-              className={`text-[11px] xl:text-[12px] font-mono tracking-[0.18em] uppercase transition-colors py-1 relative ${
+              className={`text-xs font-mono uppercase tracking-[0.18em] py-2 px-1 transition-colors relative ${
                 isContactActive
                   ? isDarkHeroText
-                    ? 'text-white font-semibold'
+                    ? 'text-white font-bold'
                     : 'text-[#111111] font-bold'
                   : isDarkHeroText
-                  ? 'text-white/80 hover:text-white'
-                  : 'text-[#70706B] hover:text-[#111111]'
+                  ? 'text-white/90 hover:text-white'
+                  : 'text-[#3d3a33] hover:text-[#111111]'
               }`}
             >
-              CONTACT
+              Contact Us
               {isContactActive && (
                 <span
-                  className={`absolute bottom-0 left-0 w-full h-[1.5px] transition-colors ${
-                    isDarkHeroText ? 'bg-white' : 'bg-[#C51B18]'
+                  className={`absolute bottom-0 left-0 w-full h-[2px] ${
+                    isDarkHeroText ? 'bg-[#D01020]' : 'bg-[#D01020]'
                   }`}
                 />
               )}
             </Link>
           </nav>
 
-          {/* Mobile Menu Toggle (Black square button removed as requested) */}
-          <div className="flex items-center gap-3 lg:hidden">
-            <button
-              id="mobile-menu-toggle"
-              type="button"
-              onClick={() => setMobileMenuOpen(true)}
-              className={`p-2 focus:outline-none transition-colors border cursor-pointer ${
-                isDarkHeroText
-                  ? 'text-white border-white/30 hover:bg-white/10'
-                  : 'text-[#111111] border-[#E5E5DF] hover:bg-[#F4F4F0]'
-              }`}
-              aria-label="Open Navigation Menu"
-              aria-expanded={mobileMenuOpen}
-            >
-              <Menu className="w-5 h-5" />
-            </button>
-          </div>
+          {/* Mobile Menu Toggle Button */}
+          <button
+            id="mobile-menu-toggle-btn"
+            type="button"
+            onClick={() => setMobileMenuOpen(true)}
+            className={`lg:hidden p-2 rounded transition-colors focus:outline-none ${
+              isDarkHeroText
+                ? 'text-white hover:bg-white/10'
+                : 'text-[#111111] hover:bg-[#f0ede6]'
+            }`}
+            aria-label="Open mobile navigation menu"
+          >
+            <Menu className="w-6 h-6" />
+          </button>
         </div>
       </header>
 
-      {/* Mobile Overlay Menu */}
+      {/* Synchronized Mobile Menu */}
       <MobileMenu
         isOpen={mobileMenuOpen}
         onClose={() => setMobileMenuOpen(false)}

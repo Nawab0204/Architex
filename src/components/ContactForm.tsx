@@ -1,15 +1,26 @@
 import React, { useState } from 'react';
-import { Send, CheckCircle, AlertCircle, Upload, X, FileCheck, Loader2, UserCheck, PhoneCall, MailCheck, Video, Building2 } from 'lucide-react';
+import {
+  Send,
+  CheckCircle,
+  AlertCircle,
+  Upload,
+  X,
+  FileCheck,
+  Loader2,
+  ShieldCheck,
+  Clock,
+  Check,
+  RotateCw
+} from 'lucide-react';
 
 interface FormData {
   name: string;
   email: string;
   phone: string;
-  contactPerson: string;
-  contactMethod: string;
   projectType: string;
   location: string;
   estimatedBudget: string;
+  timeline: string;
   message: string;
 }
 
@@ -17,58 +28,37 @@ const INITIAL_FORM: FormData = {
   name: '',
   email: '',
   phone: '',
-  contactPerson: 'lead-architect',
-  contactMethod: 'email',
-  projectType: 'Residential Extension',
+  projectType: 'Extension',
   location: '',
   estimatedBudget: '£50,000 - £150,000',
+  timeline: 'Within 3–6 months',
   message: '',
 };
-
-const CONTACT_PERSON_OPTIONS = [
-  {
-    id: 'lead-architect',
-    name: 'Lead Architect / Director',
-    role: 'Principal Architectural Designer',
-    desc: 'For bespoke design concepts, extensions, transformations & overall project vision.',
-  },
-  {
-    id: 'planning-specialist',
-    name: 'Planning & Conservation Specialist',
-    role: 'Statutory Approvals & Heritage',
-    desc: 'For local authority planning permissions, permitted development, green belt & appeals.',
-  },
-  {
-    id: 'building-regulations',
-    name: 'Technical & Building Regulations Officer',
-    role: 'Technical Detailing & Building Control',
-    desc: 'For building regulations drawings, structural coordination & construction packages.',
-  },
-  {
-    id: 'studio-manager',
-    name: 'Client Liaison & Studio Manager',
-    role: 'Consultations & Fee Proposals',
-    desc: 'For general practice enquiries, consultation bookings, timeframes & fee schedules.',
-  },
-];
-
-const CONTACT_METHOD_OPTIONS = [
-  { id: 'email', label: 'Email Consultation', icon: MailCheck },
-  { id: 'phone', label: 'Phone Discussion', icon: PhoneCall },
-  { id: 'video', label: 'Video Call (Teams/Zoom)', icon: Video },
-  { id: 'in-person', label: 'Studio Meeting (Birmingham)', icon: Building2 },
-];
 
 export function ContactForm() {
   const [formData, setFormData] = useState<FormData>(INITIAL_FORM);
   const [files, setFiles] = useState<File[]>([]);
-  const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
+  const [errors, setErrors] = useState<Partial<Record<keyof FormData | 'recaptcha', string>>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
 
+  // Google reCAPTCHA interactive state
+  const [recaptchaVerified, setRecaptchaVerified] = useState(false);
+  const [recaptchaLoading, setRecaptchaLoading] = useState(false);
+
+  const handleRecaptchaClick = () => {
+    if (recaptchaVerified || recaptchaLoading) return;
+    setRecaptchaLoading(true);
+    setTimeout(() => {
+      setRecaptchaLoading(false);
+      setRecaptchaVerified(true);
+      setErrors((prev) => ({ ...prev, recaptcha: undefined }));
+    }, 600);
+  };
+
   const validate = (): boolean => {
-    const newErrors: Partial<Record<keyof FormData, string>> = {};
+    const newErrors: Partial<Record<keyof FormData | 'recaptcha', string>> = {};
 
     if (!formData.name.trim()) {
       newErrors.name = 'Please provide your full name.';
@@ -81,7 +71,11 @@ export function ContactForm() {
     }
 
     if (!formData.message.trim() || formData.message.trim().length < 10) {
-      newErrors.message = 'Please provide a brief outline of your project (min 10 characters).';
+      newErrors.message = 'Please provide a brief description of your project (min 10 characters).';
+    }
+
+    if (!recaptchaVerified) {
+      newErrors.recaptcha = 'Please verify that you are not a robot.';
     }
 
     setErrors(newErrors);
@@ -97,12 +91,11 @@ export function ContactForm() {
 
     setIsSubmitting(true);
 
-    // Clean simulation
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSuccess(true);
       setFiles([]);
-    }, 900);
+    }, 800);
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -135,149 +128,40 @@ export function ContactForm() {
     }
   };
 
-  const selectedPersonObj = CONTACT_PERSON_OPTIONS.find((p) => p.id === formData.contactPerson);
-
   return (
-    <div id="ra-contact-form-container" className="bg-[#ffffff] border border-[#dcd8cc] p-6 sm:p-10 lg:p-12 shadow-[8px_8px_0px_0px_rgba(26,26,26,0.04)] w-full">
+    <div className="bg-white border border-[#e5e2d9] p-6 sm:p-8 lg:p-10 shadow-sm rounded-sm">
       {isSuccess ? (
-        <div id="contact-form-success-state" className="text-center py-12 space-y-4 animate-fade-in">
-          <div className="w-16 h-16 bg-[#f4f1ea] border border-[#C51B18] flex items-center justify-center mx-auto text-[#C51B18]">
+        <div id="contact-success-message" className="py-12 text-center space-y-4">
+          <div className="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mx-auto">
             <CheckCircle className="w-8 h-8" />
           </div>
-          <h3 className="font-serif text-2xl sm:text-3xl font-normal text-[#1a1a1a] tracking-tight">
-            Thank you for contacting Real Life Architecture.
+          <h3 className="text-2xl font-serif font-bold text-[#111111]">
+            Enquiry Received
           </h3>
-          <p className="text-sm text-[#5c5850] max-w-md mx-auto leading-relaxed font-light">
-            Your enquiry has been routed directly to our <strong className="text-[#1a1a1a] font-semibold">{selectedPersonObj?.name}</strong>. A dedicated specialist will review your project brief and reach out via your preferred method ({formData.contactMethod}) within 1 business day.
+          <p className="text-sm text-[#5c5850] max-w-md mx-auto leading-relaxed">
+            Thank you for reaching out to Realise Architecture. An architect will review your project requirements and respond within 1–2 business days.
           </p>
-          <div className="pt-2">
+          <div className="pt-4">
             <button
               type="button"
               onClick={() => {
                 setIsSuccess(false);
                 setFormData(INITIAL_FORM);
+                setRecaptchaVerified(false);
               }}
-              className="mt-4 inline-flex items-center gap-2 px-7 py-3.5 bg-[#1a1a1a] text-[#f4f1ea] text-[11px] font-semibold uppercase tracking-[0.2em] hover:bg-[#333333] transition-all cursor-pointer"
+              className="px-6 py-2.5 bg-[#111111] text-white text-xs font-mono font-bold uppercase tracking-wider hover:bg-[#D01020] transition-colors rounded-sm"
             >
-              Submit Another Project Brief
+              Send Another Message
             </button>
           </div>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} noValidate className="space-y-8" id="project-enquiry-form">
-          <div className="space-y-1">
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 bg-[#C51B18]" />
-              <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#736e65]">
-                RA ARCHITECTS • DIRECT CONSULTATION
-              </span>
-            </div>
-            <h3 className="font-serif text-2xl sm:text-3xl font-normal text-[#1a1a1a] tracking-tight">
-              Start Your Project Enquiry
-            </h3>
-            <p className="text-xs sm:text-sm text-[#5c5850] font-light">
-              Select the specialist team member you would like to connect with and share your requirements.
-            </p>
-          </div>
-
-          {/* RADIO BUTTONS: Selective Option for Contacting a Person */}
-          <div className="space-y-3 bg-[#faf8f4] p-5 sm:p-6 border border-[#e5e0d3]">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-[#dcd8cc] pb-3">
-              <label className="text-[11px] font-mono font-bold uppercase tracking-[0.15em] text-[#1a1a1a] flex items-center gap-2">
-                <UserCheck className="w-4 h-4 text-[#C51B18]" />
-                Select Who You Wish to Contact <span className="text-[#C51B18]">*</span>
-              </label>
-              <span className="text-[10px] font-mono text-[#736e65] uppercase tracking-wider">
-                Direct Team Routing
-              </span>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
-              {CONTACT_PERSON_OPTIONS.map((person) => {
-                const isChecked = formData.contactPerson === person.id;
-                return (
-                  <label
-                    key={person.id}
-                    id={`contact-person-option-${person.id}`}
-                    htmlFor={`radio-person-${person.id}`}
-                    className={`relative flex items-start gap-3.5 p-3.5 border transition-all cursor-pointer ${
-                      isChecked
-                        ? 'bg-white border-[#1a1a1a] shadow-sm ring-1 ring-[#1a1a1a]'
-                        : 'bg-white/70 border-[#dcd8cc] hover:border-[#1a1a1a] hover:bg-white'
-                    }`}
-                  >
-                    <div className="pt-0.5 shrink-0">
-                      <input
-                        type="radio"
-                        id={`radio-person-${person.id}`}
-                        name="contactPerson"
-                        value={person.id}
-                        checked={isChecked}
-                        onChange={() => setFormData({ ...formData, contactPerson: person.id })}
-                        className="w-4 h-4 accent-[#1a1a1a] cursor-pointer"
-                      />
-                    </div>
-                    <div className="space-y-0.5">
-                      <span className="text-xs font-semibold text-[#1a1a1a] block leading-tight">
-                        {person.name}
-                      </span>
-                      <span className="text-[10px] font-mono text-[#C51B18] uppercase tracking-wider block">
-                        {person.role}
-                      </span>
-                      <p className="text-[11px] text-[#5c5850] font-light leading-snug mt-1">
-                        {person.desc}
-                      </p>
-                    </div>
-                  </label>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* RADIO BUTTONS: Preferred Contact Method */}
-          <div className="space-y-3">
-            <label className="text-[11px] font-mono font-bold uppercase tracking-[0.15em] text-[#1a1a1a] block">
-              Preferred Contact Channel
-            </label>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-              {CONTACT_METHOD_OPTIONS.map((opt) => {
-                const isSelected = formData.contactMethod === opt.id;
-                const IconComponent = opt.icon;
-                return (
-                  <label
-                    key={opt.id}
-                    id={`contact-method-${opt.id}`}
-                    htmlFor={`radio-method-${opt.id}`}
-                    className={`flex flex-col items-center justify-center text-center p-3 border cursor-pointer transition-all ${
-                      isSelected
-                        ? 'bg-[#1a1a1a] text-[#f4f1ea] border-[#1a1a1a]'
-                        : 'bg-[#f4f1ea] text-[#5c5850] border-[#dcd8cc] hover:border-[#1a1a1a]'
-                    }`}
-                  >
-                    <input
-                      type="radio"
-                      id={`radio-method-${opt.id}`}
-                      name="contactMethod"
-                      value={opt.id}
-                      checked={isSelected}
-                      onChange={() => setFormData({ ...formData, contactMethod: opt.id })}
-                      className="sr-only"
-                    />
-                    <IconComponent className={`w-4 h-4 mb-1.5 ${isSelected ? 'text-[#f4f1ea]' : 'text-[#1a1a1a]'}`} />
-                    <span className="text-[11px] font-mono uppercase tracking-wider leading-tight">
-                      {opt.label}
-                    </span>
-                  </label>
-                );
-              })}
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {/* Name */}
+        <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            {/* Full Name */}
             <div className="space-y-1.5">
-              <label htmlFor="contact-name" className="text-[11px] font-mono font-bold uppercase tracking-[0.15em] text-[#1a1a1a] block">
-                Your Full Name <span className="text-[#C51B18]">*</span>
+              <label htmlFor="contact-name" className="text-xs font-mono font-medium text-[#111111] block">
+                Full Name <span className="text-[#D01020]">*</span>
               </label>
               <input
                 id="contact-name"
@@ -288,24 +172,23 @@ export function ContactForm() {
                   if (errors.name) setErrors({ ...errors, name: undefined });
                 }}
                 placeholder="e.g. Sarah Jenkins"
-                className={`w-full px-4 py-3 bg-[#f4f1ea] border text-sm text-[#1a1a1a] focus:outline-none focus:bg-white transition-colors ${
-                  errors.name ? 'border-red-500' : 'border-[#dcd8cc] focus:border-[#1a1a1a]'
+                className={`w-full px-4 py-3 bg-[#fbfaf7] border text-sm text-[#111111] focus:bg-white focus:outline-none transition-colors rounded-sm ${
+                  errors.name ? 'border-[#D01020]' : 'border-[#e5e2d9] focus:border-[#111111]'
                 }`}
                 aria-invalid={!!errors.name}
-                aria-describedby={errors.name ? 'name-error' : undefined}
                 required
               />
               {errors.name && (
-                <p id="name-error" className="text-xs text-red-600 flex items-center gap-1">
-                  <AlertCircle className="w-3 h-3 shrink-0" /> {errors.name}
+                <p className="text-xs text-[#D01020] flex items-center gap-1 mt-1">
+                  <AlertCircle className="w-3.5 h-3.5" /> {errors.name}
                 </p>
               )}
             </div>
 
-            {/* Email */}
+            {/* Email Address */}
             <div className="space-y-1.5">
-              <label htmlFor="contact-email" className="text-[11px] font-mono font-bold uppercase tracking-[0.15em] text-[#1a1a1a] block">
-                Email Address <span className="text-[#C51B18]">*</span>
+              <label htmlFor="contact-email" className="text-xs font-mono font-medium text-[#111111] block">
+                Email Address <span className="text-[#D01020]">*</span>
               </label>
               <input
                 id="contact-email"
@@ -316,23 +199,22 @@ export function ContactForm() {
                   if (errors.email) setErrors({ ...errors, email: undefined });
                 }}
                 placeholder="e.g. sarah@example.com"
-                className={`w-full px-4 py-3 bg-[#f4f1ea] border text-sm text-[#1a1a1a] focus:outline-none focus:bg-white transition-colors ${
-                  errors.email ? 'border-red-500' : 'border-[#dcd8cc] focus:border-[#1a1a1a]'
+                className={`w-full px-4 py-3 bg-[#fbfaf7] border text-sm text-[#111111] focus:bg-white focus:outline-none transition-colors rounded-sm ${
+                  errors.email ? 'border-[#D01020]' : 'border-[#e5e2d9] focus:border-[#111111]'
                 }`}
                 aria-invalid={!!errors.email}
-                aria-describedby={errors.email ? 'email-error' : undefined}
                 required
               />
               {errors.email && (
-                <p id="email-error" className="text-xs text-red-600 flex items-center gap-1">
-                  <AlertCircle className="w-3 h-3 shrink-0" /> {errors.email}
+                <p className="text-xs text-[#D01020] flex items-center gap-1 mt-1">
+                  <AlertCircle className="w-3.5 h-3.5" /> {errors.email}
                 </p>
               )}
             </div>
 
-            {/* Phone */}
+            {/* Phone Number */}
             <div className="space-y-1.5">
-              <label htmlFor="contact-phone" className="text-[11px] font-mono font-bold uppercase tracking-[0.15em] text-[#1a1a1a] block">
+              <label htmlFor="contact-phone" className="text-xs font-mono font-medium text-[#111111] block">
                 Phone Number
               </label>
               <input
@@ -340,72 +222,71 @@ export function ContactForm() {
                 type="tel"
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                placeholder="e.g. 07123 456789"
-                className="w-full px-4 py-3 bg-[#f4f1ea] border border-[#dcd8cc] text-sm text-[#1a1a1a] focus:border-[#1a1a1a] focus:bg-white focus:outline-none transition-colors"
+                placeholder="e.g. 07700 900123"
+                className="w-full px-4 py-3 bg-[#fbfaf7] border border-[#e5e2d9] text-sm text-[#111111] focus:border-[#111111] focus:bg-white focus:outline-none transition-colors rounded-sm"
               />
             </div>
 
             {/* Project Type */}
             <div className="space-y-1.5">
-              <label htmlFor="contact-project-type" className="text-[11px] font-mono font-bold uppercase tracking-[0.15em] text-[#1a1a1a] block">
-                Project Category
+              <label htmlFor="contact-project-type" className="text-xs font-mono font-medium text-[#111111] block">
+                Project Type
               </label>
               <select
                 id="contact-project-type"
                 value={formData.projectType}
                 onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
-                className="w-full px-4 py-3 bg-[#f4f1ea] border border-[#dcd8cc] text-sm text-[#1a1a1a] focus:border-[#1a1a1a] focus:bg-white focus:outline-none transition-colors"
+                className="w-full px-4 py-3 bg-[#fbfaf7] border border-[#e5e2d9] text-sm text-[#111111] focus:border-[#111111] focus:bg-white focus:outline-none transition-colors rounded-sm"
               >
-                <option value="Residential Extension">Residential Extension</option>
-                <option value="Bespoke New Build">Bespoke New Build</option>
-                <option value="Heritage / Conservation Renovation">Heritage / Conservation Renovation</option>
-                <option value="Planning Permission & Appeals">Planning Permission & Appeals</option>
-                <option value="Building Regulations Package">Building Regulations Package</option>
-                <option value="3D Architectural Visualisation & BIM">3D Architectural Visualisation & BIM</option>
-                <option value="Commercial / Development Feasibility">Commercial / Development Feasibility</option>
+                <option value="Extension">Single / Double Storey Extension</option>
+                <option value="Loft Conversion">Loft Conversion / Dormer</option>
+                <option value="New Build">Bespoke New Build Home</option>
+                <option value="Renovation">Whole House Renovation</option>
+                <option value="Planning Only">Planning Advice &amp; Permissions Only</option>
+                <option value="Building Regulations">Building Regulations &amp; Tech Drawings</option>
               </select>
             </div>
 
             {/* Location */}
             <div className="space-y-1.5">
-              <label htmlFor="contact-location" className="text-[11px] font-mono font-bold uppercase tracking-[0.15em] text-[#1a1a1a] block">
-                Site Location / Postcode
+              <label htmlFor="contact-location" className="text-xs font-mono font-medium text-[#111111] block">
+                Property Location / Postcode
               </label>
               <input
                 id="contact-location"
                 type="text"
                 value={formData.location}
                 onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                placeholder="e.g. Harborne, Birmingham / B17"
-                className="w-full px-4 py-3 bg-[#f4f1ea] border border-[#dcd8cc] text-sm text-[#1a1a1a] focus:border-[#1a1a1a] focus:bg-white focus:outline-none transition-colors"
+                placeholder="e.g. Solihull, B91 or Harborne, B17"
+                className="w-full px-4 py-3 bg-[#fbfaf7] border border-[#e5e2d9] text-sm text-[#111111] focus:border-[#111111] focus:bg-white focus:outline-none transition-colors rounded-sm"
               />
             </div>
 
             {/* Budget Range */}
             <div className="space-y-1.5">
-              <label htmlFor="contact-budget" className="text-[11px] font-mono font-bold uppercase tracking-[0.15em] text-[#1a1a1a] block">
-                Estimated Project Budget
+              <label htmlFor="contact-budget" className="text-xs font-mono font-medium text-[#111111] block">
+                Estimated Budget Range
               </label>
               <select
                 id="contact-budget"
                 value={formData.estimatedBudget}
                 onChange={(e) => setFormData({ ...formData, estimatedBudget: e.target.value })}
-                className="w-full px-4 py-3 bg-[#f4f1ea] border border-[#dcd8cc] text-sm text-[#1a1a1a] focus:border-[#1a1a1a] focus:bg-white focus:outline-none transition-colors"
+                className="w-full px-4 py-3 bg-[#fbfaf7] border border-[#e5e2d9] text-sm text-[#111111] focus:border-[#111111] focus:bg-white focus:outline-none transition-colors rounded-sm"
               >
                 <option value="Under £50,000">Under £50,000</option>
-                <option value="£50,000 - £150,000">£50,000 - £150,000</option>
-                <option value="£150,000 - £350,000">£150,000 - £350,000</option>
-                <option value="£350,000 - £750,000">£350,000 - £750,000</option>
-                <option value="£750,000+">£750,000+</option>
-                <option value="To be determined / Feasibility">To be determined / Feasibility</option>
+                <option value="£50,000 - £100,000">£50,000 - £100,000</option>
+                <option value="£100,000 - £200,000">£100,000 - £200,000</option>
+                <option value="£200,000 - £400,000">£200,000 - £400,000</option>
+                <option value="£400,000+">£400,000+</option>
+                <option value="Still exploring / Not sure yet">Still exploring / Not sure yet</option>
               </select>
             </div>
           </div>
 
-          {/* Message */}
+          {/* Message Field */}
           <div className="space-y-1.5">
-            <label htmlFor="contact-message" className="text-[11px] font-mono font-bold uppercase tracking-[0.15em] text-[#1a1a1a] block">
-              Project Overview / Brief <span className="text-[#C51B18]">*</span>
+            <label htmlFor="contact-message" className="text-xs font-mono font-medium text-[#111111] block">
+              Tell us about your project <span className="text-[#D01020]">*</span>
             </label>
             <textarea
               id="contact-message"
@@ -415,67 +296,63 @@ export function ContactForm() {
                 setFormData({ ...formData, message: e.target.value });
                 if (errors.message) setErrors({ ...errors, message: undefined });
               }}
-              placeholder="Tell us about the property, your timeline, key spatial goals, or any planning constraints..."
-              className={`w-full px-4 py-3 bg-[#f4f1ea] border text-sm text-[#1a1a1a] focus:outline-none focus:bg-white transition-colors ${
-                errors.message ? 'border-red-500' : 'border-[#dcd8cc] focus:border-[#1a1a1a]'
+              placeholder="What are your main goals? (e.g. open plan kitchen diner with sliding doors, extra bedroom in loft, modern garden room, or planning queries)..."
+              className={`w-full px-4 py-3 bg-[#fbfaf7] border text-sm text-[#111111] focus:bg-white focus:outline-none transition-colors rounded-sm ${
+                errors.message ? 'border-[#D01020]' : 'border-[#e5e2d9] focus:border-[#111111]'
               }`}
               aria-invalid={!!errors.message}
-              aria-describedby={errors.message ? 'message-error' : undefined}
               required
             />
             {errors.message && (
-              <p id="message-error" className="text-xs text-red-600 flex items-center gap-1">
-                <AlertCircle className="w-3 h-3 shrink-0" /> {errors.message}
+              <p className="text-xs text-[#D01020] flex items-center gap-1 mt-1">
+                <AlertCircle className="w-3.5 h-3.5" /> {errors.message}
               </p>
             )}
           </div>
 
-          {/* File Upload Simulator (supports drag-and-drop and click) */}
+          {/* File Upload Area */}
           <div className="space-y-2">
-            <label className="text-[11px] font-mono font-bold uppercase tracking-[0.15em] text-[#1a1a1a] block">
-              Attach Site Plans, Sketches, or Photos (Optional)
+            <label className="text-xs font-mono font-medium text-[#111111] block">
+              Attach Photos, Sketches or Estate Agent Floorplans (Optional)
             </label>
-
             <div
               onDragOver={handleDragOver}
               onDragLeave={handleDragLeave}
               onDrop={handleDrop}
-              className={`border-2 border-dashed p-6 text-center transition-colors cursor-pointer ${
-                isDragging ? 'border-[#1a1a1a] bg-[#edeae1]' : 'border-[#dcd8cc] bg-[#f4f1ea] hover:border-[#1a1a1a]'
+              onClick={() => document.getElementById('contact-file-input')?.click()}
+              className={`border border-dashed p-4 text-center cursor-pointer transition-colors rounded-sm ${
+                isDragging ? 'border-[#D01020] bg-[#fbfaf7]' : 'border-[#dcd8cc] bg-[#fbfaf7] hover:border-[#111111]'
               }`}
-              onClick={() => document.getElementById('file-upload-input')?.click()}
             >
               <input
-                id="file-upload-input"
+                id="contact-file-input"
                 type="file"
                 multiple
-                accept=".pdf,.jpg,.jpeg,.png,.dwg"
+                accept=".pdf,.jpg,.jpeg,.png"
                 onChange={handleFileChange}
                 className="hidden"
               />
-              <Upload className="w-6 h-6 text-[#736e65] mx-auto mb-2" />
-              <p className="text-xs sm:text-sm text-[#1a1a1a] font-medium">
-                Drag and drop files here, or <span className="underline underline-offset-4">browse files</span>
+              <Upload className="w-4 h-4 text-[#706c64] mx-auto mb-1" />
+              <p className="text-xs text-[#111111]">
+                Drop files here, or <span className="text-[#D01020] font-semibold underline">browse files</span>
               </p>
-              <p className="text-[11px] font-mono text-[#736e65] mt-1">
-                Supports PDF, JPG, PNG, CAD files (Max 25MB per file)
+              <p className="text-[11px] font-mono text-[#8c887f] mt-0.5">
+                PDF, JPG, PNG up to 25MB
               </p>
             </div>
 
-            {/* Attached file chips */}
             {files.length > 0 && (
-              <div className="space-y-1.5 pt-2">
-                {files.map((f, idx) => (
-                  <div key={idx} className="flex items-center justify-between p-2 bg-[#f4f1ea] border border-[#dcd8cc] text-xs">
-                    <span className="flex items-center gap-2 text-[#1a1a1a] truncate max-w-[280px]">
-                      <FileCheck className="w-3.5 h-3.5 text-[#1a1a1a] shrink-0" />
-                      {f.name} ({(f.size / (1024 * 1024)).toFixed(2)} MB)
+              <div className="space-y-1.5 pt-1">
+                {files.map((file, idx) => (
+                  <div key={idx} className="flex items-center justify-between p-2 bg-[#f4f1ea] border border-[#e5e2d9] text-xs">
+                    <span className="flex items-center gap-2 truncate text-[#111111]">
+                      <FileCheck className="w-3.5 h-3.5 text-[#D01020]" />
+                      {file.name}
                     </span>
                     <button
                       type="button"
                       onClick={() => removeFile(idx)}
-                      className="p-1 text-[#736e65] hover:text-red-600 transition-colors cursor-pointer"
-                      aria-label={`Remove file ${f.name}`}
+                      className="text-[#8c887f] hover:text-[#D01020] p-1"
                     >
                       <X className="w-3.5 h-3.5" />
                     </button>
@@ -485,26 +362,128 @@ export function ContactForm() {
             )}
           </div>
 
-          {/* Submit Action */}
+          {/* GOOGLE RECAPTCHA V2 COMPONENT */}
           <div className="pt-2">
+            <div
+              id="google-recaptcha-box"
+              className="inline-block bg-[#f9f9f9] border border-[#d3d3d3] rounded shadow-[0_1px_2px_rgba(0,0,0,0.08)] p-3 select-none"
+            >
+              <div className="flex items-center gap-4">
+                {/* Checkbox / Spinner / Checkmark */}
+                <button
+                  type="button"
+                  id="recaptcha-anchor"
+                  onClick={handleRecaptchaClick}
+                  disabled={recaptchaVerified || recaptchaLoading}
+                  className={`w-7 h-7 rounded-[2px] border flex items-center justify-center transition-all ${
+                    recaptchaVerified
+                      ? 'bg-white border-emerald-500 text-emerald-600'
+                      : recaptchaLoading
+                      ? 'bg-white border-blue-400'
+                      : 'bg-white border-[#c1c1c1] hover:border-[#999999]'
+                  }`}
+                  aria-label="Google reCAPTCHA checkbox: I'm not a robot"
+                >
+                  {recaptchaLoading ? (
+                    <RotateCw className="w-4 h-4 text-blue-500 animate-spin" />
+                  ) : recaptchaVerified ? (
+                    <Check className="w-5 h-5 text-emerald-600 stroke-[3]" />
+                  ) : null}
+                </button>
+
+                <label
+                  htmlFor="recaptcha-anchor"
+                  onClick={handleRecaptchaClick}
+                  className="text-xs sm:text-sm font-sans text-[#222222] font-medium cursor-pointer"
+                >
+                  I'm not a robot
+                </label>
+
+                {/* Official Google reCAPTCHA Badge */}
+                <div className="flex flex-col items-center ml-4 pl-4 border-l border-[#e0e0e0] shrink-0 text-center">
+                  <svg className="w-7 h-7" viewBox="0 0 48 48" fill="none">
+                    <path
+                      d="M24 4C12.95 4 4 12.95 4 24C4 35.05 12.95 44 24 44C35.05 44 44 35.05 44 24C44 12.95 35.05 4 24 4Z"
+                      fill="#1A73E8"
+                      fillOpacity="0.1"
+                    />
+                    <path
+                      d="M34 24C34 18.48 29.52 14 24 14C19.8 14 16.2 16.6 14.8 20.3L18.4 21.8C19.3 19.3 21.4 17.6 24 17.6C27.5 17.6 30.4 20.5 30.4 24C30.4 27.5 27.5 30.4 24 30.4C22.2 30.4 20.6 29.6 19.5 28.3L16.9 30.9C18.7 32.8 21.2 34 24 34C29.52 34 34 29.52 34 24Z"
+                      fill="#1A73E8"
+                    />
+                    <path
+                      d="M24 10V18L30 14L24 10Z"
+                      fill="#4285F4"
+                    />
+                  </svg>
+                  <span className="text-[9px] font-sans text-[#555555] font-semibold leading-tight mt-0.5">
+                    reCAPTCHA
+                  </span>
+                  <div className="flex items-center gap-1 text-[8px] text-[#777777] mt-0.5">
+                    <a
+                      href="https://www.google.com/intl/en/policies/privacy/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:underline"
+                    >
+                      Privacy
+                    </a>
+                    <span>&bull;</span>
+                    <a
+                      href="https://www.google.com/intl/en/policies/terms/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:underline"
+                    >
+                      Terms
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {errors.recaptcha && (
+              <p className="text-xs text-[#D01020] flex items-center gap-1 mt-1.5">
+                <AlertCircle className="w-3.5 h-3.5" /> {errors.recaptcha}
+              </p>
+            )}
+          </div>
+
+          {/* Submit Button & Assurance */}
+          <div className="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-[#e5e2d9]">
             <button
-              id="submit-enquiry-form-btn"
+              id="contact-submit-btn"
               type="submit"
               disabled={isSubmitting}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#1a1a1a] text-[#f4f1ea] text-[11px] font-semibold uppercase tracking-[0.2em] hover:bg-[#333333] disabled:opacity-50 transition-all cursor-pointer"
+              className="px-8 py-4 bg-[#D01020] hover:bg-[#b00d1b] text-white text-xs font-mono font-bold uppercase tracking-[0.2em] rounded-sm transition-all shadow hover:shadow-md flex items-center justify-center gap-2 shrink-0 active:scale-95 disabled:opacity-50"
             >
               {isSubmitting ? (
                 <>
                   <Loader2 className="w-4 h-4 animate-spin" />
-                  <span>Submitting Enquiry...</span>
+                  <span>Sending Message...</span>
                 </>
               ) : (
                 <>
-                  <span>Submit Consultation Enquiry</span>
+                  <span>Send Enquiry</span>
                   <Send className="w-4 h-4" />
                 </>
               )}
             </button>
+
+            <div className="flex items-center gap-4 text-xs text-[#706c64]">
+              <div className="flex items-center gap-1.5">
+                <Check className="w-3.5 h-3.5 text-[#D01020]" />
+                <span>No obligation</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <Clock className="w-3.5 h-3.5 text-[#D01020]" />
+                <span>1-2 day response</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#D01020]" />
+                <span>No spam</span>
+              </div>
+            </div>
           </div>
         </form>
       )}
